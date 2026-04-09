@@ -3,112 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AirDolomiti Roblox | Official Site</title>
+    <title>AirDolomiti Roblox | Official Virtual Airline</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <div class="top-alert">
-        POSSIBILI CANCELLAZIONI PER SCIOPERO NAZIONALE VENERDÌ 10 APRILE 2026
+        POSSIBLE FLIGHT DISRUPTIONS DUE TO SYSTEM MAINTENANCE - CHECK YOUR STATUS
     </div>
 
     <header>
-        <div class="header-container">
+        <nav>
             <div class="logo">
-                <img src="Air_Dolomiti_logo.svg.png" alt="Logo">
+                <img src="Air_Dolomiti_logo.svg.png" alt="AirDolomiti Roblox Logo">
             </div>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="#">Esplora</a></li>
-                    <li><a href="#">Prenota e Gestisci</a></li>
-                    <li><a href="#">In viaggio</a></li>
-                </ul>
-            </nav>
+            <ul class="nav-links">
+                <li><a href="#">Explore</a></li>
+                <li><a href="#">Book & Manage</a></li>
+                <li><a href="#">On Board</a></li>
+            </ul>
             <div class="nav-icons">
-                <span>♿</span> <span>🔍</span> <span>👤</span> <span class="lang">IT</span>
+                <span>🔍</span>
+                <span>👤</span>
+                <span class="lang-selector">EN</span>
             </div>
-        </div>
+        </nav>
     </header>
 
     <main>
-        <section class="hero-section">
+        <section class="hero">
             <div class="hero-background"></div>
             
-            <div class="booking-wrapper">
+            <div class="booking-container">
                 <div class="booking-tabs">
-                    <button class="tab active">● Andata / Ritorno</button>
-                    <button class="tab">○ Solo andata</button>
+                    <button class="active">Round trip</button>
+                    <button>One way</button>
                 </div>
                 <div class="booking-form">
-                    <div class="input-box">
-                        <label>Partenza</label>
-                        <input type="text" placeholder="Partenza da">
+                    <div class="input-group">
+                        <label>From</label>
+                        <input type="text" placeholder="Departure Airport">
                     </div>
-                    <div class="input-box">
-                        <label>Arrivo</label>
-                        <input type="text" placeholder="Arrivo a">
+                    <div class="input-group">
+                        <label>To</label>
+                        <input type="text" placeholder="Arrival Airport">
                     </div>
-                    <div class="input-box">
-                        <label>Passeggeri</label>
-                        <input type="text" value="1 Passeggero">
-                    </div>
-                    <button class="btn-cerca">Cerca ➔</button>
+                    <button class="btn-search">Search Flight <span class="arrow">➤</span></button>
                 </div>
             </div>
         </section>
 
-        <section class="manage-bar">
-            <div class="manage-container">
-                <p>Gestisci al meglio il tuo viaggio</p>
-                <div class="manage-btns">
-                    <button>Check In</button>
-                    <button>Gestione Prenotazione</button>
-                    <button>Miles & More</button>
-                    <button>Prenota auto</button>
-                </div>
-            </div>
-        </section>
-
-        <section class="offers-section">
-            <h2>Scopri le nostre offerte</h2>
+        <section class="offers">
+            <h2>Discover our offers</h2>
             <div class="offers-grid">
                 <div class="offer-card">
-                    <img src="https://via.placeholder.com/300x150" alt="Milano">
-                    <div class="offer-details">
-                        <h3>Milano Malpensa - Francoforte</h3>
-                        <p class="price">107€</p>
-                        <p class="info">A/R IN ECONOMY LIGHT</p>
+                    <div class="offer-info">
+                        <h3>Milan Malpensa - Frankfurt</h3>
+                        <p>From 107 R$</p>
+                        <span>ONE WAY IN ECONOMY</span>
                     </div>
                 </div>
+                <div class="offer-card">
+                    <div class="offer-info">
+                        <h3>Florence - Munich</h3>
+                        <p>From 175 R$</p>
+                        <span>ONE WAY IN ECONOMY</span>
+                    </div>
                 </div>
+                <div class="offer-card">
+                    <div class="offer-info">
+                        <h3>Verona - Frankfurt</h3>
+                        <p>From 200 R$</p>
+                        <span>ONE WAY IN ECONOMY</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="services-split">
+            <div class="service-box leisure">
+                <div class="service-content">
+                    <h3>Leisure</h3>
+                    <p>Discover services dedicated to you.</p>
+                    <a href="#" class="btn-outline">Find out more ➤</a>
+                </div>
+            </div>
+            <div class="service-box business">
+                <div class="service-content">
+                    <h3>Business</h3>
+                    <p>Discover services dedicated to you.</p>
+                    <a href="#" class="btn-outline">Find out more ➤</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="newsletter">
+            <h2>Subscribe to our newsletter</h2>
+            <p>Keep up to date with AirDolomiti Roblox promotions</p>
+            <div class="newsletter-form">
+                <input type="email" placeholder="Email">
+                <button>✉</button>
+            </div>
         </section>
     </main>
 
-    <footer class="main-footer">
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h4>Chi siamo</h4>
-                <a href="#">Flotta</a>
-                <a href="#">Corporate Governance</a>
-                <a href="#">Training</a>
+    <footer>
+        <div class="footer-buttons">
+            <button>Check In</button>
+            <button>Manage Booking</button>
+            <button>Miles & More</button>
+            <button>Rent a car</button>
+        </div>
+
+        <div class="footer-links">
+            <div class="link-column">
+                <h4>About us</h4>
+                <ul>
+                    <li><a href="#">Fleet</a></li>
+                    <li><a href="#">Company</a></li>
+                    <li><a href="#">Training</a></li>
+                </ul>
             </div>
-            <div class="footer-col">
-                <h4>Contatti</h4>
-                <a href="#">Sede</a>
-                <a href="#">Lavora con noi</a>
-                <a href="#">Discord Server</a>
+            <div class="link-column">
+                <h4>Contacts</h4>
+                <ul>
+                    <li><a href="#">Support</a></li>
+                    <li><a href="#">Work with us</a></li>
+                    <li><a href="#">Discord Server</a></li>
+                </ul>
             </div>
-            <div class="footer-col">
-                <h4>Info legali</h4>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Cookie Policy</a>
-                <a href="#">Condizioni di trasporto</a>
+            <div class="link-column">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                    <li><a href="#">Terms of use</a></li>
+                </ul>
             </div>
         </div>
+
         <div class="footer-bottom">
-            <img src="Air_Dolomiti_logo.svg.png" class="f-logo">
-            <div class="socials">
+            <div class="footer-logo">
+                <img src="Air_Dolomiti_logo.svg.png" alt="Logo Footer">
+                <span>Member of Lufthansa Group</span>
+            </div>
+            <div class="social-icons">
                 <span>📘</span> <span>📸</span> <span>🐦</span> <span>🎬</span>
             </div>
         </div>
