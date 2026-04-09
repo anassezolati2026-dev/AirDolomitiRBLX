@@ -1,238 +1,185 @@
 <!DOCTYPE html>
-<html lang="it-IT">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AirDolomiti Roblox - La principale Virtual Airline per l'Europa Centrale. Vola con stile, realismo e precisione.">
-    <meta name="keywords" content="Roblox, AirDolomiti, Virtual Airline, Flight Simulator, Ro-Aviation, Lufthansa Group">
-    <meta name="author" content="AirDolomiti Roblox Dev Team">
-    
-    <title>AirDolomiti Roblox | Official Virtual Airline Portal</title>
-
+    <title>AirDolomiti | Official Roblox Virtual Airline</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Open+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
-    
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <a href="#main-content" class="skip-link">Salta al contenuto</a>
-
-    <aside class="top-alert-bar" role="alert">
-        <div class="container">
-            <span class="status-icon">⚠️</span>
-            <p><strong>OPERATIONAL UPDATE:</strong> Possible flight disruptions due to Roblox Datastore maintenance. Check <a href="#">Discord Server</a> for real-time logs.</p>
-            <button class="close-alert" aria-label="Chiudi avviso">×</button>
-        </div>
-    </aside>
-
-    <header class="main-header">
-        <div class="header-container">
-            <div class="brand-identity">
-                <a href="/" class="logo-link">
-                    <img src="Air_Dolomiti_logo.svg.png" alt="AirDolomiti Roblox Official Logo" class="main-logo">
-                </a>
-            </div>
-
-            <nav class="desktop-nav" aria-label="Menu Principale">
-                <ul class="nav-menu">
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link">Esplora <i class="chevron"></i></a>
-                        <ul class="submenu">
-                            <li><a href="#destinations">Destinazioni</a></li>
-                            <li><a href="#fleet">La Nostra Flotta</a></li>
-                            <li><a href="#hubs">I Nostri Hub</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item"><a href="#" class="nav-link">Prenota & Gestisci</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">In Viaggio</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link"> Miles & More </a></li>
-                </ul>
-            </nav>
-
-            <div class="utility-nav">
-                <button class="icon-btn" aria-label="Cerca"><span class="icon">🔍</span></button>
-                <div class="user-profile">
-                    <button class="login-btn">
-                        <span class="icon">👤</span> 
-                        <span class="btn-text">Log In Roblox</span>
-                    </button>
-                </div>
-                <div class="language-picker">
-                    <select id="lang">
-                        <option value="it">IT</option>
-                        <option value="en" selected>EN</option>
-                        <option value="de">DE</option>
-                    </select>
+    <header>
+        <div class="top-nav-bar">
+            <div class="header-content">
+                <img src="Air_Dolomiti_logo.svg.png" class="main-logo" alt="AirDolomiti">
+                <nav class="center-nav">
+                    <ul>
+                        <li><a href="#">Esplora</a></li>
+                        <li><a href="#">Prenota e Gestisci</a></li>
+                        <li><a href="#">In viaggio</a></li>
+                    </ul>
+                </nav>
+                <div class="right-icons">
+                    <span class="icon">♿</span>
+                    <span class="icon">🔍</span>
+                    <span class="icon">👤</span>
+                    <span class="lang">IT</span>
                 </div>
             </div>
         </div>
     </header>
 
-    <main id="main-content">
-        
-        <section class="hero-viewport">
-            <div class="hero-overlay"></div>
-            <div class="hero-content">
-                <div class="booking-engine-wrapper">
-                    
-                    <div class="booking-tabs">
-                        <button class="tab-btn active" data-type="flight">Voli</button>
-                        <button class="tab-btn" data-type="checkin">Check-in</button>
-                        <button class="tab-btn" data-type="status">Stato Volo</button>
+    <main>
+        <section class="hero-block">
+            <div class="hero-image" style="background-image: url('Screenshot 2026-04-09 210801.png');"></div>
+            <div class="booking-super-container">
+                <div class="booking-tabs">
+                    <div class="tab active"><input type="radio" checked> Andata / Ritorno</div>
+                    <div class="tab"><input type="radio"> Solo andata</div>
+                </div>
+                <div class="booking-grid">
+                    <div class="field">
+                        <label>Partenza</label>
+                        <input type="text" placeholder="Partenza da">
                     </div>
-
-                    <form class="booking-form-advanced">
-                        <div class="form-row">
-                            <div class="input-field-group">
-                                <label for="from">Da (Hub Partenza)</label>
-                                <div class="input-with-icon">
-                                    <span class="geo-icon">📍</span>
-                                    <input type="text" id="from" placeholder="Città o Aeroporto">
-                                </div>
-                            </div>
-                            
-                            <button type="button" class="swap-locations" title="Inverti">⇄</button>
-
-                            <div class="input-field-group">
-                                <label for="to">A (Destinazione)</label>
-                                <div class="input-with-icon">
-                                    <span class="geo-icon">🏁</span>
-                                    <input type="text" id="to" placeholder="Città o Aeroporto">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-row secondary">
-                            <div class="input-field-group small">
-                                <label>Date</label>
-                                <input type="date" value="2026-04-10">
-                            </div>
-                            <div class="input-field-group small">
-                                <label>Passeggeri</label>
-                                <select>
-                                    <option>1 Adulto</option>
-                                    <option>2 Adulti</option>
-                                </select>
-                            </div>
-                            <button type="submit" class="cta-search-btn">
-                                CERCA VOLI <span class="arrow">→</span>
-                            </button>
-                        </div>
-                    </form>
+                    <div class="field">
+                        <label>Arrivo</label>
+                        <input type="text" placeholder="Arrivo a">
+                    </div>
+                    <div class="field">
+                        <label>Data partenza</label>
+                        <input type="text" placeholder="-- / -- / --">
+                    </div>
+                    <div class="field">
+                        <label>Data ritorno</label>
+                        <input type="text" placeholder="-- / -- / --">
+                    </div>
+                    <div class="field">
+                        <label>Passeggeri</label>
+                        <input type="text" value="1 Passeggero">
+                    </div>
+                    <button class="cta-search">Cerca ➔</button>
                 </div>
             </div>
         </section>
 
-        <section class="live-status">
-            <div class="container">
-                <h2 class="section-title">Voli in Tempo Reale</h2>
-                <div class="status-table-container">
-                    <table class="flight-table">
-                        <thead>
-                            <tr>
-                                <th>Volo</th>
-                                <th>Destinazione</th>
-                                <th>Status</th>
-                                <th>Server</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><span class="flight-code">EN123</span></td>
-                                <td>Monaco (MUC)</td>
-                                <td><span class="status-badge boarding">Imbarco</span></td>
-                                <td><a href="#" class="join-btn">Entra</a></td>
-                            </tr>
-                            <tr>
-                                <td><span class="flight-code">EN456</span></td>
-                                <td>Francoforte (FRA)</td>
-                                <td><span class="status-badge scheduled">Programmato</span></td>
-                                <td><span class="server-full">Pieno</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
+        <section class="management-bar">
+            <div class="bar-inner">
+                <span class="bar-title">⚙️ Gestisci al meglio il tuo viaggio</span>
+                <div class="bar-buttons">
+                    <button>Check In</button>
+                    <button>Gestione Prenotazione</button>
+                    <button>Miles & More</button>
+                    <button>Prenota auto</button>
                 </div>
             </div>
         </section>
 
-        <section class="special-offers" id="destinations">
-            <div class="container">
-                <header class="section-header">
-                    <h2>Le nostre migliori offerte in Robux</h2>
-                    <p>Scopri l'Europa a prezzi imbattibili sui nostri server.</p>
-                </header>
-
-                <div class="offers-container">
-                    <article class="offer-card-pro">
-                        <div class="card-image-box">
-                            <img src="milan-thumb.jpg" alt="Milano">
-                            <div class="price-tag">Da <strong>107 R$</strong></div>
-                        </div>
-                        <div class="card-details">
-                            <h3>Milano Malpensa - Frankfurt</h3>
-                            <p>Economy Class | Server Pro</p>
-                            <a href="#" class="view-offer">Dettagli offerta</a>
-                        </div>
-                    </article>
-                    
+        <section class="offers-container">
+            <h2 class="section-title">Scopri le nostre offerte</h2>
+            <div class="offers-grid">
+                <div class="card">
+                    <div class="card-img" style="background-image: url('https://bit.ly/3uN6W3X');"></div>
+                    <div class="card-body">
+                        <h3>Milano Malpensa - Francoforte</h3>
+                        <span class="price">107€</span>
+                        <span class="label">A/R IN ECONOMY LIGHT</span>
                     </div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('https://bit.ly/3uM7W3X');"></div>
+                    <div class="card-body">
+                        <h3>Firenze - Monaco</h3>
+                        <span class="price">175€</span>
+                        <span class="label">A/R IN ECONOMY LIGHT</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('https://bit.ly/3uL8W3X');"></div>
+                    <div class="card-body">
+                        <h3>Verona - Francoforte</h3>
+                        <span class="price">200€</span>
+                        <span class="label">A/R IN ECONOMY LIGHT</span>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section class="community-cta">
-            <div class="newsletter-box">
-                <h2>Resta aggiornato</h2>
-                <p>Ricevi le notifiche sui nuovi aerei in flotta e promozioni eventi.</p>
-                <form class="newsletter-form-inline">
-                    <input type="email" placeholder="Inserisci la tua email" required>
-                    <button type="submit">Iscriviti</button>
-                </form>
+        <section class="split-promo">
+            <div class="promo-box leisure">
+                <div class="promo-text">
+                    <h3>Leisure</h3>
+                    <p>Scopri i servizi dedicati a te.</p>
+                    <button class="white-btn">Scopri di più ➔</button>
+                </div>
+            </div>
+            <div class="promo-box business">
+                <div class="promo-text">
+                    <h3>Business</h3>
+                    <p>Scopri i servizi dedicati a te.</p>
+                    <button class="white-btn">Scopri di più ➔</button>
+                </div>
             </div>
         </section>
 
+        <section class="newsletter-full">
+            <h2>Iscriviti alla nostra newsletter</h2>
+            <p>Scopri le promozioni ed i vantaggi Air Dolomiti</p>
+            <div class="input-group">
+                <input type="email" placeholder="Email">
+                <button class="send-btn">✉</button>
+            </div>
+        </section>
     </main>
 
-    <footer class="corporate-footer">
-        <div class="footer-top-grid">
-            <div class="footer-col">
-                <h4>Informazioni</h4>
+    <footer class="mega-footer">
+        <div class="footer-columns">
+            <div class="col">
+                <h4>Chi siamo</h4>
                 <ul>
-                    <li><a href="#">La Nostra Flotta (Embraer 195)</a></li>
-                    <li><a href="#">Reclutamento Staff</a></li>
-                    <li><a href="#">Academy Piloti</a></li>
+                    <li>Flotta</li>
+                    <li>Corporate Governance</li>
+                    <li>Carta dei servizi</li>
+                    <li>Training</li>
                 </ul>
             </div>
-            <div class="footer-col">
-                <h4>Supporto</h4>
+            <div class="col">
+                <h4>Contatti</h4>
                 <ul>
-                    <li><a href="#">Discord Center</a></li>
-                    <li><a href="#">Segnala un Bug</a></li>
-                    <li><a href="#">FAQ Viaggiatori</a></li>
+                    <li>Sede</li>
+                    <li>Ufficio stampa</li>
+                    <li>Lavora con noi</li>
+                    <li>Customer Service</li>
                 </ul>
             </div>
-            <div class="footer-col">
-                <h4>Social Community</h4>
-                <div class="social-links">
-                    <a href="#" class="social-icon">Discord</a>
-                    <a href="#" class="social-icon">Roblox Group</a>
-                    <a href="#" class="social-icon">YouTube</a>
-                    <a href="#" class="social-icon">X</a>
-                </div>
+            <div class="col">
+                <h4>News e consigli</h4>
+                <ul>
+                    <li>Press Area</li>
+                    <li>Consigli di viaggio</li>
+                    <li>Spazio Italia</li>
+                </ul>
+            </div>
+            <div class="col">
+                <h4>Tratte</h4>
+                <ul>
+                    <li>Orario voli</li>
+                    <li>Voli Verona - Monaco</li>
+                    <li>Voli Firenze - Francoforte</li>
+                </ul>
             </div>
         </div>
-
         <div class="footer-legal">
-            <div class="legal-container">
-                <div class="footer-branding">
-                    <img src="Air_Dolomiti_logo.svg.png" alt="Logo" class="footer-logo-small">
-                    <span>Part of <strong>Lufthansa Group</strong> | Roblox Virtual Division</span>
-                </div>
-                <p class="copyright">&copy; 2026 AirDolomiti Roblox. Tutti i diritti riservati. Questo è un sito fan-made per scopi di roleplay.</p>
+            <div class="legal-left">
+                <img src="Air_Dolomiti_logo.svg.png" class="footer-logo">
+                <p>©AIR DOLOMITI S.p.A. | Member of Lufthansa Group</p>
+            </div>
+            <div class="social-links">
+                <span>FB</span> <span>IG</span> <span>TW</span> <span>YT</span> <span>TK</span>
             </div>
         </div>
     </footer>
 
-    <script src="main.js"></script>
 </body>
 </html>
