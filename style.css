@@ -1,161 +1,81 @@
-/* COLORI UFFICIALI AIR DOLOMITI */
 :root {
-    --primary-teal: #00727A;
-    --dark-teal: #005a61;
-    --text-gray: #333;
-    --light-bg: #f5f5f5;
+    --dolomiti-teal: #00727A;
+    --dolomiti-dark: #005a61;
+    --text-main: #333;
+    --white: #ffffff;
+    --gray-bg: #f4f7f8;
 }
 
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Open Sans', sans-serif;
-    color: var(--text-gray);
-    background-color: white;
-}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: 'Open Sans', sans-serif; color: var(--text-main); line-height: 1.6; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+a { text-decoration: none; color: inherit; transition: 0.3s; }
 
-/* Barra avvisi superiore */
-.top-alert {
-    background-color: var(--primary-teal);
-    color: white;
-    text-align: center;
-    padding: 10px;
-    font-size: 12px;
-    font-weight: bold;
-}
+/* 1. ANNOUNCEMENT BAR */
+.announcement-bar { background: var(--dolomiti-teal); color: white; text-align: center; padding: 12px; font-size: 13px; font-weight: 700; letter-spacing: 1px; }
 
-/* Header */
-header {
-    background: white;
-    padding: 10px 5%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #eee;
-}
+/* 2. HEADER */
+.main-header { background: white; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 1000; }
+.header-flex { display: flex; justify-content: space-between; align-items: center; height: 80px; }
+.brand-logo { height: 45px; }
+.main-nav ul { display: flex; list-style: none; gap: 25px; margin: 0; padding: 0; }
+.main-nav a { font-weight: 600; font-size: 15px; padding-bottom: 5px; }
+.main-nav a.active { border-bottom: 3px solid var(--dolomiti-teal); color: var(--dolomiti-teal); }
+.header-utilities { display: flex; gap: 20px; align-items: center; }
+.lang-box { font-weight: 700; border: 1px solid #ccc; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
 
-.logo img {
-    height: 45px;
-}
+/* 3. HERO & BOOKING */
+.hero-section { position: relative; height: 650px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.hero-visual { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; z-index: 1; }
+.hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.1); z-index: 2; }
 
-.nav-links {
-    display: flex;
-    gap: 25px;
-    list-style: none;
-    font-weight: 600;
-}
+.booking-engine { position: relative; z-index: 10; background: white; padding: 35px; border-radius: 8px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); width: 90%; max-width: 1100px; }
+.booking-tabs { display: flex; gap: 30px; margin-bottom: 25px; border-bottom: 1px solid #eee; }
+.t-btn { background: none; border: none; padding: 10px 0; font-weight: 700; color: #777; cursor: pointer; }
+.t-btn.active { color: var(--dolomiti-teal); border-bottom: 3px solid var(--dolomiti-teal); }
 
-.nav-icons {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-}
+.booking-fields { display: flex; gap: 15px; flex-wrap: wrap; }
+.input-wrapper { flex: 1; min-width: 180px; display: flex; flex-direction: column; }
+.input-wrapper label { font-size: 11px; font-weight: 700; text-transform: uppercase; color: #888; margin-bottom: 5px; }
+.input-wrapper input { padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; }
+.main-search-btn { background: var(--dolomiti-teal); color: white; border: none; padding: 0 40px; border-radius: 4px; font-weight: 700; cursor: pointer; transition: 0.3s; }
+.main-search-btn:hover { background: var(--dolomiti-dark); }
 
-/* =========================================
-   SEZIONE HERO - CORREZIONE IMMAGINE
-   ========================================= */
-.hero {
-    position: relative;
-    width: 100%;
-    height: 550px; /* Altezza della sezione dello sfondo */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+/* 4. QUICK LINKS */
+.quick-links-bar { background: var(--dolomiti-teal); padding: 25px 0; }
+.links-flex { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 10px; }
+.q-link { background: transparent; border: 1px solid white; color: white; padding: 10px 25px; border-radius: 4px; font-weight: 700; cursor: pointer; transition: 0.3s; }
+.q-link:hover { background: white; color: var(--dolomiti-teal); }
 
-.hero-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* USO IL NOME ESATTO DEL TUO FILE TRA VIRGOLETTE */
-    background-image: url("Screenshot 2026-04-09 210801.png");
-    background-size: cover;
-    background-position: center;
-    z-index: 1;
-}
+/* 5. OFFERS */
+.offers-section { padding: 80px 0; background: var(--gray-bg); }
+.section-title { text-align: center; font-size: 32px; margin-bottom: 50px; font-weight: 300; }
+.offers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+.offer-card { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+.card-thumb { height: 180px; }
+.card-content { padding: 25px; text-align: center; }
+.price-tag { font-size: 28px; font-weight: 700; color: var(--dolomiti-teal); margin: 10px 0; }
+.card-btn { background: var(--dolomiti-teal); color: white; border: none; width: 100%; padding: 12px; border-radius: 4px; font-weight: 700; cursor: pointer; margin-top: 15px; }
 
-/* Box prenotazione sopra lo sfondo */
-.booking-container {
-    position: relative;
-    z-index: 2; /* Sta sopra lo sfondo */
-    background: white;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    width: 80%;
-    max-width: 900px;
-}
+/* 6. DUAL PROMO */
+.dual-promo { display: flex; height: 450px; color: white; }
+.promo-box { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 50px; background-color: var(--dolomiti-teal); border-right: 1px solid rgba(255,255,255,0.1); }
+.promo-box h3 { font-size: 40px; margin: 0; }
+.btn-ghost { border: 1px solid white; padding: 12px 30px; border-radius: 4px; font-weight: 700; margin-top: 20px; }
 
-.booking-tabs {
-    margin-bottom: 20px;
-    border-bottom: 1px solid #ddd;
-}
+/* 7. NEWSLETTER */
+.newsletter-area { padding: 80px 0; text-align: center; }
+.n-form { display: flex; justify-content: center; gap: 10px; margin-top: 30px; }
+.n-form input { padding: 15px; width: 350px; border: 1px solid #ddd; border-radius: 4px; }
+.n-btn { background: var(--dolomiti-teal); color: white; border: none; padding: 0 30px; border-radius: 4px; font-weight: 700; cursor: pointer; }
 
-.booking-tabs button {
-    background: none;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-weight: bold;
-    color: var(--primary-teal);
-}
-
-.booking-tabs button.active {
-    border-bottom: 3px solid var(--primary-teal);
-}
-
-.booking-form {
-    display: flex;
-    gap: 10px;
-    align-items: flex-end;
-}
-
-.input-group {
-    flex: 1;
-}
-
-.input-group label {
-    display: block;
-    font-size: 11px;
-    color: #666;
-    margin-bottom: 5px;
-}
-
-.input-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.btn-search {
-    background-color: var(--primary-teal);
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 4px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-/* Griglia Offerte Sotto */
-.offers {
-    padding: 50px 5%;
-}
-
-.offers-grid {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.offer-card {
-    background: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-    width: 280px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-}
+/* 8. FOOTER */
+.grand-footer { background: var(--dolomiti-teal); color: white; padding: 80px 0 40px; }
+.footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 50px; }
+.f-col h4 { font-size: 14px; letter-spacing: 1px; margin-bottom: 25px; opacity: 0.9; }
+.f-col a { display: block; margin-bottom: 12px; font-size: 14px; opacity: 0.7; }
+.f-col a:hover { opacity: 1; }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 40px; }
+.f-logo { height: 35px; filter: brightness(0) invert(1); margin-bottom: 5px; }
+.f-logo-wrap p { font-size: 12px; opacity: 0.6; margin: 0; }
+.social-box span { margin-left: 20px; font-weight: 700; cursor: pointer; opacity: 0.8; }
