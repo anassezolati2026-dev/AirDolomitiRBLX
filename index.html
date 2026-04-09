@@ -3,54 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AirDolomiti Roblox</title>
+    <title>AirDolomiti Roblox | Official Site</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
+    <div class="top-alert">
+        POSSIBILI CANCELLAZIONI PER SCIOPERO NAZIONALE VENERDÌ 10 APRILE 2026
+    </div>
+
     <header>
         <div class="header-container">
-            <img src="Air_Dolomiti_logo.svg.png" class="logo">
+            <div class="logo">
+                <img src="Air_Dolomiti_logo.svg.png" alt="Logo">
+            </div>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="#">Explore</a></li>
-                    <li><a href="#">Book</a></li>
-                    <li><a href="#">Fly</a></li>
+                    <li><a href="#">Esplora</a></li>
+                    <li><a href="#">Prenota e Gestisci</a></li>
+                    <li><a href="#">In viaggio</a></li>
                 </ul>
             </nav>
-            <div class="nav-icons">🔍 👤 EN</div>
+            <div class="nav-icons">
+                <span>♿</span> <span>🔍</span> <span>👤</span> <span class="lang">IT</span>
+            </div>
         </div>
     </header>
 
     <main>
-        <section class="hero">
-            <div class="hero-bg" style="background-image: url('Screenshot 2026-04-09 210801.png');"></div>
+        <section class="hero-section">
+            <div class="hero-background"></div>
             
-            <div class="booking-box">
-                <div class="tabs">
-                    <span class="active">Round Trip</span>
-                    <span>One Way</span>
+            <div class="booking-wrapper">
+                <div class="booking-tabs">
+                    <button class="tab active">● Andata / Ritorno</button>
+                    <button class="tab">○ Solo andata</button>
                 </div>
-                <div class="inputs">
-                    <input type="text" placeholder="From">
-                    <input type="text" placeholder="To">
-                    <button class="btn-search">Search ➔</button>
+                <div class="booking-form">
+                    <div class="input-box">
+                        <label>Partenza</label>
+                        <input type="text" placeholder="Partenza da">
+                    </div>
+                    <div class="input-box">
+                        <label>Arrivo</label>
+                        <input type="text" placeholder="Arrivo a">
+                    </div>
+                    <div class="input-box">
+                        <label>Passeggeri</label>
+                        <input type="text" value="1 Passeggero">
+                    </div>
+                    <button class="btn-cerca">Cerca ➔</button>
                 </div>
             </div>
         </section>
 
-        <section class="action-bar">
-            <button>Check-in</button>
-            <button>Manage</button>
-            <button>Status</button>
+        <section class="manage-bar">
+            <div class="manage-container">
+                <p>Gestisci al meglio il tuo viaggio</p>
+                <div class="manage-btns">
+                    <button>Check In</button>
+                    <button>Gestione Prenotazione</button>
+                    <button>Miles & More</button>
+                    <button>Prenota auto</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="offers-section">
+            <h2>Scopri le nostre offerte</h2>
+            <div class="offers-grid">
+                <div class="offer-card">
+                    <img src="https://via.placeholder.com/300x150" alt="Milano">
+                    <div class="offer-details">
+                        <h3>Milano Malpensa - Francoforte</h3>
+                        <p class="price">107€</p>
+                        <p class="info">A/R IN ECONOMY LIGHT</p>
+                    </div>
+                </div>
+                </div>
         </section>
     </main>
 
-    <footer>
-        <div class="footer-content">
-            <img src="Air_Dolomiti_logo.svg.png" class="logo-small">
-            <div class="socials">📘 📸 🐦</div>
+    <footer class="main-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Chi siamo</h4>
+                <a href="#">Flotta</a>
+                <a href="#">Corporate Governance</a>
+                <a href="#">Training</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contatti</h4>
+                <a href="#">Sede</a>
+                <a href="#">Lavora con noi</a>
+                <a href="#">Discord Server</a>
+            </div>
+            <div class="footer-col">
+                <h4>Info legali</h4>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Cookie Policy</a>
+                <a href="#">Condizioni di trasporto</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <img src="Air_Dolomiti_logo.svg.png" class="f-logo">
+            <div class="socials">
+                <span>📘</span> <span>📸</span> <span>🐦</span> <span>🎬</span>
+            </div>
         </div>
     </footer>
 
