@@ -1,185 +1,130 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AirDolomiti | Official Roblox Virtual Airline</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
+:root {
+    --primary-teal: #00727A;
+    --dark-teal: #005a61;
+    --light-gray: #f4f7f8;
+}
 
-    <header>
-        <div class="top-nav-bar">
-            <div class="header-content">
-                <img src="Air_Dolomiti_logo.svg.png" class="main-logo" alt="AirDolomiti">
-                <nav class="center-nav">
-                    <ul>
-                        <li><a href="#">Esplora</a></li>
-                        <li><a href="#">Prenota e Gestisci</a></li>
-                        <li><a href="#">In viaggio</a></li>
-                    </ul>
-                </nav>
-                <div class="right-icons">
-                    <span class="icon">♿</span>
-                    <span class="icon">🔍</span>
-                    <span class="icon">👤</span>
-                    <span class="lang">IT</span>
-                </div>
-            </div>
-        </div>
-    </header>
+body {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    color: #333;
+}
 
-    <main>
-        <section class="hero-block">
-            <div class="hero-image" style="background-image: url('Screenshot 2026-04-09 210801.png');"></div>
-            <div class="booking-super-container">
-                <div class="booking-tabs">
-                    <div class="tab active"><input type="radio" checked> Andata / Ritorno</div>
-                    <div class="tab"><input type="radio"> Solo andata</div>
-                </div>
-                <div class="booking-grid">
-                    <div class="field">
-                        <label>Partenza</label>
-                        <input type="text" placeholder="Partenza da">
-                    </div>
-                    <div class="field">
-                        <label>Arrivo</label>
-                        <input type="text" placeholder="Arrivo a">
-                    </div>
-                    <div class="field">
-                        <label>Data partenza</label>
-                        <input type="text" placeholder="-- / -- / --">
-                    </div>
-                    <div class="field">
-                        <label>Data ritorno</label>
-                        <input type="text" placeholder="-- / -- / --">
-                    </div>
-                    <div class="field">
-                        <label>Passeggeri</label>
-                        <input type="text" value="1 Passeggero">
-                    </div>
-                    <button class="cta-search">Cerca ➔</button>
-                </div>
-            </div>
-        </section>
+/* Alert superiore */
+.top-alert {
+    background-color: var(--primary-teal);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 12px;
+    font-weight: bold;
+}
 
-        <section class="management-bar">
-            <div class="bar-inner">
-                <span class="bar-title">⚙️ Gestisci al meglio il tuo viaggio</span>
-                <div class="bar-buttons">
-                    <button>Check In</button>
-                    <button>Gestione Prenotazione</button>
-                    <button>Miles & More</button>
-                    <button>Prenota auto</button>
-                </div>
-            </div>
-        </section>
+/* Header */
+header {
+    background: white;
+    padding: 15px 5%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
 
-        <section class="offers-container">
-            <h2 class="section-title">Scopri le nostre offerte</h2>
-            <div class="offers-grid">
-                <div class="card">
-                    <div class="card-img" style="background-image: url('https://bit.ly/3uN6W3X');"></div>
-                    <div class="card-body">
-                        <h3>Milano Malpensa - Francoforte</h3>
-                        <span class="price">107€</span>
-                        <span class="label">A/R IN ECONOMY LIGHT</span>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-img" style="background-image: url('https://bit.ly/3uM7W3X');"></div>
-                    <div class="card-body">
-                        <h3>Firenze - Monaco</h3>
-                        <span class="price">175€</span>
-                        <span class="label">A/R IN ECONOMY LIGHT</span>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-img" style="background-image: url('https://bit.ly/3uL8W3X');"></div>
-                    <div class="card-body">
-                        <h3>Verona - Francoforte</h3>
-                        <span class="price">200€</span>
-                        <span class="label">A/R IN ECONOMY LIGHT</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-        <section class="split-promo">
-            <div class="promo-box leisure">
-                <div class="promo-text">
-                    <h3>Leisure</h3>
-                    <p>Scopri i servizi dedicati a te.</p>
-                    <button class="white-btn">Scopri di più ➔</button>
-                </div>
-            </div>
-            <div class="promo-box business">
-                <div class="promo-text">
-                    <h3>Business</h3>
-                    <p>Scopri i servizi dedicati a te.</p>
-                    <button class="white-btn">Scopri di più ➔</button>
-                </div>
-            </div>
-        </section>
+.logo img { height: 40px; }
 
-        <section class="newsletter-full">
-            <h2>Iscriviti alla nostra newsletter</h2>
-            <p>Scopri le promozioni ed i vantaggi Air Dolomiti</p>
-            <div class="input-group">
-                <input type="email" placeholder="Email">
-                <button class="send-btn">✉</button>
-            </div>
-        </section>
-    </main>
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    font-weight: 600;
+}
 
-    <footer class="mega-footer">
-        <div class="footer-columns">
-            <div class="col">
-                <h4>Chi siamo</h4>
-                <ul>
-                    <li>Flotta</li>
-                    <li>Corporate Governance</li>
-                    <li>Carta dei servizi</li>
-                    <li>Training</li>
-                </ul>
-            </div>
-            <div class="col">
-                <h4>Contatti</h4>
-                <ul>
-                    <li>Sede</li>
-                    <li>Ufficio stampa</li>
-                    <li>Lavora con noi</li>
-                    <li>Customer Service</li>
-                </ul>
-            </div>
-            <div class="col">
-                <h4>News e consigli</h4>
-                <ul>
-                    <li>Press Area</li>
-                    <li>Consigli di viaggio</li>
-                    <li>Spazio Italia</li>
-                </ul>
-            </div>
-            <div class="col">
-                <h4>Tratte</h4>
-                <ul>
-                    <li>Orario voli</li>
-                    <li>Voli Verona - Monaco</li>
-                    <li>Voli Firenze - Francoforte</li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-legal">
-            <div class="legal-left">
-                <img src="Air_Dolomiti_logo.svg.png" class="footer-logo">
-                <p>©AIR DOLOMITI S.p.A. | Member of Lufthansa Group</p>
-            </div>
-            <div class="social-links">
-                <span>FB</span> <span>IG</span> <span>TW</span> <span>YT</span> <span>TK</span>
-            </div>
-        </div>
-    </footer>
+.nav-links a { text-decoration: none; color: #333; }
 
-</body>
-</html>
+/* Hero Section - CORREZIONE SFONDO */
+.hero {
+    position: relative;
+    height: 550px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 50px;
+}
+
+.hero-background {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    /* Utilizzo del tuo screenshot specifico */
+    background-image: url("Screenshot 2026-04-09 210801.png");
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+}
+
+.booking-container {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    width: 90%;
+    max-width: 1000px;
+}
+
+.booking-tabs { margin-bottom: 20px; border-bottom: 1px solid #eee; }
+.booking-tabs button {
+    background: none; border: none; padding: 10px 20px;
+    cursor: pointer; font-weight: bold; color: var(--primary-teal);
+}
+.booking-tabs button.active { border-bottom: 3px solid var(--primary-teal); }
+
+.booking-form { display: flex; gap: 15px; align-items: flex-end; }
+.input-group { flex: 1; }
+.input-group label { display: block; font-size: 12px; margin-bottom: 5px; color: #666; }
+.input-group input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
+
+.btn-search {
+    background-color: var(--primary-teal);
+    color: white; border: none; padding: 12px 25px;
+    border-radius: 4px; cursor: pointer; font-weight: bold;
+}
+
+/* Offerte */
+.offers { padding: 60px 5%; background: var(--light-gray); text-align: center; }
+.offers-grid { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+.offer-card {
+    background: white; padding: 25px; border-radius: 8px;
+    width: 250px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+.price { color: var(--primary-teal); font-size: 22px; font-weight: bold; margin: 10px 0; }
+
+/* Split Section */
+.services-split { display: flex; height: 350px; }
+.service-box {
+    flex: 1; display: flex; align-items: center; justify-content: center;
+    background-color: var(--primary-teal); color: white; border: 1px solid rgba(255,255,255,0.1);
+}
+.service-content { text-align: center; padding: 20px; }
+.btn-outline {
+    display: inline-block; margin-top: 15px; padding: 10px 20px;
+    border: 1px solid white; color: white; text-decoration: none; border-radius: 4px;
+}
+
+/* Footer Professionale */
+footer { background: var(--primary-teal); color: white; padding: 50px 5% 20px; }
+.footer-buttons { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; }
+.footer-buttons button {
+    background: transparent; border: 1px solid white; color: white;
+    padding: 10px 20px; border-radius: 4px; cursor: pointer;
+}
+.footer-links { display: flex; justify-content: space-around; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 40px; }
+.link-column h4 { margin-bottom: 20px; text-transform: uppercase; }
+.link-column ul { list-style: none; padding: 0; }
+.link-column a { color: white; text-decoration: none; line-height: 2; font-size: 14px; opacity: 0.8; }
+
+.footer-bottom {
+    display: flex; justify-content: space-between; align-items: center; padding-top: 20px;
+}
+.footer-logo-box img { height: 30px; filter: brightness(0) invert(1); }
