@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AirDolomiti | Voli per l'Italia e la Germania</title>
+    <title>AirDolomiti | Official Roblox Virtual Airline</title>
     
     <link rel="icon" type="image/png" href="riproviamo.png">
     
@@ -12,10 +12,12 @@
     <style>
         :root {
             --teal: #00727A;
+            --teal-light: #008a94;
             --teal-dark: #005a61;
             --white: #ffffff;
-            --gray-light: #f4f4f4;
-            --text-dark: #333333;
+            --text: #333333;
+            --gray: #f4f4f4;
+            --transition: all 0.3s ease-in-out;
         }
 
         * {
@@ -27,24 +29,28 @@
 
         body {
             background-color: var(--white);
-            color: var(--text-dark);
-            overflow-x: hidden;
+            color: var(--text);
+            line-height: 1.6;
         }
 
-        /* --- ANNOUNCEMENT BAR --- */
-        .top-bar {
+        /* --- TOP BAR --- */
+        .announcement-bar {
             background-color: var(--teal);
             color: white;
             text-align: center;
-            padding: 8px 0;
-            font-size: 12px;
-            font-weight: 600;
+            padding: 10px;
+            font-size: 11px;
+            font-weight: 700;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         /* --- HEADER --- */
         header {
             background: white;
+            height: 90px;
+            display: flex;
+            align-items: center;
             border-bottom: 1px solid #eee;
             position: sticky;
             top: 0;
@@ -52,53 +58,62 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1250px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 25px;
+            width: 100%;
         }
 
         .header-flex {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            height: 80px;
+            align-items: center;
         }
 
         .logo img {
-            height: 45px;
+            height: 50px;
+            cursor: pointer;
         }
 
+        /* --- NAVIGATION --- */
         .main-nav ul {
             display: flex;
             list-style: none;
-            gap: 30px;
+            gap: 35px;
         }
 
         .main-nav a {
             text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 600;
-            font-size: 15px;
-            padding: 30px 0;
-            transition: color 0.3s;
+            color: var(--text);
+            font-weight: 700;
+            font-size: 14px;
+            padding: 33px 0;
+            display: inline-block;
+            transition: var(--transition);
         }
 
         .main-nav a:hover, .main-nav a.active {
             color: var(--teal);
-            border-bottom: 3px solid var(--teal);
+            box-shadow: inset 0 -3px 0 var(--teal);
         }
 
         /* --- MEGA MENU --- */
         .mega-menu {
-            position: absolute;
-            top: 80px;
+            position: fixed;
+            top: 130px; /* Sotto header + annuncio */
             left: 0;
             width: 100%;
             background: white;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             display: none;
-            padding: 40px 0;
+            padding: 60px 0;
             border-top: 1px solid #eee;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .mega-menu.show { display: block; }
@@ -111,142 +126,123 @@
 
         .menu-col h4 {
             color: var(--teal);
-            font-size: 14px;
-            margin-bottom: 20px;
+            font-size: 13px;
+            margin-bottom: 25px;
             text-transform: uppercase;
+            letter-spacing: 1.5px;
         }
 
         .menu-col a {
             display: block;
-            font-size: 14px;
             color: #555;
-            margin-bottom: 12px;
-            border: none !important;
-            padding: 0 !important;
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 14px;
+            font-weight: 400;
+            transition: var(--transition);
         }
 
-        .blog-preview {
-            background: #00727a1a;
-            padding: 20px;
-            border-radius: 4px;
-            text-align: center;
+        .menu-col a:hover {
+            color: var(--teal);
+            transform: translateX(5px);
         }
 
-        /* --- HERO SECTION --- */
+        .blog-card {
+            background: linear-gradient(45deg, var(--teal-dark), var(--teal-light));
+            padding: 25px;
+            border-radius: 8px;
+            color: white;
+            text-align: left;
+        }
+
+        /* --- HERO & BOOKING --- */
         .hero {
-            height: 500px;
+            height: 550px;
             background: url('Screenshot 2026-04-09 210801.png') center/cover no-repeat;
             position: relative;
             display: flex;
             align-items: center;
         }
 
-        /* --- BOOKING ENGINE (IL CUORE DEL SITO) --- */
-        .booking-container {
+        .booking-box {
             background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
             width: 100%;
-            max-width: 1000px;
-            margin-top: 50px;
+            max-width: 1100px;
+            margin-top: 80px;
         }
 
-        .tab-selector {
-            margin-bottom: 20px;
-            border-bottom: 1px solid #ddd;
+        .booking-tabs { margin-bottom: 25px; }
+        .tab { 
+            border: none; background: none; font-weight: 700; color: var(--teal); 
+            border-bottom: 3px solid var(--teal); padding-bottom: 5px; cursor: default;
         }
 
-        .tab-btn {
-            background: none;
-            border: none;
-            padding: 10px 20px;
-            font-weight: bold;
-            color: #777;
-            cursor: pointer;
-        }
-
-        .tab-btn.active {
-            color: var(--teal);
-            border-bottom: 3px solid var(--teal);
-        }
-
-        .fields-grid {
+        .fields-wrapper {
             display: grid;
-            grid-template-columns: 2fr 2fr 1.5fr 1fr;
-            gap: 15px;
+            grid-template-columns: 1.5fr 1.5fr 1fr 1fr 0.8fr;
+            gap: 20px;
             align-items: end;
         }
 
-        .field {
-            display: flex;
-            flex-direction: column;
+        .input-group { display: flex; flex-direction: column; }
+        .input-group label { font-size: 12px; font-weight: 700; color: #777; margin-bottom: 8px; }
+        .input-group input { 
+            padding: 15px; border: 1px solid #ddd; border-radius: 5px; outline: none; 
+            font-size: 14px; transition: var(--transition);
         }
-
-        .field label {
-            font-size: 12px;
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: #555;
-        }
-
-        .field input {
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 14px;
-        }
+        .input-group input:focus { border-color: var(--teal); }
 
         .search-btn {
             background: var(--teal);
             color: white;
             border: none;
-            padding: 14px;
-            border-radius: 4px;
-            font-weight: bold;
+            padding: 16px;
+            border-radius: 5px;
+            font-weight: 700;
             cursor: pointer;
-            transition: 0.3s;
+            transition: var(--transition);
         }
+        .search-btn:hover { background: var(--teal-dark); transform: scale(1.02); }
 
-        .search-btn:hover { background: var(--teal-dark); }
-
-        /* --- OFFERS SECTION --- */
-        .offers { padding: 60px 0; background: var(--gray-light); }
-        .section-title { text-align: center; margin-bottom: 40px; color: var(--teal); }
-
-        .offer-card {
+        /* --- OFFERTA CAPOLAVORO --- */
+        .special-offer { padding: 100px 0; background: var(--gray); text-align: center; }
+        .offer-card-master {
             background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            max-width: 400px;
+            max-width: 500px;
             margin: 0 auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
         }
-
-        .offer-img { height: 200px; background: var(--teal); display:flex; align-items:center; justify-content:center; color:white; font-size:60px;}
-        .offer-content { padding: 30px; text-align: center; }
-        .price { font-size: 32px; font-weight: bold; color: var(--teal); margin: 15px 0; }
+        .offer-header { background: var(--teal); color: white; padding: 40px; font-size: 50px; }
+        .offer-body { padding: 40px; }
+        .offer-body h3 { font-size: 24px; color: var(--teal); margin-bottom: 10px; }
+        .price-big { font-size: 48px; font-weight: 800; color: var(--text); }
 
         /* --- FOOTER --- */
-        footer { background: #333; color: white; padding: 60px 0 20px; margin-top: 50px;}
-        .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-bottom: 40px; }
-        .footer-grid h4 { margin-bottom: 20px; font-size: 14px; }
-        .footer-grid a { color: #bbb; text-decoration: none; display: block; margin-bottom: 10px; font-size: 13px; }
+        footer { background: #1a1a1a; color: white; padding: 80px 0 30px; }
+        .footer-bottom { 
+            border-top: 1px solid #333; margin-top: 50px; padding-top: 30px; 
+            text-align: center; font-size: 12px; color: #888;
+        }
     </style>
 </head>
 <body>
 
-    <div class="top-bar">Possibili interruzioni dei voli - Controlla lo stato del tuo volo su Roblox</div>
+    <div class="announcement-bar">⚠️ Informazioni importanti per chi viaggia: Controlla gli aggiornamenti sulle operazioni virtuali</div>
 
     <header>
         <div class="container header-flex">
             <div class="logo">
-                <img src="Air_Dolomiti_logo.svg.png" alt="AirDolomiti">
+                <img src="Air_Dolomiti_logo.svg.png" alt="AirDolomiti Logo">
             </div>
             
             <nav class="main-nav">
                 <ul>
-                    <li><a href="#" id="exploreLink">Esplora</a></li>
+                    <li><a href="#" id="exploreBtn">Esplora</a></li>
                     <li><a href="#">Prenota e Gestisci</a></li>
                     <li><a href="#">In viaggio</a></li>
                     <li><a href="#">Dolomiti Club</a></li>
@@ -254,8 +250,7 @@
             </nav>
 
             <div class="header-utils">
-                <span style="margin-right:15px; cursor:pointer;">🔍</span>
-                <span style="font-weight:bold; cursor:pointer;">IT</span>
+                <span style="cursor:pointer; font-weight:bold; color:var(--teal)">IT 👤</span>
             </div>
         </div>
 
@@ -266,27 +261,31 @@
                     <a href="#">Monaco di Baviera (MUC)</a>
                     <a href="#">Francoforte (FRA)</a>
                     <a href="#">Milano Linate (LIN)</a>
-                    <a href="#">Vedi tutte le rotte</a>
+                    <a href="#">Voli da Verona</a>
+                    <a href="#">Voli da Firenze</a>
+                    <a href="#" style="font-weight:bold; color:var(--teal)">Tutte le destinazioni ➔</a>
                 </div>
                 <div class="menu-col">
-                    <h4>Servizi</h4>
-                    <a href="#">Parcheggi convenzionati</a>
-                    <a href="#">Lounge aeroportuali</a>
-                    <a href="#">Autonoleggio</a>
-                    <a href="#">Miles & More</a>
+                    <h4>Preparati al Volo</h4>
+                    <a href="#">Check-in Online</a>
+                    <a href="#">Stato del Volo</a>
+                    <a href="#">Bagaglio a Mano</a>
+                    <a href="#">Bagaglio da Stiva</a>
+                    <a href="#">Assistenza Speciale</a>
                 </div>
                 <div class="menu-col">
-                    <h4>Info Voli</h4>
-                    <a href="#">La nostra Flotta</a>
-                    <a href="#">Promozioni</a>
-                    <a href="#">Podcast</a>
-                    <a href="#">Blog</a>
+                    <h4>Servizi a Bordo</h4>
+                    <a href="#">Classi di Viaggio</a>
+                    <a href="#">Business Class</a>
+                    <a href="#">Economy Class Light</a>
+                    <a href="#">Servizio di Bordo</a>
+                    <a href="#">Flotta Virtuale</a>
                 </div>
                 <div class="menu-col">
-                    <div class="blog-preview">
-                        <h4 style="margin-bottom:10px">Air Dolomiti Blog</h4>
-                        <p style="font-size:12px; margin-bottom:15px">Scopri i segreti dei nostri voli e delle destinazioni.</p>
-                        <button class="search-btn" style="padding:5px 15px; font-size:12px">Leggi di più</button>
+                    <div class="blog-card">
+                        <h2 style="font-size:20px; margin-bottom:15px">Air Dolomiti Blog</h2>
+                        <p style="font-size:13px; margin-bottom:20px; opacity:0.9">Scopri il mondo dell'aviazione virtuale e le meraviglie d'Italia e Germania.</p>
+                        <button class="search-btn" style="background:white; color:var(--teal); padding:8px 15px; font-size:12px">Leggi di più</button>
                     </div>
                 </div>
             </div>
@@ -296,25 +295,28 @@
     <main>
         <section class="hero">
             <div class="container">
-                <div class="booking-container">
-                    <div class="tab-selector">
-                        <button class="tab-btn active">One Way</button>
+                <div class="booking-box">
+                    <div class="booking-tabs">
+                        <span class="tab">One Way</span>
                     </div>
-                    
-                    <div class="fields-grid">
-                        <div class="field">
+                    <div class="fields-wrapper">
+                        <div class="input-group">
                             <label>DA</label>
-                            <input type="text" list="dep" placeholder="Monaco (MUC)">
-                            <datalist id="dep"><option value="Munich (MUC)"></datalist>
+                            <input type="text" list="from-list" placeholder="Munich (MUC)">
+                            <datalist id="from-list"><option value="Munich (MUC)"></datalist>
                         </div>
-                        <div class="field">
+                        <div class="input-group">
                             <label>A</label>
-                            <input type="text" list="arr" placeholder="Milano Linate (LIN)">
-                            <datalist id="arr"><option value="Milan Linate (LIN)"></datalist>
+                            <input type="text" list="to-list" placeholder="Milan Linate (LIN)">
+                            <datalist id="to-list"><option value="Milan Linate (LIN)"></datalist>
                         </div>
-                        <div class="field">
+                        <div class="input-group">
                             <label>DATA</label>
                             <input type="date">
+                        </div>
+                        <div class="input-group">
+                            <label>PASSEGGERI</label>
+                            <input type="text" value="1 Adulto, Economy" readonly>
                         </div>
                         <button class="search-btn">CERCA ➔</button>
                     </div>
@@ -322,16 +324,17 @@
             </div>
         </section>
 
-        <section class="offers">
+        <section class="special-offer">
             <div class="container">
-                <h2 class="section-title">La nostra migliore offerta</h2>
-                <div class="offer-card">
-                    <div class="offer-img">✈️</div>
-                    <div class="offer-content">
-                        <h3>Munich ➔ Milan Linate</h3>
-                        <p class="price">da 120 R$</p>
-                        <p style="color:#777; font-size:12px">Sola andata - Economy Light</p>
-                        <button class="search-btn" style="margin-top:20px; width:100%">PRENOTA ORA</button>
+                <h2 style="margin-bottom:50px; color:var(--teal); font-size:32px">L'offerta imperdibile di oggi</h2>
+                <div class="offer-card-master">
+                    <div class="offer-header">✈️</div>
+                    <div class="offer-body">
+                        <h3>Munich - Milano Linate</h3>
+                        <p style="color:#666">Esperienza di volo Premium tra le capitali del business</p>
+                        <div class="price-big">120 R$</div>
+                        <p style="font-size:12px; color:#aaa; margin-bottom:25px">SOLA ANDATA | TASSE INCLUSE</p>
+                        <button class="search-btn" style="width:100%">PRENOTA IL TUO POSTO</button>
                     </div>
                 </div>
             </div>
@@ -340,51 +343,29 @@
 
     <footer>
         <div class="container">
-            <div class="footer-grid">
-                <div class="f-col">
-                    <h4>AZIENDA</h4>
-                    <a href="#">Chi siamo</a>
-                    <a href="#">Lavora con noi</a>
-                    <a href="#">Sostenibilità</a>
-                </div>
-                <div class="f-col">
-                    <h4>SUPPORTO</h4>
-                    <a href="#">Contatti</a>
-                    <a href="#">FAQ</a>
-                    <a href="#">Reclami</a>
-                </div>
-                <div class="f-col">
-                    <h4>LEGALE</h4>
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Cookie Policy</a>
-                    <a href="#">Condizioni di trasporto</a>
-                </div>
-                <div class="f-col">
-                    <h4>SOCIAL</h4>
-                    <a href="#">Facebook</a>
-                    <a href="#">Instagram</a>
-                    <a href="#">LinkedIn</a>
-                </div>
-            </div>
-            <div style="border-top:1px solid #444; padding-top:20px; font-size:12px; color:#888; text-align:center;">
-                © 2026 Air Dolomiti S.p.A. | Member of Lufthansa Group | Roblox Virtual Airline Project
+            <p style="font-weight:bold; font-size:18px; margin-bottom:30px">AirDolomiti | <span style="font-weight:300">Lufthansa Group</span></p>
+            <div class="footer-bottom">
+                © 2026 Air Dolomiti S.p.A. Linee Aeree Regionali Europee | Roblox Virtual Airline Division<br>
+                Sede Legale: Dossobuono di Villafranca (VR) | Codice Fiscale e P.IVA 00445990310
             </div>
         </div>
     </footer>
 
     <script>
-        const btn = document.getElementById('exploreLink');
+        const btn = document.getElementById('exploreBtn');
         const menu = document.getElementById('megaMenu');
 
         btn.addEventListener('click', (e) => {
             e.preventDefault();
             menu.classList.toggle('show');
+            btn.classList.toggle('active');
         });
 
-        // Chiudi se clicchi fuori
-        document.addEventListener('click', (e) => {
+        // Chiudi il menu se clicchi fuori
+        window.addEventListener('click', (e) => {
             if (!btn.contains(e.target) && !menu.contains(e.target)) {
                 menu.classList.remove('show');
+                btn.classList.remove('active');
             }
         });
     </script>
