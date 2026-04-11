@@ -1,129 +1,392 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AirDolomiti | Official Roblox Virtual Airline</title>
+    <title>AirDolomiti | Voli per l'Italia e la Germania</title>
     
     <link rel="icon" type="image/png" href="riproviamo.png">
     
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --teal: #00727A;
+            --teal-dark: #005a61;
+            --white: #ffffff;
+            --gray-light: #f4f4f4;
+            --text-dark: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* --- ANNOUNCEMENT BAR --- */
+        .top-bar {
+            background-color: var(--teal);
+            color: white;
+            text-align: center;
+            padding: 8px 0;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background: white;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+        }
+
+        .logo img {
+            height: 45px;
+        }
+
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .main-nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 15px;
+            padding: 30px 0;
+            transition: color 0.3s;
+        }
+
+        .main-nav a:hover, .main-nav a.active {
+            color: var(--teal);
+            border-bottom: 3px solid var(--teal);
+        }
+
+        /* --- MEGA MENU --- */
+        .mega-menu {
+            position: absolute;
+            top: 80px;
+            left: 0;
+            width: 100%;
+            background: white;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            display: none;
+            padding: 40px 0;
+            border-top: 1px solid #eee;
+        }
+
+        .mega-menu.show { display: block; }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        .menu-col h4 {
+            color: var(--teal);
+            font-size: 14px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .menu-col a {
+            display: block;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 12px;
+            border: none !important;
+            padding: 0 !important;
+        }
+
+        .blog-preview {
+            background: #00727a1a;
+            padding: 20px;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 500px;
+            background: url('Screenshot 2026-04-09 210801.png') center/cover no-repeat;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        /* --- BOOKING ENGINE (IL CUORE DEL SITO) --- */
+        .booking-container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 1000px;
+            margin-top: 50px;
+        }
+
+        .tab-selector {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 10px 20px;
+            font-weight: bold;
+            color: #777;
+            cursor: pointer;
+        }
+
+        .tab-btn.active {
+            color: var(--teal);
+            border-bottom: 3px solid var(--teal);
+        }
+
+        .fields-grid {
+            display: grid;
+            grid-template-columns: 2fr 2fr 1.5fr 1fr;
+            gap: 15px;
+            align-items: end;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .field label {
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .field input {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .search-btn {
+            background: var(--teal);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .search-btn:hover { background: var(--teal-dark); }
+
+        /* --- OFFERS SECTION --- */
+        .offers { padding: 60px 0; background: var(--gray-light); }
+        .section-title { text-align: center; margin-bottom: 40px; color: var(--teal); }
+
+        .offer-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .offer-img { height: 200px; background: var(--teal); display:flex; align-items:center; justify-content:center; color:white; font-size:60px;}
+        .offer-content { padding: 30px; text-align: center; }
+        .price { font-size: 32px; font-weight: bold; color: var(--teal); margin: 15px 0; }
+
+        /* --- FOOTER --- */
+        footer { background: #333; color: white; padding: 60px 0 20px; margin-top: 50px;}
+        .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-bottom: 40px; }
+        .footer-grid h4 { margin-bottom: 20px; font-size: 14px; }
+        .footer-grid a { color: #bbb; text-decoration: none; display: block; margin-bottom: 10px; font-size: 13px; }
+    </style>
 </head>
 <body>
 
-    <div class="announcement-bar">
-        <span>⚠️ SYSTEM UPDATE: CHECK FLIGHT STATUS FOR THE LATEST UPDATES ON ROBLOX OPERATIONS</span>
-    </div>
+    <div class="top-bar">Possibili interruzioni dei voli - Controlla lo stato del tuo volo su Roblox</div>
 
-    <header class="main-header">
+    <header>
         <div class="container header-flex">
-            <div class="logo-area">
-                <img src="Air_Dolomiti_logo.svg.png" alt="AirDolomiti Logo" class="brand-logo">
+            <div class="logo">
+                <img src="Air_Dolomiti_logo.svg.png" alt="AirDolomiti">
             </div>
+            
             <nav class="main-nav">
                 <ul>
-                    <li><a href="#" class="active">Explore</a></li>
-                    <li><a href="#">Book & Manage</a></li>
-                    <li><a href="#">On Board</a></li>
-                    <li><a href="#">Experience</a></li>
+                    <li><a href="#" id="exploreLink">Esplora</a></li>
+                    <li><a href="#">Prenota e Gestisci</a></li>
+                    <li><a href="#">In viaggio</a></li>
                     <li><a href="#">Dolomiti Club</a></li>
                 </ul>
             </nav>
-            <div class="header-utilities">
-                <span class="util-icon">🔍</span>
-                <span class="util-icon">👤</span>
-                <div class="lang-box">EN</div>
+
+            <div class="header-utils">
+                <span style="margin-right:15px; cursor:pointer;">🔍</span>
+                <span style="font-weight:bold; cursor:pointer;">IT</span>
+            </div>
+        </div>
+
+        <div class="mega-menu" id="megaMenu">
+            <div class="container menu-grid">
+                <div class="menu-col">
+                    <h4>Destinazioni</h4>
+                    <a href="#">Monaco di Baviera (MUC)</a>
+                    <a href="#">Francoforte (FRA)</a>
+                    <a href="#">Milano Linate (LIN)</a>
+                    <a href="#">Vedi tutte le rotte</a>
+                </div>
+                <div class="menu-col">
+                    <h4>Servizi</h4>
+                    <a href="#">Parcheggi convenzionati</a>
+                    <a href="#">Lounge aeroportuali</a>
+                    <a href="#">Autonoleggio</a>
+                    <a href="#">Miles & More</a>
+                </div>
+                <div class="menu-col">
+                    <h4>Info Voli</h4>
+                    <a href="#">La nostra Flotta</a>
+                    <a href="#">Promozioni</a>
+                    <a href="#">Podcast</a>
+                    <a href="#">Blog</a>
+                </div>
+                <div class="menu-col">
+                    <div class="blog-preview">
+                        <h4 style="margin-bottom:10px">Air Dolomiti Blog</h4>
+                        <p style="font-size:12px; margin-bottom:15px">Scopri i segreti dei nostri voli e delle destinazioni.</p>
+                        <button class="search-btn" style="padding:5px 15px; font-size:12px">Leggi di più</button>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
 
     <main>
-        <section class="hero-section">
-            <div class="hero-visual" style="background-image: url('Screenshot 2026-04-09 210801.png');"></div>
-            <div class="hero-overlay"></div>
-            
-            <div class="booking-engine">
-                <div class="booking-tabs">
-                    <button class="t-btn active">One way</button>
-                </div>
-                
-                <div class="booking-fields">
-                    <div class="input-wrapper">
-                        <label>From</label>
-                        <input type="text" list="departure" placeholder="Departure Airport">
-                        <datalist id="departure">
-                            <option value="Munich (MUC)">
-                        </datalist>
-                    </div>
-
-                    <div class="input-wrapper">
-                        <label>To</label>
-                        <input type="text" list="arrival" placeholder="Arrival Airport">
-                        <datalist id="arrival">
-                            <option value="Milan Linate (LIN)">
-                        </datalist>
-                    </div>
-
-                    <div class="input-wrapper date">
-                        <label>Dates</label>
-                        <input type="text" placeholder="Add dates">
-                    </div>
-                    
-                    <div class="input-wrapper pax">
-                        <label>Passengers</label>
-                        <input type="text" value="1 Adult, Economy">
-                    </div>
-                    
-                    <button class="main-search-btn">Search Flight ➔</button>
-                </div>
-            </div>
-        </section>
-
-        <section class="offers-section">
+        <section class="hero">
             <div class="container">
-                <h2 class="section-title">Discover our current route</h2>
-                <div class="offers-grid" style="display: flex; justify-content: center;">
-                    <div class="offer-card" style="max-width: 400px; width: 100%;">
-                        <div class="card-thumb" style="background-color: #00727A; display: flex; align-items: center; justify-content: center; color: white; font-size: 50px; height: 180px;">
-                            ✈️
+                <div class="booking-container">
+                    <div class="tab-selector">
+                        <button class="tab-btn active">One Way</button>
+                    </div>
+                    
+                    <div class="fields-grid">
+                        <div class="field">
+                            <label>DA</label>
+                            <input type="text" list="dep" placeholder="Monaco (MUC)">
+                            <datalist id="dep"><option value="Munich (MUC)"></datalist>
                         </div>
-                        <div class="card-content" style="text-align: center; padding: 25px;">
-                            <h4>Munich - Milan Linate</h4>
-                            <p class="price-tag" style="font-size: 28px; font-weight: 700; color: #00727A; margin: 10px 0;">From 120 R$</p>
-                            <p class="terms" style="font-size: 12px; color: #777; margin-bottom: 15px;">ONE WAY - ROBLOX OPERATIONS</p>
-                            <button class="card-btn">Book Now</button>
+                        <div class="field">
+                            <label>A</label>
+                            <input type="text" list="arr" placeholder="Milano Linate (LIN)">
+                            <datalist id="arr"><option value="Milan Linate (LIN)"></datalist>
                         </div>
+                        <div class="field">
+                            <label>DATA</label>
+                            <input type="date">
+                        </div>
+                        <button class="search-btn">CERCA ➔</button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="newsletter-area">
+        <section class="offers">
             <div class="container">
-                <h2>Subscribe to our newsletter</h2>
-                <p>Stay updated on the latest Roblox flight schedules.</p>
-                <div class="n-form">
-                    <input type="email" placeholder="Your email address">
-                    <button class="n-btn">Subscribe</button>
+                <h2 class="section-title">La nostra migliore offerta</h2>
+                <div class="offer-card">
+                    <div class="offer-img">✈️</div>
+                    <div class="offer-content">
+                        <h3>Munich ➔ Milan Linate</h3>
+                        <p class="price">da 120 R$</p>
+                        <p style="color:#777; font-size:12px">Sola andata - Economy Light</p>
+                        <button class="search-btn" style="margin-top:20px; width:100%">PRENOTA ORA</button>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="grand-footer">
+    <footer>
         <div class="container">
-            <div class="footer-bottom">
-                <div class="f-logo-wrap">
-                    <img src="Air_Dolomiti_logo.svg.png" alt="Footer Logo" class="f-logo">
-                    <p>Member of Lufthansa Group | Roblox Airline</p>
+            <div class="footer-grid">
+                <div class="f-col">
+                    <h4>AZIENDA</h4>
+                    <a href="#">Chi siamo</a>
+                    <a href="#">Lavora con noi</a>
+                    <a href="#">Sostenibilità</a>
                 </div>
-                <div class="social-box">
-                    <span>FB</span> <span>IG</span> <span>TW</span> <span>YT</span>
+                <div class="f-col">
+                    <h4>SUPPORTO</h4>
+                    <a href="#">Contatti</a>
+                    <a href="#">FAQ</a>
+                    <a href="#">Reclami</a>
                 </div>
+                <div class="f-col">
+                    <h4>LEGALE</h4>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Cookie Policy</a>
+                    <a href="#">Condizioni di trasporto</a>
+                </div>
+                <div class="f-col">
+                    <h4>SOCIAL</h4>
+                    <a href="#">Facebook</a>
+                    <a href="#">Instagram</a>
+                    <a href="#">LinkedIn</a>
+                </div>
+            </div>
+            <div style="border-top:1px solid #444; padding-top:20px; font-size:12px; color:#888; text-align:center;">
+                © 2026 Air Dolomiti S.p.A. | Member of Lufthansa Group | Roblox Virtual Airline Project
             </div>
         </div>
     </footer>
 
+    <script>
+        const btn = document.getElementById('exploreLink');
+        const menu = document.getElementById('megaMenu');
+
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            menu.classList.toggle('show');
+        });
+
+        // Chiudi se clicchi fuori
+        document.addEventListener('click', (e) => {
+            if (!btn.contains(e.target) && !menu.contains(e.target)) {
+                menu.classList.remove('show');
+            }
+        });
+    </script>
 </body>
 </html>
