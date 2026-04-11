@@ -47,23 +47,41 @@
                 <div class="booking-tabs">
                     <button class="t-btn active">One way</button>
                 </div>
+                
                 <div class="booking-fields">
                     <div class="input-wrapper">
                         <label>From</label>
-                        <input type="text" placeholder="Departure Airport (e.g. VCE)">
+                        <input type="text" list="airports-from" placeholder="Departure Airport">
+                        <datalist id="airports-from">
+                            <option value="Milan Linate (LIN)">
+                            <option value="Munich (MUC)">
+                            <option value="Venice (VCE)">
+                            <option value="Florence (FLR)">
+                            <option value="Verona (VRN)">
+                        </datalist>
                     </div>
+
                     <div class="input-wrapper">
                         <label>To</label>
-                        <input type="text" placeholder="Arrival Airport (e.g. MUC)">
+                        <input type="text" list="airports-to" placeholder="Arrival Airport">
+                        <datalist id="airports-to">
+                            <option value="Milan Linate (LIN)">
+                            <option value="Munich (MUC)">
+                            <option value="Frankfurt (FRA)">
+                            <option value="Bologna (BLQ)">
+                        </datalist>
                     </div>
+
                     <div class="input-wrapper date">
                         <label>Dates</label>
                         <input type="text" placeholder="Add dates">
                     </div>
+                    
                     <div class="input-wrapper pax">
                         <label>Passengers</label>
                         <input type="text" value="1 Adult, Economy">
                     </div>
+                    
                     <button class="main-search-btn">Search Flight ➔</button>
                 </div>
             </div>
