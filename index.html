@@ -9,29 +9,6 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    
-    <style>
-        /* Stili rapidi per il Mega Menu integrato */
-        .has-dropdown { position: relative; }
-        .mega-menu {
-            display: none;
-            position: fixed;
-            top: 125px; /* Sotto l'header */
-            left: 0;
-            width: 100%;
-            background: white;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-            z-index: 1000;
-            padding: 50px 0;
-            border-top: 1px solid #eee;
-        }
-        .mega-menu.show { display: block; }
-        .menu-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
-        .menu-col h4 { color: #00727A; font-size: 13px; margin-bottom: 20px; text-transform: uppercase; }
-        .menu-col a { display: block; color: #444; text-decoration: none; font-size: 14px; margin-bottom: 12px; transition: 0.2s; }
-        .menu-col a:hover { color: #00727A; transform: translateX(5px); }
-        .blog-card-mini { background: #00727A; color: white; padding: 20px; border-radius: 5px; }
-    </style>
 </head>
 <body>
 
@@ -46,43 +23,7 @@
             </div>
             <nav class="main-nav">
                 <ul>
-                    <li class="has-dropdown">
-                        <a href="#" class="active" id="exploreBtn">Explore</a>
-                        <div class="mega-menu" id="megaMenu">
-                            <div class="container menu-grid">
-                                <div class="menu-col">
-                                    <h4>DESTINAZIONI</h4>
-                                    <a href="#">Munich (MUC)</a>
-                                    <a href="#">Frankfurt (FRA)</a>
-                                    <a href="#">Milan Linate (LIN)</a>
-                                    <a href="#">Verona (VRN)</a>
-                                    <a href="#">Florence (FLR)</a>
-                                </div>
-                                <div class="menu-col">
-                                    <h4>PREPARATI AL VOLO</h4>
-                                    <a href="#">Check-in online</a>
-                                    <a href="#">Stato del volo</a>
-                                    <a href="#">Bagagli</a>
-                                    <a href="#">Animali in viaggio</a>
-                                    <a href="#">Assistenza speciale</a>
-                                </div>
-                                <div class="menu-col">
-                                    <h4>SERVIZI</h4>
-                                    <a href="#">Classi di viaggio</a>
-                                    <a href="#">Servizio di bordo</a>
-                                    <a href="#">Lounge</a>
-                                    <a href="#">Miles & More</a>
-                                </div>
-                                <div class="menu-col">
-                                    <div class="blog-card-mini">
-                                        <h4>Air Dolomiti Blog</h4>
-                                        <p style="font-size: 12px; margin: 10px 0;">Scopri le ultime news dal mondo virtuale.</p>
-                                        <button style="background: white; color: #00727A; border:none; padding: 5px 10px; font-weight: bold; cursor:pointer;">Read More</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
+                    <li><a href="#" class="active">Explore</a></li>
                     <li><a href="#">Book & Manage</a></li>
                     <li><a href="#">On Board</a></li>
                     <li><a href="#">Experience</a></li>
@@ -110,17 +51,24 @@
                 <div class="booking-fields">
                     <div class="input-wrapper">
                         <label>From</label>
-                        <input type="text" list="departure" placeholder="Departure Airport">
-                        <datalist id="departure">
+                        <input type="text" list="airports-from" placeholder="Departure Airport">
+                        <datalist id="airports-from">
+                            <option value="Milan Linate (LIN)">
                             <option value="Munich (MUC)">
+                            <option value="Venice (VCE)">
+                            <option value="Florence (FLR)">
+                            <option value="Verona (VRN)">
                         </datalist>
                     </div>
 
                     <div class="input-wrapper">
                         <label>To</label>
-                        <input type="text" list="arrival" placeholder="Arrival Airport">
-                        <datalist id="arrival">
+                        <input type="text" list="airports-to" placeholder="Arrival Airport">
+                        <datalist id="airports-to">
                             <option value="Milan Linate (LIN)">
+                            <option value="Munich (MUC)">
+                            <option value="Frankfurt (FRA)">
+                            <option value="Bologna (BLQ)">
                         </datalist>
                     </div>
 
@@ -139,9 +87,18 @@
             </div>
         </section>
 
+        <section class="quick-links-bar">
+            <div class="container links-flex">
+                <button class="q-link">Check-in</button>
+                <button class="q-link">My Bookings</button>
+                <button class="q-link">Flight Status</button>
+                <button class="q-link">Miles & More</button>
+            </div>
+        </section>
+
         <section class="offers-section">
             <div class="container">
-                <h2 class="section-title">Discover our current route</h2>
+                <h2 class="section-title">Discover our best offer</h2>
                 <div class="offers-grid" style="display: flex; justify-content: center;">
                     <div class="offer-card" style="max-width: 400px; width: 100%;">
                         <div class="card-thumb" style="background-color: #00727A; display: flex; align-items: center; justify-content: center; color: white; font-size: 50px; height: 180px;">
@@ -150,7 +107,7 @@
                         <div class="card-content" style="text-align: center; padding: 25px;">
                             <h4>Munich - Milan Linate</h4>
                             <p class="price-tag" style="font-size: 28px; font-weight: 700; color: #00727A; margin: 10px 0;">From 120 R$</p>
-                            <p class="terms" style="font-size: 12px; color: #777; margin-bottom: 15px;">ONE WAY - ROBLOX OPERATIONS</p>
+                            <p class="terms" style="font-size: 12px; color: #777; margin-bottom: 15px;">ONE WAY - ECONOMY LIGHT</p>
                             <button class="card-btn">Book Now</button>
                         </div>
                     </div>
@@ -158,10 +115,27 @@
             </div>
         </section>
 
+        <section class="dual-promo">
+            <div class="promo-box leisure">
+                <div class="promo-content">
+                    <h3>Leisure</h3>
+                    <p>Experience the beauty of Italy with our dedicated holiday services.</p>
+                    <a href="#" class="btn-ghost">Find out more ➤</a>
+                </div>
+            </div>
+            <div class="promo-box business">
+                <div class="promo-content">
+                    <h3>Business</h3>
+                    <p>Premium services for the frequent virtual flyer.</p>
+                    <a href="#" class="btn-ghost">Find out more ➤</a>
+                </div>
+            </div>
+        </section>
+
         <section class="newsletter-area">
             <div class="container">
                 <h2>Subscribe to our newsletter</h2>
-                <p>Stay updated on the latest Roblox flight schedules.</p>
+                <p>Stay updated on the latest Roblox flight schedules and events.</p>
                 <div class="n-form">
                     <input type="email" placeholder="Your email address">
                     <button class="n-btn">Subscribe</button>
@@ -172,10 +146,38 @@
 
     <footer class="grand-footer">
         <div class="container">
+            <div class="footer-grid">
+                <div class="f-col">
+                    <h4>ABOUT US</h4>
+                    <a href="#">Our Fleet</a>
+                    <a href="#">Company History</a>
+                    <a href="#">Career / Jobs</a>
+                    <a href="#">Sustainability</a>
+                </div>
+                <div class="f-col">
+                    <h4>HELP & CONTACT</h4>
+                    <a href="#">Customer Service</a>
+                    <a href="#">FAQ</a>
+                    <a href="#">Discord Server</a>
+                    <a href="#">Flight Rules</a>
+                </div>
+                <div class="f-col">
+                    <h4>LEGAL</h4>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Cookie Policy</a>
+                    <a href="#">Conditions of Carriage</a>
+                </div>
+                <div class="f-col">
+                    <h4>NETWORK</h4>
+                    <a href="#">Destinations</a>
+                    <a href="#">Partner Airlines</a>
+                    <a href="#">Lufthansa Group</a>
+                </div>
+            </div>
             <div class="footer-bottom">
                 <div class="f-logo-wrap">
                     <img src="Air_Dolomiti_logo.svg.png" alt="Footer Logo" class="f-logo">
-                    <p>Member of Lufthansa Group | Roblox Airline</p>
+                    <p>Member of Lufthansa Group</p>
                 </div>
                 <div class="social-box">
                     <span>FB</span> <span>IG</span> <span>TW</span> <span>YT</span>
@@ -183,22 +185,6 @@
             </div>
         </div>
     </footer>
-
-    <script>
-        const exploreBtn = document.getElementById('exploreBtn');
-        const megaMenu = document.getElementById('megaMenu');
-
-        exploreBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            megaMenu.classList.toggle('show');
-        });
-
-        window.addEventListener('click', function(e) {
-            if (!exploreBtn.contains(e.target) && !megaMenu.contains(e.target)) {
-                megaMenu.classList.remove('show');
-            }
-        });
-    </script>
 
 </body>
 </html>
