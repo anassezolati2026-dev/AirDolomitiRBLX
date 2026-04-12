@@ -1,170 +1,100 @@
 <!DOCTYPE html>
-<html lang="it">
-<head>
+<html lang="it" style="font-size: 67.5%;"> <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Air Dolomiti Virtual | Simulazione Roblox</title>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
+    <title>Air Dolomiti Virtual | Roblox</title>
     <style>
         :root {
-            --air-petrol: #00798A; /* Il colore petrolio ufficiale estratto dal codice */
-            --air-dark: #005a63;
-            --white: #ffffff;
+            --air-petrol: #00798A; /* Colore ufficiale estratto */
+            --air-border: #E8E8E8; /* Grigio bordi originale */
         }
 
-        body { font-family: 'Open Sans', sans-serif; margin: 0; padding: 0; background: #fff; overflow-x: hidden; }
+        body { font-family: sans-serif; margin: 0; padding: 0; }
 
-        /* --- BARRA AVVISI --- */
-        .announcement-bar {
-            background-color: var(--air-petrol);
-            color: white;
-            padding: 10px 5%;
-            font-size: 11px;
-            font-weight: 700;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            text-transform: uppercase;
-        }
-
-        /* --- HEADER --- */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 5%;
-            background: white;
-            border-bottom: 1px solid #eee;
-        }
-        .nav-menu { display: flex; gap: 25px; list-style: none; }
-        .nav-menu a { text-decoration: none; color: #333; font-weight: 700; font-size: 13px; }
-
-        /* --- HERO SECTION CON TAGLIO OBLIQUO --- */
+        /* HERO SECTION CON LA TUA IMMAGINE */
         .hero {
             position: relative;
-            height: 500px;
-            background: url('tua-immagine-roblox.jpg') center/cover no-repeat;
-            /* Se non hai l'immagine, usa questo gradiente temporaneo */
-            background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://cms.airdolomiti.it/wp-content/uploads/2026/03/monaco-di-baviera-fiori-e1773737428861.jpg');
+            height: 550px;
+            /* SOSTITUISCI 'tuo-screenshot-roblox.jpg' CON IL NOME DEL TUO FILE */
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('image_3e5fa3.jpg'); 
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* Il taglio bianco diagonale sotto la foto */
+        /* Il taglio obliquo che abbiamo visto negli screenshot */
         .hero::after {
             content: "";
             position: absolute;
             bottom: 0;
-            left: 0;
             width: 100%;
-            height: 80px;
+            height: 100px;
             background: white;
-            clip-path: polygon(0 100%, 100% 100%, 100% 0, 0 80%);
+            clip-path: polygon(0 100%, 100% 100%, 100% 0, 0 85%);
         }
 
-        /* --- WIDGET RICERCA A FRECCIA (Il pezzo forte) --- */
-        .search-container {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            max-width: 1100px;
-            z-index: 10;
-        }
-
-        .search-tabs { display: flex; gap: 20px; color: white; margin-bottom: 10px; font-size: 12px; font-weight: bold; }
-
+        /* WIDGET DI RICERCA */
         .search-box {
+            position: relative;
+            z-index: 10;
             background: white;
+            padding: 30px;
             display: flex;
-            align-items: center;
-            padding: 25px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-            /* Forma a freccia */
-            clip-path: polygon(0% 0%, 94% 0%, 100% 50%, 94% 100%, 0% 100%);
+            gap: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid var(--air-border); /* Bordo fedele all'originale */
+            /* Punta a freccia sulla destra come nel sito reale */
+            clip-path: polygon(0% 0%, 95% 0%, 100% 50%, 95% 100%, 0% 100%);
+            padding-right: 60px;
         }
 
-        .input-field { flex: 1; border-right: 1px solid #eee; padding: 0 15px; }
-        .input-field:last-of-type { border-right: none; }
-        .input-field label { display: block; font-size: 10px; font-weight: 700; color: #666; margin-bottom: 5px; }
-        .input-field input { border: none; width: 100%; font-weight: 600; outline: none; }
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid var(--air-border);
+            padding-right: 20px;
+        }
+
+        .input-group label {
+            font-size: 10px;
+            font-weight: bold;
+            color: var(--air-petrol);
+            margin-bottom: 5px;
+        }
 
         .btn-cerca {
-            background: var(--air-petrol);
+            background-color: var(--air-petrol);
             color: white;
             border: none;
-            padding: 15px 30px;
+            padding: 10px 40px;
             font-weight: bold;
             cursor: pointer;
-            margin-right: 40px;
-            border-radius: 2px;
-            transition: 0.3s;
         }
-        .btn-cerca:hover { background: var(--air-dark); }
-
-        /* --- FOOTER --- */
-        .footer { padding: 50px 5%; background: white; border-top: 1px solid #eee; text-align: left; }
-        .footer-logo { height: 35px; margin-bottom: 20px; }
-        .footer-legal { font-size: 11px; color: #999; line-height: 1.8; }
-
     </style>
 </head>
 <body>
 
-    <div class="announcement-bar">
-        <span>Informazioni importanti per i voli virtuali su Roblox</span>
-        <span>&gt;</span>
-    </div>
-
-    <header>
-        <img src="https://upload.wikimedia.org/wikipedia/it/thumb/a/a7/Air_Dolomiti_logo.svg/1280px-Air_Dolomiti_logo.svg.png" style="height:40px;">
-        <ul class="nav-menu">
-            <li><a href="#">ESPLORA</a></li>
-            <li><a href="#">PRENOTA</a></li>
-            <li><a href="#">A BORDO</a></li>
-            <li><a href="#">FLOTTA</a></li>
-        </ul>
-        <div style="font-weight: bold; font-size: 12px; cursor: pointer;">
-            <img src="https://flagcdn.com/w20/it.png" style="vertical-align: middle;"> ITALIANO
-        </div>
-    </header>
-
-    <div class="hero">
-        <div class="search-container">
-            <div class="search-tabs">
-                <span>● Andata / Ritorno</span>
-                <span>○ Solo andata</span>
+    <section class="hero">
+        <div class="search-box">
+            <div class="input-group">
+                <label>DA (PARTENZA)</label>
+                <input type="text" placeholder="Aeroporto Roblox">
             </div>
-            <div class="search-box">
-                <div class="input-field">
-                    <label>DA (PARTENZA)</label>
-                    <input type="text" placeholder="Munich - Franz Josef Strauß">
-                </div>
-                <div class="input-field">
-                    <label>A (DESTINAZIONE)</label>
-                    <input type="text" placeholder="Milan Linate (LIN)">
-                </div>
-                <div class="input-field">
-                    <label>DATA</label>
-                    <input type="text" value="12/04/2026">
-                </div>
-                <button class="btn-cerca">CERCA VOLO</button>
+            <div class="input-group">
+                <label>A (ARRIVO)</label>
+                <input type="text" placeholder="Destinazione">
             </div>
+            <button class="btn-cerca">CERCA</button>
         </div>
-    </div>
+    </section>
 
-    <div style="padding: 100px 5% 40px; text-align: center;">
-        <h2 style="font-weight: 300; font-size: 32px; color: #444;">Prenota il tuo volo Air Dolomiti Virtual</h2>
-    </div>
-
-    <footer class="footer">
-        <img src="https://upload.wikimedia.org/wikipedia/it/thumb/a/a7/Air_Dolomiti_logo.svg/1280px-Air_Dolomiti_logo.svg.png" class="footer-logo">
-        <p style="color: var(--air-petrol); font-size: 10px; font-weight: 900; letter-spacing: 1px; margin-bottom: 10px;">MEMBRO DEL GRUPPO LUFTHANSA</p>
-        <div class="footer-legal">
-            Air Dolomiti Virtual Roblox Operations &copy; 2026. <br>
-            Sito creato esclusivamente per la simulazione virtuale su Roblox. <br>
-            Tutti i diritti sono riservati alla community virtuale. Non siamo affiliati alla compagnia reale.
-        </div>
+    <footer style="padding: 40px; background: #fff; border-top: 1px solid var(--air-border);">
+        <p style="color: var(--air-petrol); font-weight: bold; font-size: 11px;">MEMBRO DEL GRUPPO LUFTHANSA</p>
+        <p style="font-size: 12px; color: #666; text-align: left;">
+            Questo sito è una simulazione virtuale per la community di Roblox.<br>
+            Non siamo affiliati alla compagnia reale Air Dolomiti S.p.A..
+        </p>
     </footer>
 
 </body>
