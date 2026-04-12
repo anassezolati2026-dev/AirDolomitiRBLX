@@ -1,141 +1,87 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AirDolomiti | Official Roblox Virtual Airline</title>
     <link rel="icon" type="image/png" href="riproviamo.png">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("TUO_USER_ID_QUI"); // Sostituisci con la tua Public Key di EmailJS
+        })();
+    </script>
 
     <style>
+        /* --- RESET E BASE --- */
+        body, html { margin: 0; padding: 0; font-family: 'Open Sans', sans-serif; overflow-x: hidden; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
         /* --- MODULO BENVENUTO --- */
         #welcomeOverlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: white;
-            z-index: 99999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            background: white; z-index: 99999;
+            display: flex; justify-content: center; align-items: center;
             transition: opacity 0.8s ease, visibility 0.8s;
         }
-
-        .welcome-card {
-            max-width: 500px;
-            padding: 40px;
-            text-align: center;
-            font-family: 'Open Sans', sans-serif;
-        }
-
+        .welcome-card { max-width: 500px; padding: 40px; text-align: center; }
         .welcome-logo { width: 220px; margin-bottom: 30px; }
         .welcome-title { color: #00727A; font-weight: 300; font-size: 28px; margin-bottom: 20px; }
-        .welcome-text { color: #555; line-height: 1.6; margin-bottom: 30px; font-size: 15px; }
-
-        .privacy-box {
-            background: #f9f9f9;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: left;
-            margin-bottom: 30px;
-            border: 1px solid #eee;
-        }
-
-        .checkbox-container {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            cursor: pointer;
-            font-size: 13px;
-            color: #333;
-        }
-
-        .btn-enter {
-            background: #ccc;
-            color: white;
-            border: none;
-            padding: 16px 50px;
-            border-radius: 4px;
-            font-weight: bold;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: not-allowed;
-            transition: 0.3s;
-        }
-
+        .privacy-box { background: #f9f9f9; padding: 20px; border-radius: 8px; text-align: left; margin-bottom: 30px; border: 1px solid #eee; }
+        .btn-enter { background: #ccc; color: white; border: none; padding: 16px 50px; border-radius: 4px; font-weight: bold; cursor: not-allowed; transition: 0.3s; text-transform: uppercase; }
         .btn-enter.active { background: #00727A; cursor: pointer; }
         .blur-content { filter: blur(10px); pointer-events: none; transition: filter 0.8s ease; }
 
-        /* --- HEADER E UTILITY --- */
-        .header-utilities {
-            display: flex;
-            align-items: center;
-            gap: 20px;
+        /* --- HEADER --- */
+        .main-header { background: white; padding: 15px 0; border-bottom: 1px solid #eee; }
+        .header-flex { display: flex; justify-content: space-between; align-items: center; }
+        .brand-logo { height: 40px; }
+        .main-nav ul { list-style: none; display: flex; gap: 25px; margin: 0; padding: 0; }
+        .main-nav a { text-decoration: none; color: #333; font-weight: 600; font-size: 14px; }
+        .main-nav a.active { color: #00727A; border-bottom: 2px solid #00727A; padding-bottom: 5px; }
+
+        .header-utilities { display: flex; align-items: center; gap: 20px; }
+        .util-logo { height: 24px; cursor: pointer; transition: 0.2s; }
+        .util-logo:hover { transform: scale(1.1); }
+
+        /* --- SELETTORE LINGUA (FIXED) --- */
+        .lang-selector { position: relative; display: flex; align-items: center; padding: 10px 0; cursor: pointer; }
+        .current-lang-flag { height: 20px; border: 1px solid #eee; border-radius: 2px; }
+        .lang-dropdown { 
+            display: none; position: absolute; top: 100%; right: -10px; 
+            background: white; border: 1px solid #eee; border-radius: 4px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); z-index: 1000; min-width: 150px; padding: 5px 0; margin-top: -5px; 
         }
+        .lang-selector:hover .lang-dropdown { display: block; }
+        .lang-option { display: flex; align-items: center; gap: 12px; padding: 10px 15px; color: #333; text-decoration: none; transition: 0.2s; }
+        .lang-option:hover { background: #f5f5f5; }
+        .lang-option img { height: 16px; border-radius: 2px; }
 
-        .util-logo {
-            height: 24px;
-            width: auto;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
+        /* --- HERO & BOOKING --- */
+        .hero-section { position: relative; height: 500px; background: url('Screenshot 2026-04-09 210801.png') center/cover; display: flex; align-items: center; justify-content: center; }
+        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.2); }
+        .booking-engine { position: relative; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); width: 90%; max-width: 900px; }
+        .booking-fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 20px; }
+        .input-wrapper { display: flex; flex-direction: column; }
+        .input-wrapper label { font-size: 12px; font-weight: bold; margin-bottom: 5px; color: #777; }
+        .input-wrapper input { padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
+        .main-search-btn { background: #00727A; color: white; border: none; padding: 10px; border-radius: 4px; font-weight: bold; cursor: pointer; margin-top: 22px; }
 
-        /* --- FIX MENU LINGUA --- */
-        .lang-selector {
-            position: relative;
-            display: flex;
-            align-items: center;
-            padding: 10px 0; /* Area di contatto per il mouse */
-        }
+        /* --- NEWS TICKER (LA SCRITTA SCORREVOLE) --- */
+        .news-ticker-container { width: 100%; background: #00727A; color: white; overflow: hidden; white-space: nowrap; padding: 12px 0; font-weight: 600; font-size: 14px; border-bottom: 2px solid #005a61; }
+        .news-ticker-text { display: inline-block; padding-left: 100%; animation: ticker 35s linear infinite; }
+        @keyframes ticker { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
+        .news-ticker-container:hover .news-ticker-text { animation-play-state: paused; }
 
-        .current-lang-flag {
-            height: 20px;
-            width: auto;
-            border: 1px solid #eee;
-            border-radius: 2px;
-            cursor: pointer;
-        }
-
-        .lang-dropdown {
-            display: none;
-            position: absolute;
-            top: 100%;
-            right: -15px; /* Spostato a destra per centrarlo */
-            background-color: white;
-            border: 1px solid #eee;
-            border-radius: 4px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            z-index: 1000;
-            min-width: 150px;
-            padding: 5px 0;
-            margin-top: -5px; /* Elimina il vuoto tra flag e menu */
-        }
-
-        .lang-selector:hover .lang-dropdown {
-            display: block;
-        }
-
-        .lang-option {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 15px;
-            color: #333;
-            text-decoration: none;
-            transition: background 0.2s;
-            font-family: 'Open Sans', sans-serif;
-        }
-
-        .lang-option:hover { background-color: #f5f5f5; }
-
-        .lang-option img {
-            height: 16px;
-            width: auto;
-            border-radius: 2px;
-        }
-
-        .lang-option span { font-size: 14px; font-weight: 600; }
+        /* --- OFFERS --- */
+        .offers-section { padding: 60px 0; background: #f9f9f9; text-align: center; }
+        .offer-card { display: flex; align-items: center; justify-content: center; gap: 40px; max-width: 900px; margin: 0 auto; }
+        .offer-img { width: 50%; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+        .offer-details { text-align: left; }
+        .price { font-size: 42px; font-weight: 700; color: #00727A; margin: 10px 0; }
     </style>
 </head>
 <body>
@@ -144,56 +90,40 @@
         <div class="welcome-card">
             <img src="Air_Dolomiti_logo.svg.png" alt="Air Dolomiti" class="welcome-logo">
             <h2 class="welcome-title" id="w-title">Benvenuto a bordo</h2>
-            <p class="welcome-text" id="w-text">
-                Per accedere al portale ufficiale di Air Dolomiti Virtual su Roblox, conferma di aver preso visione del regolamento e dei termini di utilizzo.
-            </p>
+            <p id="w-text">Per accedere al portale ufficiale di Air Dolomiti Virtual su Roblox, conferma di aver preso visione del regolamento.</p>
             <div class="privacy-box">
-                <label class="checkbox-container">
+                <label style="display:flex; gap:10px; cursor:pointer;">
                     <input type="checkbox" id="privacyCheck">
-                    <span id="w-privacy">Accetto i termini della Privacy, il regolamento interno e l'uso dei cookie tecnici per la navigazione.</span>
+                    <span id="w-privacy">Accetto i termini della Privacy e il regolamento interno.</span>
                 </label>
             </div>
             <button id="enterSiteBtn" class="btn-enter" disabled>Accedi al sito</button>
-            <p id="w-copyright" style="margin-top: 30px; font-size: 10px; color: #bbb; text-transform: uppercase; letter-spacing: 1px;">
-                Membro del Gruppo Lufthansa - Partner virtuale di Roblox
-            </p>
         </div>
     </div>
 
     <div id="mainContent" class="blur-content">
-        
-        <div class="announcement-bar">
-            <span id="announcement-text">⚠️ SYSTEM UPDATE: CHECK FLIGHT STATUS FOR THE LATEST UPDATES ON ROBLOX OPERATIONS</span>
-        </div>
-
         <header class="main-header">
             <div class="container header-flex">
-                <div class="logo-area">
-                    <img src="Air_Dolomiti_logo.svg.png" alt="AirDolomiti Logo" class="brand-logo">
-                </div>
+                <img src="Air_Dolomiti_logo.svg.png" alt="Logo" class="brand-logo">
                 <nav class="main-nav">
-                    <ul id="nav-links">
-                        <li><a href="#" class="active" id="nav-explore">Explore</a></li>
-                        <li><a href="#" id="nav-book">Book & Manage</a></li>
-                        <li><a href="#" id="nav-onboard">On Board</a></li>
-                        <li><a href="#" id="nav-experience">Experience</a></li>
-                        <li><a href="#" id="nav-club">Dolomiti Club</a></li>
+                    <ul>
+                        <li><a href="#" class="active" id="nav-explore">Esplora</a></li>
+                        <li><a href="#" id="nav-book">Prenota</a></li>
+                        <li><a href="#" id="nav-experience">Esperienza</a></li>
                     </ul>
                 </nav>
                 <div class="header-utilities">
-                    <img src="account.png" alt="Account" class="util-logo">
-                    <img src="logos.png" alt="Logos" class="util-logo">
+                    <img src="account.png" alt="Account" class="util-logo" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3106/3106773.png'">
+                    <img src="logos.png" alt="Loghi" class="util-logo" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3135/3135715.png'">
                     
                     <div class="lang-selector">
-                        <img src="Flag_of_Italy.svg.png" alt="Lingua" class="current-lang-flag" id="current-flag">
+                        <img src="Flag_of_Italy.svg.png" id="current-flag" class="current-lang-flag">
                         <div class="lang-dropdown">
                             <a href="#" class="lang-option" data-lang="IT">
-                                <img src="Flag_of_Italy.svg.png" alt="Italiano">
-                                <span>Italiano</span>
+                                <img src="Flag_of_Italy.svg.png"> <span>Italiano</span>
                             </a>
                             <a href="#" class="lang-option" data-lang="EN">
-                                <img src="Flag_of_the_United_Kingdom_(3-5).svg" alt="English">
-                                <span>English</span>
+                                <img src="Flag_of_the_United_Kingdom_(3-5).svg"> <span>English</span>
                             </a>
                         </div>
                     </div>
@@ -201,147 +131,120 @@
             </div>
         </header>
 
-        <main>
-            <section class="hero-section">
-                <div class="hero-visual" style="background-image: url('Screenshot 2026-04-09 210801.png');"></div>
-                <div class="hero-overlay"></div>
-                
-                <div class="booking-engine">
-                    <div class="booking-tabs">
-                        <button class="t-btn active" id="tab-oneway">One way</button>
+        <section class="hero-section">
+            <div class="hero-overlay"></div>
+            <div class="booking-engine">
+                <div style="font-weight:bold; color:#00727A; border-bottom:2px solid #00727A; display:inline-block; padding-bottom:5px;" id="tab-oneway">Solo andata</div>
+                <div class="booking-fields">
+                    <div class="input-wrapper">
+                        <label id="label-from">DA</label>
+                        <input type="text" placeholder="Departure Airport" id="from-air">
                     </div>
-                    
-                    <div class="booking-fields">
-                        <div class="input-wrapper">
-                            <label id="label-from">From</label>
-                            <input type="text" list="airports-from" placeholder="Departure Airport" id="input-from">
-                            <datalist id="airports-from"><option value="Munich (MUC)"></datalist>
-                        </div>
-                        <div class="input-wrapper">
-                            <label id="label-to">To</label>
-                            <input type="text" list="airports-to" placeholder="Arrival Airport" id="input-to">
-                            <datalist id="airports-to"><option value="Milan Linate (LIN)"></datalist>
-                        </div>
-                        <div class="input-wrapper date">
-                            <label id="label-dates">Dates</label>
-                            <input type="text" placeholder="Add dates" id="input-dates">
-                        </div>
-                        <div class="input-wrapper pax">
-                            <label id="label-pax">Passengers</label>
-                            <input type="text" value="1 Adult, Economy" id="input-pax-val">
-                        </div>
-                        <button class="main-search-btn" id="btn-search">Search Flight ➔</button>
+                    <div class="input-wrapper">
+                        <label id="label-to">A</label>
+                        <input type="text" placeholder="Arrival Airport" id="to-air">
                     </div>
+                    <div class="input-wrapper">
+                        <label id="label-dates">DATE</label>
+                        <input type="text" placeholder="Add dates">
+                    </div>
+                    <button class="main-search-btn" id="btn-search">Cerca Volo ➔</button>
                 </div>
-            </section>
-
-            <section class="offers-section" style="padding: 60px 0; background-color: #f9f9f9;">
-                <div class="container">
-                    <h2 class="section-title" id="offer-title" style="text-align: center; font-weight: 300; font-size: 36px; margin-bottom: 50px;">Discover our best offer</h2>
-                    <div style="display: flex; align-items: center; justify-content: center; gap: 60px; max-width: 1000px; margin: 0 auto;">
-                        <img src="Screenshot 2026-04-12 084849.png" style="width: 50%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                        <div style="text-align: left;">
-                            <h4 style="font-size: 20px; font-weight: 700;">Munich - Milan Linate</h4>
-                            <p style="font-size: 42px; font-weight: 700; color: #00727A;"><span id="offer-from">From</span> 0 R$</p>
-                            <button id="btn-book" style="background-color: #00727A; color: white; border: none; padding: 15px 40px; border-radius: 4px; cursor: pointer; font-weight: bold;">Book Now</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <footer class="grand-footer" style="padding: 40px 0; background: #fff; border-top: 1px solid #eee;">
-            <div class="container">
-                <img src="Air_Dolomiti_logo.svg.png" style="height: 30px; margin-bottom: 10px;">
-                <p id="f-copyright" style="font-size: 11px; color: #999;">Membro del Gruppo Lufthansa - Partner virtuale di Roblox</p>
             </div>
-        </footer>
+        </section>
+
+        <div class="news-ticker-container">
+            <div class="news-ticker-text" id="news-ticker-content">
+                ⚠️ AVVISO IMPORTANTE: I voli non sono ancora disponibili. La compagnia è in fase di allestimento su Roblox. Grazie per la pazienza! ——— IMPORTANT NOTICE: Flights are not yet available. The airline is under development on Roblox.
+            </div>
+        </div>
+
+        <section class="offers-section">
+            <div class="container">
+                <h2 id="offer-title">Scopri la nostra migliore offerta</h2>
+                <div class="offer-card">
+                    <img src="Screenshot 2026-04-12 084849.png" class="offer-img">
+                    <div class="offer-details">
+                        <h4 style="margin:0;">Munich - Milan Linate</h4>
+                        <p class="price"><span id="offer-from" style="font-size:20px">Da</span> 0 R$</p>
+                        <button style="background:#00727A; color:white; border:none; padding:12px 30px; border-radius:4px; font-weight:bold; cursor:pointer;" id="book-now">Prenota Ora</button>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
     <script>
         const translations = {
             'IT': {
                 'w_title': 'Benvenuto a bordo',
-                'w_text': 'Per accedere al portale ufficiale di Air Dolomiti Virtual su Roblox, conferma di aver preso visione del regolamento e dei termini di utilizzo.',
-                'w_privacy': 'Accetto i termini della Privacy, il regolamento interno e l\'uso dei cookie tecnici per la navigazione.',
+                'w_privacy': 'Accetto i termini della Privacy e il regolamento interno.',
                 'w_btn': 'Accedi al sito',
-                'w_copy': 'Membro del Gruppo Lufthansa - Partner virtuale di Roblox',
-                'announcement': '⚠️ AGGIORNAMENTO DI SISTEMA: CONTROLLA LO STATO DEL VOLO PER LE ULTIME NOVITÀ SU ROBLOX',
-                'explore': 'Esplora', 'book': 'Prenota e Gestisci', 'onboard': 'A Bordo', 'experience': 'Esperienza', 'club': 'Dolomiti Club',
-                'oneway': 'Solo andata', 'from': 'Da', 'to': 'A', 'dates': 'Date', 'pax': 'Passeggeri', 'pax_val': '1 Adulto, Economy',
-                'search': 'Cerca Volo ➔', 'offertitle': 'Scopri la nostra migliore offerta', 'offerfrom': 'Da', 'booknow': 'Prenota Ora'
+                'nav_explore': 'Esplora',
+                'search': 'Cerca Volo ➔',
+                'offer_title': 'Scopri la nostra migliore offerta',
+                'ticker': '⚠️ AVVISO: I voli non sono ancora disponibili. La compagnia è in fase di allestimento su Roblox. Grazie per la pazienza!'
             },
             'EN': {
                 'w_title': 'Welcome on board',
-                'w_text': 'To access the official Air Dolomiti Virtual portal on Roblox, please confirm you have read the regulations and terms of use.',
-                'w_privacy': 'I accept the Privacy terms, internal regulations, and the use of technical cookies for navigation.',
+                'w_privacy': 'I accept the Privacy terms and internal regulations.',
                 'w_btn': 'Enter site',
-                'w_copy': 'Member of Lufthansa Group - Roblox Virtual Partner',
-                'announcement': '⚠️ SYSTEM UPDATE: CHECK FLIGHT STATUS FOR THE LATEST UPDATES ON ROBLOX OPERATIONS',
-                'explore': 'Explore', 'book': 'Book & Manage', 'onboard': 'On Board', 'experience': 'Experience', 'club': 'Dolomiti Club',
-                'oneway': 'One way', 'from': 'From', 'to': 'To', 'dates': 'Dates', 'pax': 'Passengers', 'pax_val': '1 Adult, Economy',
-                'search': 'Search Flight ➔', 'offertitle': 'Discover our best offer', 'offerfrom': 'From', 'booknow': 'Book Now'
+                'nav_explore': 'Explore',
+                'search': 'Search Flight ➔',
+                'offer_title': 'Discover our best offer',
+                'ticker': '⚠️ NOTICE: Flights are not yet available. The airline is under development on Roblox. Thank you for your patience!'
             }
         };
 
-        const flagSources = {
-            'IT': 'Flag_of_Italy.svg.png',
-            'EN': 'Flag_of_the_United_Kingdom_(3-5).svg'
-        };
-
-        const welcomeOverlay = document.getElementById('welcomeOverlay');
-        const mainContent = document.getElementById('mainContent');
-        const privacyCheck = document.getElementById('privacyCheck');
-        const enterSiteBtn = document.getElementById('enterSiteBtn');
-        const currentFlag = document.getElementById('current-flag');
-
-        let currentLang = navigator.language.startsWith('it') ? 'IT' : 'EN';
+        const flagSources = { 'IT': 'Flag_of_Italy.svg.png', 'EN': 'Flag_of_the_United_Kingdom_(3-5).svg' };
+        let currentLang = 'IT';
 
         function applyTranslation(lang) {
             const t = translations[lang];
             document.getElementById('w-title').innerText = t.w_title;
-            document.getElementById('w-text').innerText = t.w_text;
             document.getElementById('w-privacy').innerText = t.w_privacy;
             document.getElementById('enterSiteBtn').innerText = t.w_btn;
-            document.getElementById('w-copyright').innerText = t.w_copy;
-            document.getElementById('announcement-text').innerText = t.announcement;
-            document.getElementById('nav-explore').innerText = t.explore;
-            document.getElementById('nav-book').innerText = t.book;
-            document.getElementById('nav-onboard').innerText = t.onboard;
-            document.getElementById('nav-experience').innerText = t.experience;
-            document.getElementById('nav-club').innerText = t.club;
-            document.getElementById('tab-oneway').innerText = t.oneway;
-            document.getElementById('label-from').innerText = t.from;
-            document.getElementById('label-to').innerText = t.to;
-            document.getElementById('label-dates').innerText = t.dates;
-            document.getElementById('label-pax').innerText = t.pax;
-            document.getElementById('input-pax-val').value = t.pax_val;
+            document.getElementById('nav-explore').innerText = t.nav_explore;
             document.getElementById('btn-search').innerText = t.search;
-            document.getElementById('offer-title').innerText = t.offertitle;
-            document.getElementById('offer-from').innerText = t.offerfrom;
-            document.getElementById('btn-book').innerText = t.booknow;
-            document.getElementById('f-copyright').innerText = t.w_copy;
-            currentFlag.src = flagSources[lang];
+            document.getElementById('offer-title').innerText = t.offer_title;
+            document.getElementById('news-ticker-content').innerText = t.ticker;
+            document.getElementById('current-flag').src = flagSources[lang];
         }
 
-        applyTranslation(currentLang);
-
-        privacyCheck.addEventListener('change', function() {
-            enterSiteBtn.disabled = !this.checked;
-            enterSiteBtn.classList.toggle('active', this.checked);
+        // Gestione Privacy
+        document.getElementById('privacyCheck').addEventListener('change', function() {
+            const btn = document.getElementById('enterSiteBtn');
+            btn.disabled = !this.checked;
+            btn.classList.toggle('active', this.checked);
         });
 
-        enterSiteBtn.addEventListener('click', function() {
-            welcomeOverlay.style.opacity = '0';
-            mainContent.classList.remove('blur-content');
-            setTimeout(() => { welcomeOverlay.style.visibility = 'hidden'; }, 800);
+        document.getElementById('enterSiteBtn').addEventListener('click', function() {
+            document.getElementById('welcomeOverlay').style.opacity = '0';
+            document.getElementById('mainContent').classList.remove('blur-content');
+            setTimeout(() => { document.getElementById('welcomeOverlay').style.visibility = 'hidden'; }, 800);
         });
 
-        document.querySelectorAll('.lang-option').forEach(option => {
-            option.addEventListener('click', (e) => {
+        // Cambio Lingua
+        document.querySelectorAll('.lang-option').forEach(opt => {
+            opt.addEventListener('click', (e) => {
                 e.preventDefault();
-                currentLang = option.getAttribute('data-lang');
+                currentLang = opt.getAttribute('data-lang');
                 applyTranslation(currentLang);
+            });
+        });
+
+        // Esempio invio EmailJS al clic su Cerca
+        document.getElementById('btn-search').addEventListener('click', function() {
+            const from = document.getElementById('from-air').value;
+            const to = document.getElementById('to-air').value;
+            
+            if(!from || !to) { alert("Inserisci gli aeroporti!"); return; }
+
+            emailjs.send("service_koyvtid", "TUO_TEMPLATE_ID", {
+                from_airport: from,
+                to_airport: to,
+            }).then(() => {
+                alert("Richiesta inviata al Bot AirDolomiti!");
             });
         });
     </script>
