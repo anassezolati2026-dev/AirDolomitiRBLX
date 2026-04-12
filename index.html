@@ -43,36 +43,20 @@
 
         .checkbox-container {
             display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            cursor: pointer;
-            font-size: 13px;
-            color: #333;
+            align-items: flex-start; gap: 12px;
+            cursor: pointer; font-size: 13px; color: #333;
         }
 
         .btn-enter {
-            background: #ccc;
-            color: white;
-            border: none;
-            padding: 16px 50px;
-            border-radius: 4px;
-            font-weight: bold;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: not-allowed;
-            transition: 0.3s;
+            background: #ccc; color: white; border: none;
+            padding: 16px 50px; border-radius: 4px;
+            font-weight: bold; font-size: 14px;
+            text-transform: uppercase; letter-spacing: 1px;
+            cursor: not-allowed; transition: 0.3s;
         }
 
-        .btn-enter.active {
-            background: #00727A;
-            cursor: pointer;
-        }
-
-        .blur-content {
-            filter: blur(8px);
-            pointer-events: none;
-        }
+        .btn-enter.active { background: #00727A; cursor: pointer; }
+        .blur-content { filter: blur(8px); pointer-events: none; }
     </style>
 </head>
 <body>
@@ -80,125 +64,73 @@
     <div id="welcomeOverlay">
         <div class="welcome-card">
             <img src="Air_Dolomiti_logo.svg.png" alt="Air Dolomiti" class="welcome-logo">
-            <h2 class="welcome-title" id="w-title">Benvenuto a bordo</h2>
-            <p class="welcome-text" id="w-text">
-                Per accedere al portale ufficiale di Air Dolomiti Virtual su Roblox, conferma di aver preso visione del regolamento e dei termini di utilizzo.
-            </p>
+            
+            <h2 class="welcome-title" id="w-title"></h2>
+            <p class="welcome-text" id="w-text"></p>
+            
             <div class="privacy-box">
                 <label class="checkbox-container">
                     <input type="checkbox" id="privacyCheck">
-                    <span id="w-privacy">Accetto i termini della Privacy, il regolamento interno e l'uso dei cookie tecnici per la navigazione.</span>
+                    <span id="w-privacy"></span>
                 </label>
             </div>
-            <button id="enterSiteBtn" class="btn-enter" disabled>Accedi al sito</button>
             
-            <p style="margin-top: 30px; font-size: 10px; color: #bbb; text-transform: uppercase; letter-spacing: 1px;">
-                Member of Lufthansa Group - Roblox Virtual Partner
-            </p>
+            <button id="enterSiteBtn" class="btn-enter" disabled></button>
+            
+            <p id="w-copyright" style="margin-top: 30px; font-size: 10px; color: #bbb; text-transform: uppercase; letter-spacing: 1px;"></p>
         </div>
     </div>
 
     <div id="mainContent" class="blur-content">
-        
-        <div class="announcement-bar">
-            <span id="announcement-text">⚠️ SYSTEM UPDATE: CHECK FLIGHT STATUS FOR THE LATEST UPDATES ON ROBLOX OPERATIONS</span>
-        </div>
-
         <header class="main-header">
-            <div class="container header-flex">
-                <div class="logo-area">
-                    <img src="Air_Dolomiti_logo.svg.png" alt="AirDolomiti Logo" class="brand-logo">
-                </div>
-                <nav class="main-nav">
-                    <ul id="nav-links">
-                        <li><a href="#" class="active" id="nav-explore">Explore</a></li>
-                        <li><a href="#" id="nav-book">Book & Manage</a></li>
-                        <li><a href="#" id="nav-onboard">On Board</a></li>
-                        <li><a href="#" id="nav-experience">Experience</a></li>
-                        <li><a href="#" id="nav-club">Dolomiti Club</a></li>
-                    </ul>
-                </nav>
-                <div class="header-utilities">
-                    <span class="util-icon">🔍</span>
-                    <span class="util-icon">👤</span>
-                    <div class="lang-box" id="lang-switch" style="cursor: pointer;">EN</div>
-                </div>
+            <div class="container header-flex" style="display:flex; justify-content:space-between; align-items:center; padding:20px;">
+                <img src="Air_Dolomiti_logo.svg.png" style="height:40px;">
+                <div class="lang-box" id="lang-switch" style="cursor:pointer; font-weight:bold; border:1px solid #ccc; padding:5px 10px; border-radius:4px;">EN</div>
             </div>
         </header>
-
-        <main>
-            <section class="hero-section">
-                <div class="hero-visual" style="background-image: url('Screenshot 2026-04-09 210801.png');"></div>
-                <div class="hero-overlay"></div>
-                
-                <div class="booking-engine">
-                    <div class="booking-tabs">
-                        <button class="t-btn active" id="tab-oneway">One way</button>
-                    </div>
-                    
-                    <div class="booking-fields">
-                        <div class="input-wrapper">
-                            <label id="label-from">From</label>
-                            <input type="text" list="airports-from" placeholder="Departure Airport" id="input-from">
-                            <datalist id="airports-from">
-                                <option value="Munich (MUC)">
-                            </datalist>
-                        </div>
-
-                        <div class="input-wrapper">
-                            <label id="label-to">To</label>
-                            <input type="text" list="airports-to" placeholder="Arrival Airport" id="input-to">
-                            <datalist id="airports-to">
-                                <option value="Milan Linate (LIN)">
-                            </datalist>
-                        </div>
-
-                        <div class="input-wrapper date">
-                            <label id="label-dates">Dates</label>
-                            <input type="text" placeholder="Add dates" id="input-dates">
-                        </div>
-                        
-                        <div class="input-wrapper pax">
-                            <label id="label-pax">Passengers</label>
-                            <input type="text" value="1 Adult, Economy" id="input-pax-val">
-                        </div>
-                        
-                        <button class="main-search-btn" id="btn-search">Search Flight ➔</button>
-                    </div>
-                </div>
-            </section>
-
-            <section class="offers-section" style="padding: 60px 0; background-color: #f9f9f9;">
-                <div class="container">
-                    <h2 class="section-title" id="offer-title" style="text-align: center; font-weight: 300; font-size: 36px; color: #333; margin-bottom: 50px;">Discover our best offer</h2>
-                    <div class="offer-master-container" style="display: flex; align-items: center; justify-content: center; gap: 60px; max-width: 1000px; margin: 0 auto;">
-                        <div style="flex: 1;"><img src="Screenshot 2026-04-12 084849.png" style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);"></div>
-                        <div style="flex: 1;">
-                            <h4 style="font-size: 20px; font-weight: 700; color: #333;">Munich - Milan Linate</h4>
-                            <p style="font-size: 42px; font-weight: 700; color: #00727A;"><span id="offer-from">From</span> 0 R$</p>
-                            <button style="background-color: #00727A; color: white; border: none; padding: 15px 40px; border-radius: 4px; cursor: pointer; font-weight: bold;">Book Now</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
+        <main style="text-align:center; padding:100px;">
+            <h1>Sito Caricato / Site Loaded</h1>
         </main>
-
-        <footer class="grand-footer">
-            <div class="container">
-                <div class="footer-bottom">
-                    <div class="f-logo-wrap">
-                        <img src="Air_Dolomiti_logo.svg.png" alt="Footer Logo" class="f-logo">
-                        <p>Member of Lufthansa Group - Roblox Virtual Partner</p>
-                    </div>
-                    <div class="social-box">
-                        <span>FB</span> <span>IG</span> <span>TW</span> <span>YT</span>
-                    </div>
-                </div>
-            </div>
-        </footer>
     </div>
 
     <script>
+        // 1. DATABASE TRADUZIONI MODULO BENVENUTO
+        const welcomeTranslations = {
+            'it': {
+                'title': 'Benvenuto a bordo',
+                'text': 'Per accedere al portale ufficiale di Air Dolomiti Virtual su Roblox, conferma di aver preso visione del regolamento e dei termini di utilizzo.',
+                'privacy': 'Accetto i termini della Privacy, il regolamento interno e l\'uso dei cookie tecnici per la navigazione.',
+                'btn': 'Accedi al sito',
+                'copyright': 'Membro del Gruppo Lufthansa - Partner virtuale di Roblox'
+            },
+            'en': {
+                'title': 'Welcome on board',
+                'text': 'To access the official Air Dolomiti Virtual portal on Roblox, please confirm you have read the regulations and terms of use.',
+                'privacy': 'I accept the Privacy terms, internal regulations, and the use of technical cookies for navigation.',
+                'btn': 'Enter site',
+                'copyright': 'Member of Lufthansa Group - Roblox Virtual Partner'
+            }
+        };
+
+        // 2. RILEVAMENTO AUTOMATICO LINGUA
+        // Controlla la lingua del browser (prende le prime due lettere, es: 'it-IT' diventa 'it')
+        const userLang = navigator.language || navigator.userLanguage; 
+        const defaultLang = userLang.startsWith('it') ? 'it' : 'en';
+
+        // 3. APPLICA TRADUZIONE AL CARICAMENTO
+        function setupWelcome(lang) {
+            const t = welcomeTranslations[lang];
+            document.getElementById('w-title').innerText = t.title;
+            document.getElementById('w-text').innerText = t.text;
+            document.getElementById('w-privacy').innerText = t.privacy;
+            document.getElementById('enterSiteBtn').innerText = t.btn;
+            document.getElementById('w-copyright').innerText = t.copyright;
+            document.getElementById('lang-switch').innerText = lang.toUpperCase();
+        }
+
+        setupWelcome(defaultLang);
+
+        // 4. LOGICA TASTO ENTRA
         const welcomeOverlay = document.getElementById('welcomeOverlay');
         const mainContent = document.getElementById('mainContent');
         const privacyCheck = document.getElementById('privacyCheck');
@@ -221,11 +153,6 @@
                 welcomeOverlay.style.visibility = 'hidden';
             }, 800);
         });
-
-        // Codice lingue (rimane uguale a prima)
-        const langBtn = document.getElementById('lang-switch');
-        let currentLang = 'EN';
-        // ... (resto dello script lingue)
     </script>
 </body>
 </html>
