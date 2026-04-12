@@ -215,7 +215,7 @@
                         <p>Member of Lufthansa Group</p>
                     </div>
                     <div class="social-box">
-                        <a href="#" style="text-decoration: none;"><img src="DISCORD NOME DISCORD.webp" alt="Discord" style="height: 25px;"></a>
+                        <a href="#" style="text-decoration: none;"><img src="DISCORD.webp" alt="Discord" style="height: 25px;"></a>
                     </div>
                 </div>
             </div>
@@ -241,7 +241,7 @@
 
         enterSiteBtn.addEventListener('click', function() {
             welcomeOverlay.style.opacity = '0';
-            mainContent.classList.remove('blur-content'); // Togle la sfocatura
+            mainContent.classList.remove('blur-content'); 
             setTimeout(() => {
                 welcomeOverlay.style.visibility = 'hidden';
             }, 800);
@@ -336,7 +336,6 @@
             document.getElementById('news-title').innerText = t.newstitle;
             document.getElementById('news-desc').innerText = t.newsdesc;
             document.getElementById('news-btn').innerText = t.newsbtn;
-            // Traduzione splash screen
             document.getElementById('w-title').innerText = t.w_title;
             document.getElementById('enterSiteBtn').innerText = t.w_enter;
         }
