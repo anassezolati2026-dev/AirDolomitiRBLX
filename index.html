@@ -86,7 +86,7 @@
             position: relative;
             display: flex;
             align-items: center;
-            padding: 10px 0; /* Area di contatto per il mouse */
+            padding: 10px 0;
         }
 
         .current-lang-flag {
@@ -101,7 +101,7 @@
             display: none;
             position: absolute;
             top: 100%;
-            right: -15px; /* Spostato a destra per centrarlo */
+            right: -15px;
             background-color: white;
             border: 1px solid #eee;
             border-radius: 4px;
@@ -109,7 +109,7 @@
             z-index: 1000;
             min-width: 150px;
             padding: 5px 0;
-            margin-top: -5px; /* Elimina il vuoto tra flag e menu */
+            margin-top: -5px;
         }
 
         .lang-selector:hover .lang-dropdown {
@@ -128,14 +128,19 @@
         }
 
         .lang-option:hover { background-color: #f5f5f5; }
-
-        .lang-option img {
-            height: 16px;
-            width: auto;
-            border-radius: 2px;
-        }
-
+        .lang-option img { height: 16px; width: auto; border-radius: 2px; }
         .lang-option span { font-size: 14px; font-weight: 600; }
+
+        /* --- HERO CUSTOMIZATION --- */
+        .hero-visual {
+            background-image: url('image_3e5fa3.jpg'); /* Tua immagine Roblox */
+            background-size: cover;
+            background-position: center;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0; left: 0;
+        }
     </style>
 </head>
 <body>
@@ -203,7 +208,7 @@
 
         <main>
             <section class="hero-section">
-                <div class="hero-visual" style="background-image: url('Screenshot 2026-04-09 210801.png');"></div>
+                <div class="hero-visual"></div>
                 <div class="hero-overlay"></div>
                 
                 <div class="booking-engine">
@@ -239,7 +244,7 @@
                 <div class="container">
                     <h2 class="section-title" id="offer-title" style="text-align: center; font-weight: 300; font-size: 36px; margin-bottom: 50px;">Discover our best offer</h2>
                     <div style="display: flex; align-items: center; justify-content: center; gap: 60px; max-width: 1000px; margin: 0 auto;">
-                        <img src="Screenshot 2026-04-12 084849.png" style="width: 50%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                        <img src="image_3eb5fb.jpg" style="width: 50%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
                         <div style="text-align: left;">
                             <h4 style="font-size: 20px; font-weight: 700;">Munich - Milan Linate</h4>
                             <p style="font-size: 42px; font-weight: 700; color: #00727A;"><span id="offer-from">From</span> 0 R$</p>
