@@ -12,7 +12,6 @@
         :root {
             --primary: #00727A;
             --white: #ffffff;
-            --glass: rgba(255, 255, 255, 0.1);
             --transition: all 0.4s ease;
         }
 
@@ -45,14 +44,16 @@
         .main-nav a { color: #333; font-weight: 600; font-size: 13px; text-transform: uppercase; text-decoration: none; }
         
         /* --- LINGUE CON IMMAGINI --- */
-        .lang-box { display: flex; align-items: center; gap: 10px; cursor: pointer; position: relative; }
+        .lang-box { display: flex; align-items: center; gap: 10px; cursor: pointer; position: relative; padding: 10px; border-radius: 5px; border: 1px solid transparent; }
+        .lang-box:hover { border-color: #eee; }
         .lang-box img { height: 18px; border-radius: 2px; border: 1px solid #eee; }
         .lang-dropdown { 
             position: absolute; top: 100%; right: 0; background: white; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1); display: none; padding: 10px; border-radius: 5px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); display: none; padding: 10px; border-radius: 5px; min-width: 120px;
         }
         .lang-box:hover .lang-dropdown { display: block; }
-        .lang-opt { display: flex; align-items: center; gap: 8px; padding: 8px; font-size: 12px; }
+        .lang-opt { display: flex; align-items: center; gap: 10px; padding: 10px; font-size: 12px; font-weight: bold; transition: 0.2s; }
+        .lang-opt:hover { background: #f9f9f9; color: var(--primary); }
 
         /* --- HERO --- */
         .hero { 
@@ -62,13 +63,13 @@
         }
         .hero-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.2); }
 
-        /* --- TICKER TRASPARENTE (BIANCO) --- */
+        /* --- TICKER TRASPARENTE BIANCO --- */
         .ticker-wrap { 
             position: absolute; bottom: 20px; width: 100%; z-index: 5;
-            background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(5px);
-            padding: 10px 0; border-top: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(8px);
+            padding: 12px 0; border-top: 1px solid rgba(255,255,255,0.3);
         }
-        .ticker { display: inline-block; white-space: nowrap; padding-left: 100%; animation: ticker 35s linear infinite; color: white; font-weight: 600; font-size: 14px; text-shadow: 1px 1px 3px rgba(0,0,0,0.3); }
+        .ticker { display: inline-block; white-space: nowrap; padding-left: 100%; animation: ticker 40s linear infinite; color: white; font-weight: 600; font-size: 14px; text-shadow: 1px 1px 3px rgba(0,0,0,0.3); }
         @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
         /* --- BOOKING --- */
@@ -79,24 +80,23 @@
         }
         .fields-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
         .input-group label { font-size: 11px; font-weight: 800; color: var(--primary); text-transform: uppercase; display: block; margin-bottom: 8px; }
-        .input-group select, .input-group input { width: 100%; padding: 14px; border: 1px solid #ddd; border-radius: 4px; font-size: 15px; outline: none; appearance: none; background: #fdfdfd; }
+        .input-group select, .input-group input { width: 100%; padding: 14px; border: 1px solid #ddd; border-radius: 4px; font-size: 15px; outline: none; background: #fdfdfd; }
 
-        .btn-search { background: var(--primary); color: white; border: none; padding: 15px; border-radius: 4px; font-weight: bold; cursor: pointer; transition: var(--transition); }
+        .btn-search { background: var(--primary); color: white; border: none; padding: 15px; border-radius: 4px; font-weight: bold; cursor: pointer; transition: var(--transition); text-transform: uppercase; }
         .btn-search:hover { background: #005a61; }
 
         /* --- FOOTER SPAZIOSO --- */
         .footer { background: #fff; padding: 100px 0 50px; border-top: 1px solid #eee; text-align: center; }
-        .footer-content { max-width: 800px; margin: 0 auto; }
         .footer-logos-wrap { 
-            display: flex; justify-content: center; align-items: center; gap: 60px; margin-bottom: 40px;
+            display: flex; justify-content: center; align-items: center; gap: 80px; margin-bottom: 40px;
         }
-        .footer-brand { height: 60px; }
-        .lufthansa-member { height: 25px; opacity: 0.8; }
-        .footer-text { font-size: 12px; color: #999; line-height: 1.8; margin-top: 20px; }
+        .footer-brand { height: 65px; }
+        .lufthansa-member { height: 30px; opacity: 0.9; }
+        .footer-text { font-size: 12px; color: #999; line-height: 1.8; margin-top: 30px; max-width: 700px; margin-left: auto; margin-right: auto; }
 
         @media (max-width: 768px) {
-            .footer-logos-wrap { flex-direction: column; gap: 30px; }
-            .header-flex { flex-direction: column; padding: 15px; }
+            .footer-logos-wrap { flex-direction: column; gap: 40px; }
+            .header-flex { flex-direction: column; height: auto; padding: 20px; gap: 15px; }
             .main-nav { display: none; }
         }
     </style>
@@ -106,11 +106,11 @@
     <div id="welcomeOverlay">
         <div class="welcome-card">
             <img src="Air_Dolomiti_logo.svg.png" class="welcome-logo">
-            <h2 style="font-weight: 300; color: var(--primary); margin-bottom: 20px;">Benvenuto nel Portale Virtuale</h2>
+            <h2 id="txt-welcome-title" style="font-weight: 300; color: var(--primary); margin-bottom: 20px;">Benvenuto nel Portale Virtuale</h2>
             <div style="background:#f9f9f9; padding:25px; border-radius:10px; text-align:left; border:1px solid #eee; margin-bottom:20px;">
                 <label style="display:flex; gap:12px; cursor:pointer; font-size:14px; color:#555;">
                     <input type="checkbox" id="privacyCheck">
-                    <span>Dichiaro di accettare il regolamento interno per le operazioni virtuali su Roblox.</span>
+                    <span id="txt-privacy">Dichiaro di accettare il regolamento interno per le operazioni virtuali su Roblox.</span>
                 </label>
             </div>
             <button id="enterSiteBtn" class="btn-enter">Accedi</button>
@@ -124,17 +124,22 @@
                 <img src="Air_Dolomiti_logo.svg.png" class="brand-logo">
                 <nav class="main-nav">
                     <ul>
-                        <li><a href="#">Esplora</a></li>
-                        <li><a href="#">Prenota</a></li>
-                        <li><a href="#">Flotta</a></li>
+                        <li><a href="#" id="nav-explore">Esplora</a></li>
+                        <li><a href="#" id="nav-book">Prenota</a></li>
+                        <li><a href="#" id="nav-fleet">Flotta</a></li>
                     </ul>
                 </nav>
+                
                 <div class="lang-box">
-                    <img src="Flag_of_Italy.svg.png" id="main-flag">
-                    <span style="font-size:12px; font-weight:bold;">ITALIANO</span>
+                    <img src="Flag_of_Italy.svg.png" id="current-flag">
+                    <span id="current-lang-name" style="font-size:12px; font-weight:bold; text-transform: uppercase;">Italiano</span>
                     <div class="lang-dropdown">
-                        <div class="lang-opt"><img src="Flag_of_Italy.svg.png"> IT</div>
-                        <div class="lang-opt"><img src="Flag_of_the_United_Kingdom_(3-5).svg"> EN</div>
+                        <div class="lang-opt" onclick="setLanguage('it')">
+                            <img src="Flag_of_Italy.svg.png"> IT
+                        </div>
+                        <div class="lang-opt" onclick="setLanguage('en')">
+                            <img src="Flag_of_the_United_Kingdom_(3-5).svg"> EN
+                        </div>
                     </div>
                 </div>
             </div>
@@ -143,7 +148,7 @@
         <section class="hero">
             <div class="hero-overlay"></div>
             <div class="ticker-wrap">
-                <div class="ticker">
+                <div class="ticker" id="txt-ticker">
                     ⚠️ AVVISO IMPORTANTE: Air Dolomiti Virtual è in fase di allestimento tecnico. I voli saranno disponibili a breve sulla piattaforma Roblox. ——— IMPORTANT NOTICE: Air Dolomiti Virtual is under development. Flights will be available soon on Roblox.
                 </div>
             </div>
@@ -153,22 +158,22 @@
             <div class="booking-widget">
                 <div class="fields-grid">
                     <div class="input-group">
-                        <label>Da (Partenza)</label>
+                        <label id="lbl-from">Da (Partenza)</label>
                         <select>
                             <option>Munich - Franz Josef Strauss (MUC)</option>
                         </select>
                     </div>
                     <div class="input-group">
-                        <label>A (Destinazione)</label>
+                        <label id="lbl-to">A (Destinazione)</label>
                         <select>
                             <option>Milan Linate (LIN)</option>
                         </select>
                     </div>
                     <div class="input-group">
-                        <label>Data</label>
+                        <label id="lbl-date">Data</label>
                         <input type="date" value="2026-04-12">
                     </div>
-                    <button class="btn-search">CERCA VOLO</button>
+                    <button class="btn-search" id="btn-search">Cerca Volo</button>
                 </div>
             </div>
         </div>
@@ -180,8 +185,8 @@
                     <img src="logos.png" class="lufthansa-member">
                 </div>
                 <div class="footer-content">
-                    <p style="text-transform: uppercase; font-weight: bold; color: var(--primary); letter-spacing: 2px; font-size: 14px;">Membro del Gruppo Lufthansa</p>
-                    <p class="footer-text">
+                    <p id="txt-member" style="text-transform: uppercase; font-weight: bold; color: var(--primary); letter-spacing: 2px; font-size: 14px;">Membro del Gruppo Lufthansa</p>
+                    <p class="footer-text" id="txt-footer-info">
                         Air Dolomiti Virtual Roblox Operations &copy; 2026. <br>
                         Questo sito è stato creato esclusivamente per la simulazione virtuale su Roblox. <br>
                         Tutti i diritti sono riservati alla community virtuale. Non siamo affiliati alla compagnia reale.
@@ -192,6 +197,68 @@
     </div>
 
     <script>
+        // TRADUZIONI
+        const langData = {
+            it: {
+                welcomeTitle: "Benvenuto nel Portale Virtuale",
+                privacy: "Dichiaro di accettare il regolamento interno per le operazioni virtuali su Roblox.",
+                accedi: "Accedi",
+                explore: "Esplora",
+                book: "Prenota",
+                fleet: "Flotta",
+                from: "Da (Partenza)",
+                to: "A (Destinazione)",
+                date: "Data",
+                search: "Cerca Volo",
+                member: "Membro del Gruppo Lufthansa",
+                footerInfo: "Air Dolomiti Virtual Roblox Operations &copy; 2026. <br> Questo sito è stato creato esclusivamente per la simulazione virtuale su Roblox. <br> Tutti i diritti sono riservati alla community virtuale. Non siamo affiliati alla compagnia reale.",
+                langName: "Italiano",
+                flag: "Flag_of_Italy.svg.png",
+                ticker: "⚠️ AVVISO IMPORTANTE: Air Dolomiti Virtual è in fase di allestimento tecnico. I voli saranno disponibili a breve sulla piattaforma Roblox. ——— IMPORTANT NOTICE: Air Dolomiti Virtual is under development. Flights will be available soon on Roblox."
+            },
+            en: {
+                welcomeTitle: "Welcome to the Virtual Portal",
+                privacy: "I declare that I accept the internal regulations for virtual operations on Roblox.",
+                accedi: "Enter",
+                explore: "Explore",
+                book: "Book",
+                fleet: "Fleet",
+                from: "From (Departure)",
+                to: "To (Destination)",
+                date: "Date",
+                search: "Search Flight",
+                member: "Member of the Lufthansa Group",
+                footerInfo: "Air Dolomiti Virtual Roblox Operations &copy; 2026. <br> This website was created exclusively for virtual simulation on Roblox. <br> All rights reserved to the virtual community. We are not affiliated with the real company.",
+                langName: "English",
+                flag: "Flag_of_the_United_Kingdom_(3-5).svg",
+                ticker: "⚠️ IMPORTANT NOTICE: Air Dolomiti Virtual is under technical setup. Flights will be available soon on the Roblox platform. ——— ⚠️ ATTENZIONE: Air Dolomiti Virtual è in fase di sviluppo."
+            }
+        };
+
+        function setLanguage(lang) {
+            const data = langData[lang];
+            
+            // Aggiorna testi
+            document.getElementById('txt-welcome-title').innerText = data.welcomeTitle;
+            document.getElementById('txt-privacy').innerText = data.privacy;
+            document.getElementById('enterSiteBtn').innerText = data.accedi;
+            document.getElementById('nav-explore').innerText = data.explore;
+            document.getElementById('nav-book').innerText = data.book;
+            document.getElementById('nav-fleet').innerText = data.fleet;
+            document.getElementById('lbl-from').innerText = data.from;
+            document.getElementById('lbl-to').innerText = data.to;
+            document.getElementById('lbl-date').innerText = data.date;
+            document.getElementById('btn-search').innerText = data.search;
+            document.getElementById('txt-member').innerText = data.member;
+            document.getElementById('txt-footer-info').innerHTML = data.footerInfo;
+            document.getElementById('txt-ticker').innerText = data.ticker;
+            
+            // Aggiorna selettore
+            document.getElementById('current-lang-name').innerText = data.langName;
+            document.getElementById('current-flag').src = data.flag;
+        }
+
+        // Gestione Overlay
         const privacyCheck = document.getElementById('privacyCheck');
         const enterBtn = document.getElementById('enterSiteBtn');
         const overlay = document.getElementById('welcomeOverlay');
