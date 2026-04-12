@@ -3,164 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Air Dolomiti Virtual | Official Roblox Partner</title>
+    <title>Air Dolomiti Virtual | Exclusive Partner</title>
     
+    <link rel="icon" type="image/png" href="riproviamo.png">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary: #00727A; /* Il petrolio ufficiale */
-            --primary-dark: #005a61;
-            --accent: #89BA17;
-            --text-dark: #333;
+            --primary: #00727A;
             --white: #ffffff;
-            --transition: all 0.3s ease;
+            --glass: rgba(255, 255, 255, 0.1);
+            --transition: all 0.4s ease;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Open Sans', sans-serif; color: var(--text-dark); background: var(--white); overflow-x: hidden; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        body { font-family: 'Open Sans', sans-serif; color: #333; background: #fff; overflow-x: hidden; }
 
         /* --- WELCOME OVERLAY --- */
         #welcomeOverlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--white); z-index: 100000;
+            background: white; z-index: 100000;
             display: flex; justify-content: center; align-items: center;
             transition: opacity 0.8s ease;
         }
-        .welcome-card { max-width: 450px; text-align: center; padding: 30px; }
-        /* Logo nel caricamento */
-        .welcome-logo { width: 250px; margin-bottom: 20px; }
+        .welcome-card { max-width: 500px; text-align: center; padding: 40px; }
+        .welcome-logo { width: 250px; margin-bottom: 30px; }
         .btn-enter { 
-            background: #ccc; color: white; border: none; padding: 15px 40px; 
+            background: #ccc; color: white; border: none; padding: 18px; 
             border-radius: 4px; font-weight: bold; cursor: not-allowed; width: 100%;
-            text-transform: uppercase;
+            text-transform: uppercase; transition: var(--transition);
         }
         .btn-enter.active { background: var(--primary); cursor: pointer; }
 
         /* --- HEADER --- */
-        .main-header { background: var(--white); border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 1000; }
-        .header-flex { display: flex; justify-content: space-between; align-items: center; height: 80px; }
-        .brand-logo { height: 45px; }
+        .main-header { background: white; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 1000; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .header-flex { display: flex; justify-content: space-between; align-items: center; height: 90px; }
+        .brand-logo { height: 50px; }
+        
         .main-nav ul { list-style: none; display: flex; gap: 30px; }
-        .main-nav a { color: var(--text-dark); font-weight: 600; font-size: 13px; text-transform: uppercase; }
+        .main-nav a { color: #333; font-weight: 600; font-size: 13px; text-transform: uppercase; text-decoration: none; }
+        
+        /* --- LINGUE CON IMMAGINI --- */
+        .lang-box { display: flex; align-items: center; gap: 10px; cursor: pointer; position: relative; }
+        .lang-box img { height: 18px; border-radius: 2px; border: 1px solid #eee; }
+        .lang-dropdown { 
+            position: absolute; top: 100%; right: 0; background: white; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); display: none; padding: 10px; border-radius: 5px;
+        }
+        .lang-box:hover .lang-dropdown { display: block; }
+        .lang-opt { display: flex; align-items: center; gap: 8px; padding: 8px; font-size: 12px; }
 
-        /* --- HERO CON TUA IMMAGINE ROBLOX --- */
+        /* --- HERO --- */
         .hero { 
-            position: relative; height: 80vh; min-height: 500px;
-            /* USIAMO LA TUA IMMAGINE image_3e5fa3.jpg */
-            background: url('image_3e5fa3.jpg') center/cover no-repeat;
-            display: flex; align-items: center; justify-content: center;
+            position: relative; height: 70vh;
+            background: url('Screenshot 2026-04-09 210801.png') center/cover no-repeat;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
         }
         .hero-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.2); }
-        
-        /* WIDGET DI PRENOTAZIONE */
-        .booking-widget {
-            position: relative; z-index: 10; background: var(--white);
-            padding: 30px; border-radius: 2px; box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-            width: 95%; max-width: 1000px;
-        }
-        .fields-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
-        .input-group label { font-size: 11px; font-weight: bold; color: var(--primary); text-transform: uppercase; }
-        .input-group input { padding: 12px; border: 1px solid #ddd; width: 100%; }
-        .btn-search { 
-            background: var(--primary); color: white; border: none; padding: 12px; 
-            font-weight: bold; cursor: pointer;
-        }
 
-        /* --- TICKER ANIMATO --- */
-        .ticker-wrap { background: var(--primary); color: white; padding: 10px 0; overflow: hidden; }
-        .ticker { display: inline-block; white-space: nowrap; padding-left: 100%; animation: ticker 30s linear infinite; }
+        /* --- TICKER TRASPARENTE (BIANCO) --- */
+        .ticker-wrap { 
+            position: absolute; bottom: 20px; width: 100%; z-index: 5;
+            background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(5px);
+            padding: 10px 0; border-top: 1px solid rgba(255,255,255,0.2);
+        }
+        .ticker { display: inline-block; white-space: nowrap; padding-left: 100%; animation: ticker 35s linear infinite; color: white; font-weight: 600; font-size: 14px; text-shadow: 1px 1px 3px rgba(0,0,0,0.3); }
         @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
-        /* --- SEZIONE OFFERTE --- */
-        .offer-card { 
-            display: flex; background: var(--white); border-radius: 8px; 
-            overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-top: 40px;
+        /* --- BOOKING --- */
+        .booking-widget {
+            position: relative; z-index: 10; background: var(--white);
+            padding: 40px; border-radius: 8px; box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+            width: 90%; max-width: 1000px; margin-top: -50px;
         }
-        /* USIAMO IL TUO SECONDO SCREENSHOT PER L'OFFERTA */
-        .offer-img { width: 60%; background: url('image_3eb5fb.jpg') center/cover; min-height: 300px; }
-        .offer-content { width: 40%; padding: 40px; }
+        .fields-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .input-group label { font-size: 11px; font-weight: 800; color: var(--primary); text-transform: uppercase; display: block; margin-bottom: 8px; }
+        .input-group select, .input-group input { width: 100%; padding: 14px; border: 1px solid #ddd; border-radius: 4px; font-size: 15px; outline: none; appearance: none; background: #fdfdfd; }
 
-        .footer { padding: 40px 0; border-top: 1px solid #eee; font-size: 12px; color: #999; }
+        .btn-search { background: var(--primary); color: white; border: none; padding: 15px; border-radius: 4px; font-weight: bold; cursor: pointer; transition: var(--transition); }
+        .btn-search:hover { background: #005a61; }
+
+        /* --- FOOTER SPAZIOSO --- */
+        .footer { background: #fff; padding: 100px 0 50px; border-top: 1px solid #eee; text-align: center; }
+        .footer-content { max-width: 800px; margin: 0 auto; }
+        .footer-logos-wrap { 
+            display: flex; justify-content: center; align-items: center; gap: 60px; margin-bottom: 40px;
+        }
+        .footer-brand { height: 60px; }
+        .lufthansa-member { height: 25px; opacity: 0.8; }
+        .footer-text { font-size: 12px; color: #999; line-height: 1.8; margin-top: 20px; }
+
+        @media (max-width: 768px) {
+            .footer-logos-wrap { flex-direction: column; gap: 30px; }
+            .header-flex { flex-direction: column; padding: 15px; }
+            .main-nav { display: none; }
+        }
     </style>
 </head>
 <body>
 
     <div id="welcomeOverlay">
         <div class="welcome-card">
-            <h2 id="w-title">Benvenuto a bordo</h2>
-            <p style="margin-bottom:20px;">Portale Air Dolomiti Virtual - Simulazione Roblox</p>
-            <div style="background:#f5f5f5; padding:20px; border-radius:4px; text-align:left; margin-bottom:20px;">
-                <label style="display:flex; gap:10px; cursor:pointer;">
+            <img src="Air_Dolomiti_logo.svg.png" class="welcome-logo">
+            <h2 style="font-weight: 300; color: var(--primary); margin-bottom: 20px;">Benvenuto nel Portale Virtuale</h2>
+            <div style="background:#f9f9f9; padding:25px; border-radius:10px; text-align:left; border:1px solid #eee; margin-bottom:20px;">
+                <label style="display:flex; gap:12px; cursor:pointer; font-size:14px; color:#555;">
                     <input type="checkbox" id="privacyCheck">
-                    <span id="w-privacy">Accetto il regolamento della compagnia virtuale.</span>
+                    <span>Dichiaro di accettare il regolamento interno per le operazioni virtuali su Roblox.</span>
                 </label>
             </div>
             <button id="enterSiteBtn" class="btn-enter">Accedi</button>
         </div>
     </div>
 
-    <div id="mainContent" style="filter: blur(10px); pointer-events: none;">
+    <div id="mainContent" style="filter: blur(15px); pointer-events: none;">
+        
         <header class="main-header">
             <div class="container header-flex">
-                <div style="font-weight: 900; color: var(--primary); font-size: 20px;">AirDolomiti <span style="font-weight: 300;">Virtual</span></div>
+                <img src="Air_Dolomiti_logo.svg.png" class="brand-logo">
                 <nav class="main-nav">
                     <ul>
-                        <li><a href="#" class="active">Esplora</a></li>
+                        <li><a href="#">Esplora</a></li>
                         <li><a href="#">Prenota</a></li>
                         <li><a href="#">Flotta</a></li>
                     </ul>
                 </nav>
+                <div class="lang-box">
+                    <img src="Flag_of_Italy.svg.png" id="main-flag">
+                    <span style="font-size:12px; font-weight:bold;">ITALIANO</span>
+                    <div class="lang-dropdown">
+                        <div class="lang-opt"><img src="Flag_of_Italy.svg.png"> IT</div>
+                        <div class="lang-opt"><img src="Flag_of_the_United_Kingdom_(3-5).svg"> EN</div>
+                    </div>
+                </div>
             </div>
         </header>
 
         <section class="hero">
             <div class="hero-overlay"></div>
+            <div class="ticker-wrap">
+                <div class="ticker">
+                    ⚠️ AVVISO IMPORTANTE: Air Dolomiti Virtual è in fase di allestimento tecnico. I voli saranno disponibili a breve sulla piattaforma Roblox. ——— IMPORTANT NOTICE: Air Dolomiti Virtual is under development. Flights will be available soon on Roblox.
+                </div>
+            </div>
+        </section>
+
+        <div class="container" style="display:flex; justify-content:center;">
             <div class="booking-widget">
                 <div class="fields-grid">
                     <div class="input-group">
-                        <label>DA</label>
-                        <input type="text" placeholder="Munich (MUC)">
+                        <label>Da (Partenza)</label>
+                        <select>
+                            <option>Munich - Franz Josef Strauss (MUC)</option>
+                        </select>
                     </div>
                     <div class="input-group">
-                        <label>A</label>
-                        <input type="text" placeholder="Milan (LIN)">
+                        <label>A (Destinazione)</label>
+                        <select>
+                            <option>Milan Linate (LIN)</option>
+                        </select>
                     </div>
-                    <button class="btn-search" id="btn-search">CERCA VOLO</button>
+                    <div class="input-group">
+                        <label>Data</label>
+                        <input type="date" value="2026-04-12">
+                    </div>
+                    <button class="btn-search">CERCA VOLO</button>
                 </div>
-            </div>
-        </section>
-
-        <div class="ticker-wrap">
-            <div class="ticker">
-                ⚠️ AVVISO: Air Dolomiti Virtual è in fase di sviluppo. Le operazioni di volo su Roblox inizieranno presto! ——— ⚠️ NOTICE: Air Dolomiti Virtual is under development.
             </div>
         </div>
 
-        <section class="container" style="padding: 60px 20px;">
-            <h2 style="font-weight: 300; text-align: center;">Le nostre destinazioni su Roblox</h2>
-            <div class="offer-card">
-                <div class="offer-img"></div>
-                <div class="offer-content">
-                    <span style="color:var(--accent); font-weight:bold;">HUB PRINCIPALE</span>
-                    <h3>Monaco di Baviera</h3>
-                    <p>Vola dal nostro hub principale verso tutta Europa nel simulatore.</p>
-                    <button class="btn-search" style="margin-top:20px;">ESPLORA ROTTE</button>
-                </div>
-            </div>
-        </section>
-
         <footer class="footer">
             <div class="container">
-                <p>MEMBRO DEL GRUPPO LUFTHANSA (VIRTUAL)</p>
-                <p>&copy; 2026 Air Dolomiti Virtual. Progetto creato per intrattenimento su Roblox. Non affiliato alla compagnia reale.</p>
+                <div class="footer-logos-wrap">
+                    <img src="Air_Dolomiti_logo.svg.png" class="footer-brand">
+                    <img src="logos.png" class="lufthansa-member">
+                </div>
+                <div class="footer-content">
+                    <p style="text-transform: uppercase; font-weight: bold; color: var(--primary); letter-spacing: 2px; font-size: 14px;">Membro del Gruppo Lufthansa</p>
+                    <p class="footer-text">
+                        Air Dolomiti Virtual Roblox Operations &copy; 2026. <br>
+                        Questo sito è stato creato esclusivamente per la simulazione virtuale su Roblox. <br>
+                        Tutti i diritti sono riservati alla community virtuale. Non siamo affiliati alla compagnia reale.
+                    </p>
+                </div>
             </div>
         </footer>
     </div>
 
     <script>
-        // Logica per lo sblocco del sito (identica alla tua)
         const privacyCheck = document.getElementById('privacyCheck');
         const enterBtn = document.getElementById('enterSiteBtn');
         const overlay = document.getElementById('welcomeOverlay');
