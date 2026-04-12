@@ -75,6 +75,19 @@
             pointer-events: none;
             transition: filter 0.8s ease;
         }
+
+        /* --- STILI HEADER NUOVE ICONE --- */
+        .header-utilities {
+            display: flex;
+            align-items: center;
+            gap: 15px; /* Spazio tra le nuove icone logo */
+        }
+
+        .util-logo {
+            height: 25px; /* Altezza delle nuove icone logo */
+            width: auto; /* Mantiene le proporzioni */
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -120,8 +133,8 @@
                     </ul>
                 </nav>
                 <div class="header-utilities">
-                    <span class="util-icon">🔍</span>
-                    <span class="util-icon">👤</span>
+                    <img src="account.png" alt="Account Logo" class="util-logo">
+                    <img src="logos.png" alt="Logos Logo" class="util-logo">
                     <div class="lang-box" id="lang-switch" style="cursor: pointer;">EN</div>
                 </div>
             </div>
