@@ -69,24 +69,86 @@
             cursor: pointer;
         }
 
-        /* Sfocatura contenuto dietro */
         .blur-content {
             filter: blur(10px);
             pointer-events: none;
             transition: filter 0.8s ease;
         }
 
-        /* --- STILI HEADER NUOVE ICONE --- */
+        /* --- STILI HEADER LOGHI NUOVI --- */
         .header-utilities {
             display: flex;
             align-items: center;
-            gap: 15px; /* Spazio tra le nuove icone logo */
+            gap: 18px;
         }
 
         .util-logo {
-            height: 25px; /* Altezza delle nuove icone logo */
-            width: auto; /* Mantiene le proporzioni */
+            height: 24px;
+            width: auto;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .util-logo:hover { transform: scale(1.1); }
+
+        /* --- STILI NUOVO MENU LINGUA CON BANDIERE --- */
+        .lang-selector {
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .current-lang-flag {
+            height: 20px;
+            width: auto;
+            border: 1px solid #eee;
+            border-radius: 2px;
+        }
+
+        .lang-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: white;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            z-index: 1000;
+            min-width: 140px;
+            padding: 10px 0;
+            margin-top: 10px;
+        }
+
+        .lang-selector:hover .lang-dropdown {
             display: block;
+        }
+
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            color: #333;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .lang-option:hover {
+            background-color: #f9f9f9;
+        }
+
+        .lang-option img {
+            height: 16px;
+            width: auto;
+            border: 1px solid #eee;
+            border-radius: 2px;
+        }
+
+        .lang-option span {
+            font-weight: 600;
+            font-size: 14px;
         }
     </style>
 </head>
@@ -133,8 +195,23 @@
                     </ul>
                 </nav>
                 <div class="header-utilities">
-                    <img src="logos.png" alt="Logos Logo" class="util-logo">
-                    <div class="lang-box" id="lang-switch" style="cursor: pointer;">EN</div>
+                    <img src="account.png" alt="Account" class="util-logo">
+                    <img src="logos.png" alt="Logos" class="util-logo">
+                    
+                    <div class="lang-selector" id="lang-selector">
+                        <img src="Flag_of_the_United_Kingdom_(3-5).svg" alt="English" class="current-lang-flag" id="current-flag">
+                        
+                        <div class="lang-dropdown">
+                            <a href="#" class="lang-option" data-lang="IT">
+                                <img src="Flag_of_Italy.svg.png" alt="Italiano">
+                                <span>Italiano</span>
+                            </a>
+                            <a href="#" class="lang-option" data-lang="EN">
+                                <img src="Flag_of_the_United_Kingdom_(3-5).svg" alt="English">
+                                <span>English</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </header>
@@ -202,23 +279,14 @@
                     </div>
                 </div>
             </section>
-
-            <section class="newsletter-area">
-                <div class="container">
-                    <h2 id="news-title">Subscribe to our newsletter</h2>
-                    <p id="news-desc">Stay updated on the latest Roblox flight schedules and events.</p>
-                    <div class="n-form">
-                    </div>
-                </div>
-            </section>
         </main>
 
-        <footer class="grand-footer">
+        <footer class="grand-footer" style="padding: 40px 0; background: #fff; border-top: 1px solid #eee;">
             <div class="container">
-                <div class="footer-bottom">
+                <div class="footer-bottom" style="display: flex; justify-content: space-between; align-items: center;">
                     <div class="f-logo-wrap">
-                        <img src="Air_Dolomiti_logo.svg.png" alt="Footer Logo" class="f-logo">
-                        <p id="f-copyright">Member of Lufthansa Group - Roblox Virtual Partner</p>
+                        <img src="Air_Dolomiti_logo.svg.png" alt="Footer Logo" style="height: 30px; margin-bottom: 10px;">
+                        <p id="f-copyright" style="font-size: 11px; color: #999;">Membro del Gruppo Lufthansa - Partner virtuale di Roblox</p>
                     </div>
                 </div>
             </div>
@@ -226,7 +294,6 @@
     </div>
 
     <script>
-        // --- DATABASE TRADUZIONI COMPLETO ---
         const translations = {
             'IT': {
                 'w_title': 'Benvenuto a bordo',
@@ -239,7 +306,7 @@
                 'oneway': 'Solo andata', 'from': 'Da', 'to': 'A', 'dates': 'Date', 'pax': 'Passeggeri', 'pax_val': '1 Adulto, Economy',
                 'search': 'Cerca Volo ➔', 'mybookings': 'Le mie prenotazioni', 'flightstatus': 'Stato del Volo',
                 'offertitle': 'Scopri la nostra migliore offerta', 'offerfrom': 'Da', 'offerterms': 'SOLO ANDATA - ECONOMY LIGHT',
-                'booknow': 'Prenota Ora', 'newstitle': 'Iscriviti alla nostra newsletter', 'newsdesc': 'Rimani aggiornato sugli ultimi orari dei voli Roblox.', 'newsbtn': 'Iscriviti'
+                'booknow': 'Prenota Ora'
             },
             'EN': {
                 'w_title': 'Welcome on board',
@@ -252,28 +319,31 @@
                 'oneway': 'One way', 'from': 'From', 'to': 'To', 'dates': 'Dates', 'pax': 'Passengers', 'pax_val': '1 Adult, Economy',
                 'search': 'Search Flight ➔', 'mybookings': 'My Bookings', 'flightstatus': 'Flight Status',
                 'offertitle': 'Discover our best offer', 'offerfrom': 'From', 'offerterms': 'ONE WAY - ECONOMY LIGHT',
-                'booknow': 'Book Now', 'newstitle': 'Subscribe to our newsletter', 'newsdesc': 'Stay updated on the latest Roblox flight schedules.', 'newsbtn': 'Subscribe'
+                'booknow': 'Book Now'
             }
+        };
+
+        const flagSources = {
+            'IT': 'Flag_of_Italy.svg.png',
+            'EN': 'Flag_of_the_United_Kingdom_(3-5).svg'
         };
 
         const welcomeOverlay = document.getElementById('welcomeOverlay');
         const mainContent = document.getElementById('mainContent');
         const privacyCheck = document.getElementById('privacyCheck');
         const enterSiteBtn = document.getElementById('enterSiteBtn');
-        const langBtn = document.getElementById('lang-switch');
+        const currentFlag = document.getElementById('current-flag');
+        const langOptions = document.querySelectorAll('.lang-option');
 
-        // Rileva lingua
         let currentLang = navigator.language.startsWith('it') ? 'IT' : 'EN';
 
         function applyTranslation(lang) {
             const t = translations[lang];
-            // Splash
             document.getElementById('w-title').innerText = t.w_title;
             document.getElementById('w-text').innerText = t.w_text;
             document.getElementById('w-privacy').innerText = t.w_privacy;
             document.getElementById('enterSiteBtn').innerText = t.w_btn;
             document.getElementById('w-copyright').innerText = t.w_copy;
-            // Header & Main
             document.getElementById('announcement-text').innerText = t.announcement;
             document.getElementById('nav-explore').innerText = t.explore;
             document.getElementById('nav-book').innerText = t.book;
@@ -292,12 +362,11 @@
             document.getElementById('offer-title').innerText = t.offertitle;
             document.getElementById('offer-from').innerText = t.offerfrom;
             document.getElementById('offer-terms').innerText = t.offerterms;
-            document.getElementById('btn-book').innerText = t.booknow;
-            document.getElementById('news-title').innerText = t.newstitle;
-            document.getElementById('news-desc').innerText = t.newsdesc;
-            document.getElementById('news-btn').innerText = t.newsbtn;
             document.getElementById('f-copyright').innerText = t.w_copy;
-            langBtn.innerText = lang;
+            
+            // Aggiorna la bandiera principale
+            currentFlag.src = flagSources[lang];
+            currentFlag.alt = (lang === 'IT') ? 'Italiano' : 'English';
         }
 
         applyTranslation(currentLang);
@@ -318,9 +387,16 @@
             setTimeout(() => { welcomeOverlay.style.visibility = 'hidden'; }, 800);
         });
 
-        langBtn.addEventListener('click', () => {
-            currentLang = (currentLang === 'EN') ? 'IT' : 'EN';
-            applyTranslation(currentLang);
+        // Gestione dei clic sulle opzioni della lingua
+        langOptions.forEach(option => {
+            option.addEventListener('click', (e) => {
+                e.preventDefault(); // Impedisce al link di ricaricare la pagina
+                const selectedLang = option.getAttribute('data-lang');
+                if (selectedLang !== currentLang) {
+                    currentLang = selectedLang;
+                    applyTranslation(currentLang);
+                }
+            });
         });
     </script>
 </body>
