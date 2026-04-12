@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Air Dolomiti Virtual | Official Roblox Partner</title>
-    
-    <meta name="description" content="Benvenuti a bordo di Air Dolomiti Virtual, la compagnia aerea virtuale su Roblox membro del Lufthansa Group.">
+    <title>Air Dolomiti Virtual | Exclusive Partner</title>
     
     <link rel="icon" type="image/png" href="riproviamo.png">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -13,18 +11,13 @@
     <style>
         :root {
             --primary: #00727A;
-            --primary-dark: #005a61;
-            --accent: #89BA17;
-            --text-dark: #333;
-            --text-light: #666;
             --white: #ffffff;
-            --bg-light: #f4f7f8;
-            --transition: all 0.3s ease;
+            --glass: rgba(255, 255, 255, 0.1);
+            --transition: all 0.4s ease;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Open Sans', sans-serif; color: var(--text-dark); background: var(--white); overflow-x: hidden; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        body { font-family: 'Open Sans', sans-serif; color: #333; background: #fff; overflow-x: hidden; }
 
         /* --- WELCOME OVERLAY --- */
         #welcomeOverlay {
@@ -33,72 +26,78 @@
             display: flex; justify-content: center; align-items: center;
             transition: opacity 0.8s ease;
         }
-        .welcome-card { max-width: 450px; text-align: center; padding: 30px; border: 1px solid #eee; border-radius: 15px; }
-        .welcome-logo { width: 220px; margin-bottom: 20px; }
+        .welcome-card { max-width: 500px; text-align: center; padding: 40px; }
+        .welcome-logo { width: 250px; margin-bottom: 30px; }
         .btn-enter { 
-            background: #ccc; color: white; border: none; padding: 15px 40px; 
+            background: #ccc; color: white; border: none; padding: 18px; 
             border-radius: 4px; font-weight: bold; cursor: not-allowed; width: 100%;
             text-transform: uppercase; transition: var(--transition);
         }
         .btn-enter.active { background: var(--primary); cursor: pointer; }
 
         /* --- HEADER --- */
-        .main-header { background: var(--white); border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 1000; }
-        .header-flex { display: flex; justify-content: space-between; align-items: center; height: 80px; }
-        .brand-logo { height: 45px; }
+        .main-header { background: white; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 1000; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .header-flex { display: flex; justify-content: space-between; align-items: center; height: 90px; }
+        .brand-logo { height: 50px; }
+        
         .main-nav ul { list-style: none; display: flex; gap: 30px; }
-        .main-nav a { color: var(--text-dark); font-weight: 600; font-size: 14px; text-transform: uppercase; }
-        .main-nav a:hover { color: var(--primary); }
+        .main-nav a { color: #333; font-weight: 600; font-size: 13px; text-transform: uppercase; text-decoration: none; }
+        
+        /* --- LINGUE CON IMMAGINI --- */
+        .lang-box { display: flex; align-items: center; gap: 10px; cursor: pointer; position: relative; }
+        .lang-box img { height: 18px; border-radius: 2px; border: 1px solid #eee; }
+        .lang-dropdown { 
+            position: absolute; top: 100%; right: 0; background: white; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); display: none; padding: 10px; border-radius: 5px;
+        }
+        .lang-box:hover .lang-dropdown { display: block; }
+        .lang-opt { display: flex; align-items: center; gap: 8px; padding: 8px; font-size: 12px; }
 
-        /* --- HERO & BOOKING --- */
+        /* --- HERO --- */
         .hero { 
-            position: relative; height: 75vh; min-height: 550px;
+            position: relative; height: 70vh;
             background: url('Screenshot 2026-04-09 210801.png') center/cover no-repeat;
-            display: flex; align-items: center; justify-content: center;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
         }
-        .hero-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.25); }
-        
-        .booking-widget {
-            position: relative; z-index: 10; background: var(--white);
-            padding: 30px; border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-            width: 95%; max-width: 1100px;
-        }
-        .fields-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; align-items: end; }
-        
-        .input-group { position: relative; display: flex; flex-direction: column; }
-        .input-group label { font-size: 11px; font-weight: 800; color: var(--primary); text-transform: uppercase; margin-bottom: 8px; }
-        .input-group input { padding: 14px; border: 1.5px solid #e0e0e0; border-radius: 6px; font-size: 15px; outline: none; transition: var(--transition); }
-        .input-group input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(0,114,122,0.1); }
+        .hero-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.2); }
 
-        /* Dropdown Suggerimenti */
-        .airport-results { 
-            position: absolute; top: 100%; left: 0; width: 100%; 
-            background: white; border: 1px solid #ddd; border-radius: 0 0 6px 6px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 50; display: none;
+        /* --- TICKER TRASPARENTE (BIANCO) --- */
+        .ticker-wrap { 
+            position: absolute; bottom: 20px; width: 100%; z-index: 5;
+            background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(5px);
+            padding: 10px 0; border-top: 1px solid rgba(255,255,255,0.2);
         }
-        .airport-option { padding: 12px 15px; cursor: pointer; border-bottom: 1px solid #f9f9f9; font-size: 14px; }
-        .airport-option:last-child { border: none; }
-        .airport-option:hover { background: var(--bg-light); color: var(--primary); font-weight: 600; }
-
-        .btn-search { 
-            background: var(--primary); color: white; border: none; padding: 16px; 
-            border-radius: 6px; font-weight: bold; cursor: pointer; transition: var(--transition);
-            font-size: 14px; letter-spacing: 1px;
-        }
-        .btn-search:hover { background: var(--primary-dark); transform: translateY(-2px); }
-
-        /* --- TICKER --- */
-        .ticker-wrap { background: var(--primary); color: white; padding: 12px 0; overflow: hidden; border-top: 3px solid var(--accent); }
-        .ticker { display: inline-block; white-space: nowrap; padding-left: 100%; animation: ticker 45s linear infinite; font-weight: 600; font-size: 14px; }
+        .ticker { display: inline-block; white-space: nowrap; padding-left: 100%; animation: ticker 35s linear infinite; color: white; font-weight: 600; font-size: 14px; text-shadow: 1px 1px 3px rgba(0,0,0,0.3); }
         @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
-        /* --- FOOTER --- */
-        .footer { background: #fff; padding: 50px 0 30px; border-top: 1px solid #eee; margin-top: 50px; }
-        .lufthansa-tag { display: flex; align-items: center; gap: 12px; font-size: 13px; color: var(--text-light); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        /* --- BOOKING --- */
+        .booking-widget {
+            position: relative; z-index: 10; background: var(--white);
+            padding: 40px; border-radius: 8px; box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+            width: 90%; max-width: 1000px; margin-top: -50px;
+        }
+        .fields-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .input-group label { font-size: 11px; font-weight: 800; color: var(--primary); text-transform: uppercase; display: block; margin-bottom: 8px; }
+        .input-group select, .input-group input { width: 100%; padding: 14px; border: 1px solid #ddd; border-radius: 4px; font-size: 15px; outline: none; appearance: none; background: #fdfdfd; }
+
+        .btn-search { background: var(--primary); color: white; border: none; padding: 15px; border-radius: 4px; font-weight: bold; cursor: pointer; transition: var(--transition); }
+        .btn-search:hover { background: #005a61; }
+
+        /* --- FOOTER SPAZIOSO --- */
+        .footer { background: #fff; padding: 100px 0 50px; border-top: 1px solid #eee; text-align: center; }
+        .footer-content { max-width: 800px; margin: 0 auto; }
+        .footer-logos-wrap { 
+            display: flex; justify-content: center; align-items: center; gap: 60px; margin-bottom: 40px;
+        }
+        .footer-brand { height: 60px; }
+        .lufthansa-member { height: 25px; opacity: 0.8; }
+        .footer-text { font-size: 12px; color: #999; line-height: 1.8; margin-top: 20px; }
 
         @media (max-width: 768px) {
-            .fields-grid { grid-template-columns: 1fr; }
-            .hero { height: auto; padding: 100px 0; }
+            .footer-logos-wrap { flex-direction: column; gap: 30px; }
+            .header-flex { flex-direction: column; padding: 15px; }
+            .main-nav { display: none; }
         }
     </style>
 </head>
@@ -107,96 +106,92 @@
     <div id="welcomeOverlay">
         <div class="welcome-card">
             <img src="Air_Dolomiti_logo.svg.png" class="welcome-logo">
-            <h2 style="color:var(--primary); font-weight: 300; margin-bottom: 15px;">Benvenuto a bordo</h2>
-            <div style="background:#f9f9f9; padding:20px; border-radius:8px; text-align:left; margin-bottom:20px; border: 1px solid #eee;">
-                <label style="display:flex; gap:12px; cursor:pointer; font-size:13px; line-height: 1.4;">
+            <h2 style="font-weight: 300; color: var(--primary); margin-bottom: 20px;">Benvenuto nel Portale Virtuale</h2>
+            <div style="background:#f9f9f9; padding:25px; border-radius:10px; text-align:left; border:1px solid #eee; margin-bottom:20px;">
+                <label style="display:flex; gap:12px; cursor:pointer; font-size:14px; color:#555;">
                     <input type="checkbox" id="privacyCheck">
-                    <span>Dichiaro di aver letto il regolamento di Air Dolomiti Virtual e accetto di volare secondo le regole della community Roblox.</span>
+                    <span>Dichiaro di accettare il regolamento interno per le operazioni virtuali su Roblox.</span>
                 </label>
             </div>
-            <button id="enterSiteBtn" class="btn-enter">Accedi al Portale</button>
-            <div class="lufthansa-tag" style="justify-content:center; margin-top:25px; opacity: 0.7;">
-                <img src="logos.png" style="height:15px;">
-                <span>Part of the Lufthansa Group</span>
-            </div>
+            <button id="enterSiteBtn" class="btn-enter">Accedi</button>
         </div>
     </div>
 
-    <div id="mainContent" style="filter: blur(15px); pointer-events: none; transition: filter 0.8s ease;">
+    <div id="mainContent" style="filter: blur(15px); pointer-events: none;">
         
         <header class="main-header">
             <div class="container header-flex">
                 <img src="Air_Dolomiti_logo.svg.png" class="brand-logo">
                 <nav class="main-nav">
                     <ul>
-                        <li><a href="#" style="color: var(--primary);">Esplora</a></li>
+                        <li><a href="#">Esplora</a></li>
                         <li><a href="#">Prenota</a></li>
                         <li><a href="#">Flotta</a></li>
                     </ul>
                 </nav>
-                <div class="lufthansa-tag">
-                    <img src="logos.png" style="height:20px;">
+                <div class="lang-box">
+                    <img src="Flag_of_Italy.svg.png" id="main-flag">
+                    <span style="font-size:12px; font-weight:bold;">ITALIANO</span>
+                    <div class="lang-dropdown">
+                        <div class="lang-opt"><img src="Flag_of_Italy.svg.png"> IT</div>
+                        <div class="lang-opt"><img src="Flag_of_the_United_Kingdom_(3-5).svg"> EN</div>
+                    </div>
                 </div>
             </div>
         </header>
 
         <section class="hero">
             <div class="hero-overlay"></div>
-            <div class="booking-widget">
-                <h3 style="margin-bottom: 20px; color: var(--primary); font-weight: 400;">Prenota il tuo volo virtuale</h3>
-                <div class="fields-grid">
-                    <div class="input-group">
-                        <label>Da (Partenza)</label>
-                        <input type="text" id="dep-input" placeholder="Cerca aeroporto..." autocomplete="off">
-                        <div id="dep-results" class="airport-results">
-                            <div class="airport-option" data-val="Munich (MUC)">Munich - Franz Josef Strauss (MUC)</div>
-                            <div class="airport-option" data-val="Milan Linate (LIN)">Milan Linate (LIN)</div>
-                            <div class="airport-option" data-val="Frankfurt (FRA)">Frankfurt Airport (FRA)</div>
-                            <div class="airport-option" data-val="Verona (VRN)">Verona Villafranca (VRN)</div>
-                        </div>
-                    </div>
-
-                    <div class="input-group">
-                        <label>A (Destinazione)</label>
-                        <input type="text" id="arr-input" placeholder="Cerca aeroporto..." autocomplete="off">
-                        <div id="arr-results" class="airport-results">
-                            <div class="airport-option" data-val="Milan Linate (LIN)">Milan Linate (LIN)</div>
-                            <div class="airport-option" data-val="Munich (MUC)">Munich - Franz Josef Strauss (MUC)</div>
-                            <div class="airport-option" data-val="Venice (VCE)">Venice Marco Polo (VCE)</div>
-                            <div class="airport-option" data-val="Florence (FLR)">Florence Peretola (FLR)</div>
-                        </div>
-                    </div>
-
-                    <div class="input-group">
-                        <label>Data di viaggio</label>
-                        <input type="date" value="2026-04-12">
-                    </div>
-
-                    <button class="btn-search" id="searchBtn">CERCA VOLI ➔</button>
+            <div class="ticker-wrap">
+                <div class="ticker">
+                    ⚠️ AVVISO IMPORTANTE: Air Dolomiti Virtual è in fase di allestimento tecnico. I voli saranno disponibili a breve sulla piattaforma Roblox. ——— IMPORTANT NOTICE: Air Dolomiti Virtual is under development. Flights will be available soon on Roblox.
                 </div>
             </div>
         </section>
 
-        <div class="ticker-wrap">
-            <div class="ticker">
-                ⚠️ AVVISO IMPORTANTE: La flotta Air Dolomiti Virtual è in fase di consegna. I voli su Roblox saranno attivi a breve. Grazie per la pazienza! ——— ⚠️ IMPORTANT: The Air Dolomiti Virtual fleet is being delivered. Roblox flight operations will start soon!
+        <div class="container" style="display:flex; justify-content:center;">
+            <div class="booking-widget">
+                <div class="fields-grid">
+                    <div class="input-group">
+                        <label>Da (Partenza)</label>
+                        <select>
+                            <option>Munich - Franz Josef Strauss (MUC)</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>A (Destinazione)</label>
+                        <select>
+                            <option>Milan Linate (LIN)</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Data</label>
+                        <input type="date" value="2026-04-12">
+                    </div>
+                    <button class="btn-search">CERCA VOLO</button>
+                </div>
             </div>
         </div>
 
         <footer class="footer">
-            <div class="container" style="text-align: center;">
-                <img src="Air_Dolomiti_logo.svg.png" style="height:30px; margin-bottom: 20px;">
-                <div class="lufthansa-tag" style="justify-content:center; margin-bottom: 20px;">
-                    <img src="logos.png" style="height:20px;">
-                    <span>Membro del Gruppo Lufthansa</span>
+            <div class="container">
+                <div class="footer-logos-wrap">
+                    <img src="Air_Dolomiti_logo.svg.png" class="footer-brand">
+                    <img src="logos.png" class="lufthansa-member">
                 </div>
-                <p style="font-size: 12px; color: #999;">&copy; 2026 Air Dolomiti Virtual Roblox Operations. Questo è un sito per un gruppo di gioco virtuale e non ha legami legali con la vera Air Dolomiti S.p.A.</p>
+                <div class="footer-content">
+                    <p style="text-transform: uppercase; font-weight: bold; color: var(--primary); letter-spacing: 2px; font-size: 14px;">Membro del Gruppo Lufthansa</p>
+                    <p class="footer-text">
+                        Air Dolomiti Virtual Roblox Operations &copy; 2026. <br>
+                        Questo sito è stato creato esclusivamente per la simulazione virtuale su Roblox. <br>
+                        Tutti i diritti sono riservati alla community virtuale. Non siamo affiliati alla compagnia reale.
+                    </p>
+                </div>
             </div>
         </footer>
     </div>
 
     <script>
-        // Gestione Overlay
         const privacyCheck = document.getElementById('privacyCheck');
         const enterBtn = document.getElementById('enterSiteBtn');
         const overlay = document.getElementById('welcomeOverlay');
@@ -212,45 +207,6 @@
                 main.style.filter = 'none';
                 main.style.pointerEvents = 'auto';
                 setTimeout(() => overlay.style.display = 'none', 800);
-            }
-        });
-
-        // Funzione Dropdown Aeroporti
-        function setupDropdown(inputId, resultsId) {
-            const input = document.getElementById(inputId);
-            const results = document.getElementById(resultsId);
-
-            input.addEventListener('focus', () => {
-                results.style.display = 'block';
-            });
-
-            // Chiude se clicchi fuori
-            document.addEventListener('click', (e) => {
-                if (!input.contains(e.target) && !results.contains(e.target)) {
-                    results.style.display = 'none';
-                }
-            });
-
-            // Seleziona opzione
-            results.querySelectorAll('.airport-option').forEach(opt => {
-                opt.addEventListener('click', () => {
-                    input.value = opt.getAttribute('data-val');
-                    results.style.display = 'none';
-                });
-            });
-        }
-
-        setupDropdown('dep-input', 'dep-results');
-        setupDropdown('arr-input', 'arr-results');
-
-        // Bottone Cerca
-        document.getElementById('searchBtn').addEventListener('click', () => {
-            const dep = document.getElementById('dep-input').value;
-            const arr = document.getElementById('arr-input').value;
-            if(dep && arr) {
-                alert(`Ricerca voli da ${dep} a ${arr} in corso... (Sistema Roblox Virtual Airline)`);
-            } else {
-                alert("Per favore, seleziona aeroporto di partenza e destinazione.");
             }
         });
     </script>
