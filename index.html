@@ -6,7 +6,6 @@
     <title>AirDolomiti Virtual | Official Roblox Portale</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* --- CSS INTEGRATO PER EVITARE ERRORI DI CARICAMENTO --- */
         :root {
             --primary: #00727A;
             --white: #ffffff;
@@ -51,7 +50,6 @@
         }
         .hero-bg {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            /* NOME FILE CORRETTO DAL TUO REPO */
             background: url('Screenshot 2026-04-09 210801.png') center/cover no-repeat;
             z-index: -1;
         }
@@ -78,7 +76,6 @@
         }
         .offer-img { 
             width: 55%; 
-            /* NOME FILE CORRETTO DAL TUO REPO */
             background: url('Screenshot 2026-04-12 084849.png') center/cover no-repeat;
             min-height: 400px;
         }
@@ -99,11 +96,10 @@
         <div class="welcome-card">
             <img src="Air_Dolomiti_logo.svg.png" class="welcome-logo" alt="Air Dolomiti">
             <h2 style="margin: 20px 0; font-weight: 300; color: var(--primary);">Benvenuto a bordo</h2>
-            <p style="font-size: 14px; color: #666; margin-bottom: 25px;">Accedi al portale ufficiale di Air Dolomiti Virtual su Roblox.</p>
             <div style="text-align: left; background: #f9f9f9; padding: 20px; border-radius: 8px; border: 1px solid #eee;">
                 <input type="checkbox" id="check"> 
                 <label for="check" style="font-size: 12px; color: #333; cursor: pointer; margin-left: 8px;">
-                    Accetto i termini della Privacy e il regolamento interno.
+                    Accetto i termini e il regolamento virtuale.
                 </label>
             </div>
             <button id="entryBtn" class="btn-enter" disabled>ACCEDI AL SITO</button>
@@ -116,13 +112,13 @@
             <nav>
                 <ul class="nav-links">
                     <li><a href="#">Esplora</a></li>
-                    <li><a href="#">Prenota e Gestisci</a></li>
+                    <li><a href="#">Prenota</a></li>
                     <li><a href="#">A Bordo</a></li>
                     <li><a href="#">Dolomiti Club</a></li>
                 </ul>
             </nav>
             <div style="display: flex; align-items: center; gap: 15px;">
-                <img src="logos.png" height="20" style="opacity: 0.8;">
+                <img src="logos.png" height="20">
                 <img src="Flag_of_Italy.svg.png" height="18" style="border: 1px solid #eee;">
             </div>
         </header>
@@ -133,22 +129,22 @@
                 <div class="hero-overlay"></div>
                 
                 <div class="booking-box">
-                    <div class="input-group"><label>Da</label><input type="text" value="Monaco (MUC)"></div>
-                    <div class="input-group"><label>A</label><input type="text" placeholder="Destinazione"></div>
-                    <div class="input-group"><label>Andata</label><input type="text" value="12/04/2026"></div>
+                    <div class="input-group"><label>Da</label><input type="text" value="Munich (MUC)"></div>
+                    <div class="input-group"><label>A</label><input type="text" value="Milan Linate (LIN)"></div>
+                    <div class="input-group"><label>Data</label><input type="text" value="12/04/2026"></div>
                     <div class="input-group"><label>Passeggeri</label><input type="text" value="1 Adulto, Economy"></div>
-                    <button style="background: var(--primary); color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; text-transform: uppercase; letter-spacing: 1px;">Cerca Volo</button>
+                    <button style="background: var(--primary); color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">CERCA VOLO</button>
                 </div>
             </section>
 
             <section class="offers">
-                <h2 style="text-align: center; margin-bottom: 50px; font-weight: 300; font-size: 36px;">Le nostre migliori offerte</h2>
+                <h2 style="text-align: center; margin-bottom: 50px; font-weight: 300; font-size: 36px;">Offerta speciale</h2>
                 <div class="offer-card">
                     <div class="offer-img"></div>
                     <div class="offer-text">
-                        <p style="text-transform: uppercase; color: var(--primary); font-weight: bold; font-size: 12px; letter-spacing: 1px;">Offerta Speciale</p>
-                        <h3 style="font-size: 32px; margin: 15px 0; font-weight: 600;">Monaco - Milano Linate</h3>
-                        <p style="color: #666; margin-bottom: 30px;">Vivi l'eleganza del volo italiano. Tariffe esclusive per i membri del gruppo Roblox.</p>
+                        <p style="text-transform: uppercase; color: var(--primary); font-weight: bold; font-size: 12px;">Prezzo Esclusivo</p>
+                        <h3 style="font-size: 32px; margin: 15px 0;">Munich ➔ Milan Linate</h3>
+                        <p style="color: #666; margin-bottom: 30px;">Vola con noi su Roblox e scopri il massimo del comfort virtuale.</p>
                         <div style="font-size: 48px; font-weight: bold; color: var(--primary); margin-bottom: 30px;">0 R$</div>
                         <button style="padding: 18px 45px; background: var(--primary); color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%;">PRENOTA ORA</button>
                     </div>
@@ -156,11 +152,8 @@
             </section>
         </main>
 
-        <footer style="padding: 60px 5%; background: white; border-top: 1px solid #eee; text-align: center;">
-            <img src="Air_Dolomiti_logo.svg.png" height="30" style="margin-bottom: 20px;">
-            <p style="font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 1px;">
-                Membro del Gruppo Lufthansa - Partner virtuale di Roblox
-            </p>
+        <footer style="padding: 40px 5%; text-align: center; border-top: 1px solid #eee;">
+            <p style="font-size: 11px; color: #999;">Membro del Gruppo Lufthansa - Partner virtuale di Roblox</p>
         </footer>
     </div>
 
@@ -178,9 +171,7 @@
         btn.addEventListener('click', () => {
             overlay.style.opacity = '0';
             content.classList.remove('blur');
-            setTimeout(() => {
-                overlay.style.display = 'none';
-            }, 800);
+            setTimeout(() => { overlay.style.display = 'none'; }, 800);
         });
     </script>
 </body>
