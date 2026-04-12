@@ -43,20 +43,38 @@
 
         .checkbox-container {
             display: flex;
-            align-items: flex-start; gap: 12px;
-            cursor: pointer; font-size: 13px; color: #333;
+            align-items: flex-start;
+            gap: 12px;
+            cursor: pointer;
+            font-size: 13px;
+            color: #333;
         }
 
         .btn-enter {
-            background: #ccc; color: white; border: none;
-            padding: 16px 50px; border-radius: 4px;
-            font-weight: bold; font-size: 14px;
-            text-transform: uppercase; letter-spacing: 1px;
-            cursor: not-allowed; transition: 0.3s;
+            background: #ccc;
+            color: white;
+            border: none;
+            padding: 16px 50px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: not-allowed;
+            transition: 0.3s;
         }
 
-        .btn-enter.active { background: #00727A; cursor: pointer; }
-        .blur-content { filter: blur(8px); pointer-events: none; }
+        .btn-enter.active {
+            background: #00727A;
+            cursor: pointer;
+        }
+
+        /* Sfocatura contenuto dietro */
+        .blur-content {
+            filter: blur(10px);
+            pointer-events: none;
+            transition: filter 0.8s ease;
+        }
     </style>
 </head>
 <body>
@@ -64,77 +82,215 @@
     <div id="welcomeOverlay">
         <div class="welcome-card">
             <img src="Air_Dolomiti_logo.svg.png" alt="Air Dolomiti" class="welcome-logo">
-            
-            <h2 class="welcome-title" id="w-title"></h2>
-            <p class="welcome-text" id="w-text"></p>
-            
+            <h2 class="welcome-title" id="w-title">Benvenuto a bordo</h2>
+            <p class="welcome-text" id="w-text">
+                Per accedere al portale ufficiale di Air Dolomiti Virtual su Roblox, conferma di aver preso visione del regolamento e dei termini di utilizzo.
+            </p>
             <div class="privacy-box">
                 <label class="checkbox-container">
                     <input type="checkbox" id="privacyCheck">
-                    <span id="w-privacy"></span>
+                    <span id="w-privacy">Accetto i termini della Privacy, il regolamento interno e l'uso dei cookie tecnici per la navigazione.</span>
                 </label>
             </div>
-            
-            <button id="enterSiteBtn" class="btn-enter" disabled></button>
-            
-            <p id="w-copyright" style="margin-top: 30px; font-size: 10px; color: #bbb; text-transform: uppercase; letter-spacing: 1px;"></p>
+            <button id="enterSiteBtn" class="btn-enter" disabled>Accedi al sito</button>
+            <p id="w-copyright" style="margin-top: 30px; font-size: 10px; color: #bbb; text-transform: uppercase; letter-spacing: 1px;">
+                Membro del Gruppo Lufthansa - Partner virtuale di Roblox
+            </p>
         </div>
     </div>
 
     <div id="mainContent" class="blur-content">
+        
+        <div class="announcement-bar">
+            <span id="announcement-text">⚠️ SYSTEM UPDATE: CHECK FLIGHT STATUS FOR THE LATEST UPDATES ON ROBLOX OPERATIONS</span>
+        </div>
+
         <header class="main-header">
-            <div class="container header-flex" style="display:flex; justify-content:space-between; align-items:center; padding:20px;">
-                <img src="Air_Dolomiti_logo.svg.png" style="height:40px;">
-                <div class="lang-box" id="lang-switch" style="cursor:pointer; font-weight:bold; border:1px solid #ccc; padding:5px 10px; border-radius:4px;">EN</div>
+            <div class="container header-flex">
+                <div class="logo-area">
+                    <img src="Air_Dolomiti_logo.svg.png" alt="AirDolomiti Logo" class="brand-logo">
+                </div>
+                <nav class="main-nav">
+                    <ul id="nav-links">
+                        <li><a href="#" class="active" id="nav-explore">Explore</a></li>
+                        <li><a href="#" id="nav-book">Book & Manage</a></li>
+                        <li><a href="#" id="nav-onboard">On Board</a></li>
+                        <li><a href="#" id="nav-experience">Experience</a></li>
+                        <li><a href="#" id="nav-club">Dolomiti Club</a></li>
+                    </ul>
+                </nav>
+                <div class="header-utilities">
+                    <span class="util-icon">🔍</span>
+                    <span class="util-icon">👤</span>
+                    <div class="lang-box" id="lang-switch" style="cursor: pointer;">EN</div>
+                </div>
             </div>
         </header>
-        <main style="text-align:center; padding:100px;">
-            <h1>Sito Caricato / Site Loaded</h1>
+
+        <main>
+            <section class="hero-section">
+                <div class="hero-visual" style="background-image: url('Screenshot 2026-04-09 210801.png');"></div>
+                <div class="hero-overlay"></div>
+                
+                <div class="booking-engine">
+                    <div class="booking-tabs">
+                        <button class="t-btn active" id="tab-oneway">One way</button>
+                    </div>
+                    
+                    <div class="booking-fields">
+                        <div class="input-wrapper">
+                            <label id="label-from">From</label>
+                            <input type="text" list="airports-from" placeholder="Departure Airport" id="input-from">
+                            <datalist id="airports-from"><option value="Munich (MUC)"></datalist>
+                        </div>
+
+                        <div class="input-wrapper">
+                            <label id="label-to">To</label>
+                            <input type="text" list="airports-to" placeholder="Arrival Airport" id="input-to">
+                            <datalist id="airports-to"><option value="Milan Linate (LIN)"></datalist>
+                        </div>
+
+                        <div class="input-wrapper date">
+                            <label id="label-dates">Dates</label>
+                            <input type="text" placeholder="Add dates" id="input-dates">
+                        </div>
+                        
+                        <div class="input-wrapper pax">
+                            <label id="label-pax">Passengers</label>
+                            <input type="text" value="1 Adult, Economy" id="input-pax-val">
+                        </div>
+                        
+                        <button class="main-search-btn" id="btn-search">Search Flight ➔</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="quick-links-bar">
+                <div class="container links-flex">
+                    <button class="q-link">Check-in</button>
+                    <button class="q-link" id="link-bookings">My Bookings</button>
+                    <button class="q-link" id="link-status">Flight Status</button>
+                    <button class="q-link">Miles & More</button>
+                </div>
+            </section>
+
+            <section class="offers-section" style="padding: 60px 0; background-color: #f9f9f9;">
+                <div class="container">
+                    <h2 class="section-title" id="offer-title" style="text-align: center; font-weight: 300; font-size: 36px; color: #333; margin-bottom: 50px;">Discover our best offer</h2>
+                    <div class="offer-master-container" style="display: flex; align-items: center; justify-content: center; gap: 60px; max-width: 1000px; margin: 0 auto;">
+                        <div class="offer-image-box" style="flex: 1;">
+                            <img src="Screenshot 2026-04-12 084849.png" alt="Milano Linate" style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                        </div>
+                        <div class="offer-text-box" style="flex: 1; text-align: left;">
+                            <h4 style="font-size: 20px; font-weight: 700; color: #333;">Munich - Milan Linate</h4>
+                            <p style="font-size: 42px; font-weight: 700; color: #00727A;"><span id="offer-from">From</span> 0 R$</p>
+                            <p id="offer-terms" style="font-size: 14px; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 30px;">ONE WAY - ECONOMY LIGHT</p>
+                            <button id="btn-book" style="background-color: #00727A; color: white; border: none; padding: 15px 40px; border-radius: 4px; cursor: pointer; font-weight: bold;">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="newsletter-area">
+                <div class="container">
+                    <h2 id="news-title">Subscribe to our newsletter</h2>
+                    <p id="news-desc">Stay updated on the latest Roblox flight schedules and events.</p>
+                    <div class="n-form">
+                        <input type="email" placeholder="Your email address" id="news-input">
+                        <button class="n-btn" id="news-btn">Subscribe</button>
+                    </div>
+                </div>
+            </section>
         </main>
+
+        <footer class="grand-footer">
+            <div class="container">
+                <div class="footer-bottom">
+                    <div class="f-logo-wrap">
+                        <img src="Air_Dolomiti_logo.svg.png" alt="Footer Logo" class="f-logo">
+                        <p id="f-copyright">Member of Lufthansa Group - Roblox Virtual Partner</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
 
     <script>
-        // 1. DATABASE TRADUZIONI MODULO BENVENUTO
-        const welcomeTranslations = {
-            'it': {
-                'title': 'Benvenuto a bordo',
-                'text': 'Per accedere al portale ufficiale di Air Dolomiti Virtual su Roblox, conferma di aver preso visione del regolamento e dei termini di utilizzo.',
-                'privacy': 'Accetto i termini della Privacy, il regolamento interno e l\'uso dei cookie tecnici per la navigazione.',
-                'btn': 'Accedi al sito',
-                'copyright': 'Membro del Gruppo Lufthansa - Partner virtuale di Roblox'
+        // --- DATABASE TRADUZIONI COMPLETO ---
+        const translations = {
+            'IT': {
+                'w_title': 'Benvenuto a bordo',
+                'w_text': 'Per accedere al portale ufficiale di Air Dolomiti Virtual su Roblox, conferma di aver preso visione del regolamento e dei termini di utilizzo.',
+                'w_privacy': 'Accetto i termini della Privacy, il regolamento interno e l\'uso dei cookie tecnici per la navigazione.',
+                'w_btn': 'Accedi al sito',
+                'w_copy': 'Membro del Gruppo Lufthansa - Partner virtuale di Roblox',
+                'announcement': '⚠️ AGGIORNAMENTO DI SISTEMA: CONTROLLA LO STATO DEL VOLO PER LE ULTIME NOVITÀ SU ROBLOX',
+                'explore': 'Esplora', 'book': 'Prenota e Gestisci', 'onboard': 'A Bordo', 'experience': 'Esperienza', 'club': 'Dolomiti Club',
+                'oneway': 'Solo andata', 'from': 'Da', 'to': 'A', 'dates': 'Date', 'pax': 'Passeggeri', 'pax_val': '1 Adulto, Economy',
+                'search': 'Cerca Volo ➔', 'mybookings': 'Le mie prenotazioni', 'flightstatus': 'Stato del Volo',
+                'offertitle': 'Scopri la nostra migliore offerta', 'offerfrom': 'Da', 'offerterms': 'SOLO ANDATA - ECONOMY LIGHT',
+                'booknow': 'Prenota Ora', 'newstitle': 'Iscriviti alla nostra newsletter', 'newsdesc': 'Rimani aggiornato sugli ultimi orari dei voli Roblox.', 'newsbtn': 'Iscriviti'
             },
-            'en': {
-                'title': 'Welcome on board',
-                'text': 'To access the official Air Dolomiti Virtual portal on Roblox, please confirm you have read the regulations and terms of use.',
-                'privacy': 'I accept the Privacy terms, internal regulations, and the use of technical cookies for navigation.',
-                'btn': 'Enter site',
-                'copyright': 'Member of Lufthansa Group - Roblox Virtual Partner'
+            'EN': {
+                'w_title': 'Welcome on board',
+                'w_text': 'To access the official Air Dolomiti Virtual portal on Roblox, please confirm you have read the regulations and terms of use.',
+                'w_privacy': 'I accept the Privacy terms, internal regulations, and the use of technical cookies for navigation.',
+                'w_btn': 'Enter site',
+                'w_copy': 'Member of Lufthansa Group - Roblox Virtual Partner',
+                'announcement': '⚠️ SYSTEM UPDATE: CHECK FLIGHT STATUS FOR THE LATEST UPDATES ON ROBLOX OPERATIONS',
+                'explore': 'Explore', 'book': 'Book & Manage', 'onboard': 'On Board', 'experience': 'Experience', 'club': 'Dolomiti Club',
+                'oneway': 'One way', 'from': 'From', 'to': 'To', 'dates': 'Dates', 'pax': 'Passengers', 'pax_val': '1 Adult, Economy',
+                'search': 'Search Flight ➔', 'mybookings': 'My Bookings', 'flightstatus': 'Flight Status',
+                'offertitle': 'Discover our best offer', 'offerfrom': 'From', 'offerterms': 'ONE WAY - ECONOMY LIGHT',
+                'booknow': 'Book Now', 'newstitle': 'Subscribe to our newsletter', 'newsdesc': 'Stay updated on the latest Roblox flight schedules.', 'newsbtn': 'Subscribe'
             }
         };
 
-        // 2. RILEVAMENTO AUTOMATICO LINGUA
-        // Controlla la lingua del browser (prende le prime due lettere, es: 'it-IT' diventa 'it')
-        const userLang = navigator.language || navigator.userLanguage; 
-        const defaultLang = userLang.startsWith('it') ? 'it' : 'en';
-
-        // 3. APPLICA TRADUZIONE AL CARICAMENTO
-        function setupWelcome(lang) {
-            const t = welcomeTranslations[lang];
-            document.getElementById('w-title').innerText = t.title;
-            document.getElementById('w-text').innerText = t.text;
-            document.getElementById('w-privacy').innerText = t.privacy;
-            document.getElementById('enterSiteBtn').innerText = t.btn;
-            document.getElementById('w-copyright').innerText = t.copyright;
-            document.getElementById('lang-switch').innerText = lang.toUpperCase();
-        }
-
-        setupWelcome(defaultLang);
-
-        // 4. LOGICA TASTO ENTRA
         const welcomeOverlay = document.getElementById('welcomeOverlay');
         const mainContent = document.getElementById('mainContent');
         const privacyCheck = document.getElementById('privacyCheck');
         const enterSiteBtn = document.getElementById('enterSiteBtn');
+        const langBtn = document.getElementById('lang-switch');
+
+        // Rileva lingua
+        let currentLang = navigator.language.startsWith('it') ? 'IT' : 'EN';
+
+        function applyTranslation(lang) {
+            const t = translations[lang];
+            // Splash
+            document.getElementById('w-title').innerText = t.w_title;
+            document.getElementById('w-text').innerText = t.w_text;
+            document.getElementById('w-privacy').innerText = t.w_privacy;
+            document.getElementById('enterSiteBtn').innerText = t.w_btn;
+            document.getElementById('w-copyright').innerText = t.w_copy;
+            // Header & Main
+            document.getElementById('announcement-text').innerText = t.announcement;
+            document.getElementById('nav-explore').innerText = t.explore;
+            document.getElementById('nav-book').innerText = t.book;
+            document.getElementById('nav-onboard').innerText = t.onboard;
+            document.getElementById('nav-experience').innerText = t.experience;
+            document.getElementById('nav-club').innerText = t.club;
+            document.getElementById('tab-oneway').innerText = t.oneway;
+            document.getElementById('label-from').innerText = t.from;
+            document.getElementById('label-to').innerText = t.to;
+            document.getElementById('label-dates').innerText = t.dates;
+            document.getElementById('label-pax').innerText = t.pax;
+            document.getElementById('input-pax-val').value = t.pax_val;
+            document.getElementById('btn-search').innerText = t.search;
+            document.getElementById('link-bookings').innerText = t.mybookings;
+            document.getElementById('link-status').innerText = t.flightstatus;
+            document.getElementById('offer-title').innerText = t.offertitle;
+            document.getElementById('offer-from').innerText = t.offerfrom;
+            document.getElementById('offer-terms').innerText = t.offerterms;
+            document.getElementById('btn-book').innerText = t.booknow;
+            document.getElementById('news-title').innerText = t.newstitle;
+            document.getElementById('news-desc').innerText = t.newsdesc;
+            document.getElementById('news-btn').innerText = t.newsbtn;
+            document.getElementById('f-copyright').innerText = t.w_copy;
+            langBtn.innerText = lang;
+        }
+
+        applyTranslation(currentLang);
 
         privacyCheck.addEventListener('change', function() {
             if (this.checked) {
@@ -149,9 +305,12 @@
         enterSiteBtn.addEventListener('click', function() {
             welcomeOverlay.style.opacity = '0';
             mainContent.classList.remove('blur-content');
-            setTimeout(() => {
-                welcomeOverlay.style.visibility = 'hidden';
-            }, 800);
+            setTimeout(() => { welcomeOverlay.style.visibility = 'hidden'; }, 800);
+        });
+
+        langBtn.addEventListener('click', () => {
+            currentLang = (currentLang === 'EN') ? 'IT' : 'EN';
+            applyTranslation(currentLang);
         });
     </script>
 </body>
