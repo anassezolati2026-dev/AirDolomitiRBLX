@@ -4,16 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AirDolomiti | Official Roblox Virtual Airline</title>
-    
     <link rel="icon" type="image/png" href="riproviamo.png">
-    
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="announcement-bar">
-        <span>⚠️ SYSTEM UPDATE: CHECK FLIGHT STATUS FOR THE LATEST UPDATES ON ROBLOX OPERATIONS</span>
+        <span id="announcement-text">⚠️ SYSTEM UPDATE: CHECK FLIGHT STATUS FOR THE LATEST UPDATES ON ROBLOX OPERATIONS</span>
     </div>
 
     <header class="main-header">
@@ -22,18 +20,18 @@
                 <img src="Air_Dolomiti_logo.svg.png" alt="AirDolomiti Logo" class="brand-logo">
             </div>
             <nav class="main-nav">
-                <ul>
-                    <li><a href="#" class="active">Explore</a></li>
-                    <li><a href="#">Book & Manage</a></li>
-                    <li><a href="#">On Board</a></li>
-                    <li><a href="#">Experience</a></li>
-                    <li><a href="#">Dolomiti Club</a></li>
+                <ul id="nav-links">
+                    <li><a href="#" class="active" id="nav-explore">Explore</a></li>
+                    <li><a href="#" id="nav-book">Book & Manage</a></li>
+                    <li><a href="#" id="nav-onboard">On Board</a></li>
+                    <li><a href="#" id="nav-experience">Experience</a></li>
+                    <li><a href="#" id="nav-club">Dolomiti Club</a></li>
                 </ul>
             </nav>
             <div class="header-utilities">
                 <span class="util-icon">🔍</span>
                 <span class="util-icon">👤</span>
-                <div class="lang-box">EN</div>
+                <div class="lang-box" id="lang-switch" style="cursor: pointer;">EN</div>
             </div>
         </div>
     </header>
@@ -45,37 +43,37 @@
             
             <div class="booking-engine">
                 <div class="booking-tabs">
-                    <button class="t-btn active">One way</button>
+                    <button class="t-btn active" id="tab-oneway">One way</button>
                 </div>
                 
                 <div class="booking-fields">
                     <div class="input-wrapper">
-                        <label>From</label>
-                        <input type="text" list="airports-from" placeholder="Departure Airport">
+                        <label id="label-from">From</label>
+                        <input type="text" list="airports-from" placeholder="Departure Airport" id="input-from">
                         <datalist id="airports-from">
                             <option value="Munich (MUC)">
                         </datalist>
                     </div>
 
                     <div class="input-wrapper">
-                        <label>To</label>
-                        <input type="text" list="airports-to" placeholder="Arrival Airport">
+                        <label id="label-to">To</label>
+                        <input type="text" list="airports-to" placeholder="Arrival Airport" id="input-to">
                         <datalist id="airports-to">
                             <option value="Milan Linate (LIN)">
                         </datalist>
                     </div>
 
                     <div class="input-wrapper date">
-                        <label>Dates</label>
-                        <input type="text" placeholder="Add dates">
+                        <label id="label-dates">Dates</label>
+                        <input type="text" placeholder="Add dates" id="input-dates">
                     </div>
                     
                     <div class="input-wrapper pax">
-                        <label>Passengers</label>
-                        <input type="text" value="1 Adult, Economy">
+                        <label id="label-pax">Passengers</label>
+                        <input type="text" value="1 Adult, Economy" id="input-pax-val">
                     </div>
                     
-                    <button class="main-search-btn">Search Flight ➔</button>
+                    <button class="main-search-btn" id="btn-search">Search Flight ➔</button>
                 </div>
             </div>
         </section>
@@ -83,61 +81,39 @@
         <section class="quick-links-bar">
             <div class="container links-flex">
                 <button class="q-link">Check-in</button>
-                <button class="q-link">My Bookings</button>
-                <button class="q-link">Flight Status</button>
+                <button class="q-link" id="link-bookings">My Bookings</button>
+                <button class="q-link" id="link-status">Flight Status</button>
                 <button class="q-link">Miles & More</button>
             </div>
         </section>
-<section class="offers-section" style="padding: 60px 0; background-color: #f9f9f9;">
-    <div class="container">
-        <h2 class="section-title" style="text-align: center; font-weight: 300; font-size: 36px; color: #333; margin-bottom: 50px;">Discover our best offer</h2>
-        
-        <div class="offer-master-container" style="display: flex; align-items: center; justify-content: center; gap: 60px; max-width: 1000px; margin: 0 auto;">
-            
-            <div class="offer-image-box" style="flex: 1;">
-                <img src="Screenshot 2026-04-12 084849.png" alt="Milano Linate" style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-            </div>
 
-            <div class="offer-text-box" style="flex: 1; text-align: left;">
-                <h4 style="font-size: 20px; font-weight: 700; color: #333; margin-bottom: 10px;">Munich - Milan Linate</h4>
+        <section class="offers-section" style="padding: 60px 0; background-color: #f9f9f9;">
+            <div class="container">
+                <h2 class="section-title" id="offer-title" style="text-align: center; font-weight: 300; font-size: 36px; color: #333; margin-bottom: 50px;">Discover our best offer</h2>
                 
-                <p class="price-tag" style="font-size: 42px; font-weight: 700; color: #00727A; margin: 10px 0;">From 0 R$</p>
-                
-                <p class="terms" style="font-size: 14px; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 30px;">ONE WAY - ECONOMY LIGHT</p>
-                
-                <button class="card-btn" style="background-color: #00727A; color: white; border: none; padding: 15px 40px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 16px; transition: 0.3s;">
-                    Book Now
-                </button>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-        <section class="dual-promo">
-            <div class="promo-box leisure">
-                <div class="promo-content">
-                    <h3>Leisure</h3>
-                    <p>Experience the beauty of Italy with our dedicated holiday services.</p>
-                    <a href="#" class="btn-ghost">Find out more ➤</a>
-                </div>
-            </div>
-            <div class="promo-box business">
-                <div class="promo-content">
-                    <h3>Business</h3>
-                    <p>Premium services for the frequent virtual flyer.</p>
-                    <a href="#" class="btn-ghost">Find out more ➤</a>
+                <div class="offer-master-container" style="display: flex; align-items: center; justify-content: center; gap: 60px; max-width: 1000px; margin: 0 auto;">
+                    <div class="offer-image-box" style="flex: 1;">
+                        <img src="Screenshot 2026-04-12 084849.png" alt="Milano Linate" style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    </div>
+                    <div class="offer-text-box" style="flex: 1; text-align: left;">
+                        <h4 style="font-size: 20px; font-weight: 700; color: #333; margin-bottom: 10px;">Munich - Milan Linate</h4>
+                        <p class="price-tag" style="font-size: 42px; font-weight: 700; color: #00727A; margin: 10px 0;"><span id="offer-from">From</span> 0 R$</p>
+                        <p class="terms" id="offer-terms" style="font-size: 14px; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 30px;">ONE WAY - ECONOMY LIGHT</p>
+                        <button class="card-btn" id="btn-book" style="background-color: #00727A; color: white; border: none; padding: 15px 40px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 16px; transition: 0.3s;">
+                            Book Now
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section class="newsletter-area">
             <div class="container">
-                <h2>Subscribe to our newsletter</h2>
-                <p>Stay updated on the latest Roblox flight schedules and events.</p>
+                <h2 id="news-title">Subscribe to our newsletter</h2>
+                <p id="news-desc">Stay updated on the latest Roblox flight schedules and events.</p>
                 <div class="n-form">
-                    <input type="email" placeholder="Your email address">
-                    <button class="n-btn">Subscribe</button>
+                    <input type="email" placeholder="Your email address" id="news-input">
+                    <button class="n-btn" id="news-btn">Subscribe</button>
                 </div>
             </div>
         </section>
@@ -145,34 +121,6 @@
 
     <footer class="grand-footer">
         <div class="container">
-            <div class="footer-grid">
-                <div class="f-col">
-                    <h4>ABOUT US</h4>
-                    <a href="#">Our Fleet</a>
-                    <a href="#">Company History</a>
-                    <a href="#">Career / Jobs</a>
-                    <a href="#">Sustainability</a>
-                </div>
-                <div class="f-col">
-                    <h4>HELP & CONTACT</h4>
-                    <a href="#">Customer Service</a>
-                    <a href="#">FAQ</a>
-                    <a href="#">Discord Server</a>
-                    <a href="#">Flight Rules</a>
-                </div>
-                <div class="f-col">
-                    <h4>LEGAL</h4>
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Cookie Policy</a>
-                    <a href="#">Conditions of Carriage</a>
-                </div>
-                <div class="f-col">
-                    <h4>NETWORK</h4>
-                    <a href="#">Destinations</a>
-                    <a href="#">Partner Airlines</a>
-                    <a href="#">Lufthansa Group</a>
-                </div>
-            </div>
             <div class="footer-bottom">
                 <div class="f-logo-wrap">
                     <img src="Air_Dolomiti_logo.svg.png" alt="Footer Logo" class="f-logo">
@@ -185,5 +133,98 @@
         </div>
     </footer>
 
+    <script>
+        const langBtn = document.getElementById('lang-switch');
+        let currentLang = 'EN';
+
+        const translations = {
+            'IT': {
+                'announcement': '⚠️ AGGIORNAMENTO DI SISTEMA: CONTROLLA LO STATO DEL VOLO PER LE ULTIME NOVITÀ SU ROBLOX',
+                'explore': 'Esplora',
+                'book': 'Prenota e Gestisci',
+                'onboard': 'A Bordo',
+                'experience': 'Esperienza',
+                'club': 'Dolomiti Club',
+                'oneway': 'Solo andata',
+                'from': 'Da',
+                'to': 'A',
+                'dates': 'Date',
+                'pax': 'Passeggeri',
+                'pax_val': '1 Adulto, Economy',
+                'search': 'Cerca Volo ➔',
+                'mybookings': 'Le mie prenotazioni',
+                'flightstatus': 'Stato del Volo',
+                'offertitle': 'Scopri la nostra migliore offerta',
+                'offerfrom': 'Da',
+                'offerterms': 'SOLO ANDATA - ECONOMY LIGHT',
+                'booknow': 'Prenota Ora',
+                'newstitle': 'Iscriviti alla nostra newsletter',
+                'newsdesc': 'Rimani aggiornato sugli ultimi orari dei voli Roblox ed eventi.',
+                'newsbtn': 'Iscriviti'
+            },
+            'EN': {
+                'announcement': '⚠️ SYSTEM UPDATE: CHECK FLIGHT STATUS FOR THE LATEST UPDATES ON ROBLOX OPERATIONS',
+                'explore': 'Explore',
+                'book': 'Book & Manage',
+                'onboard': 'On Board',
+                'experience': 'Experience',
+                'club': 'Dolomiti Club',
+                'oneway': 'One way',
+                'from': 'From',
+                'to': 'To',
+                'dates': 'Dates',
+                'pax': 'Passengers',
+                'pax_val': '1 Adult, Economy',
+                'search': 'Search Flight ➔',
+                'mybookings': 'My Bookings',
+                'flightstatus': 'Flight Status',
+                'offertitle': 'Discover our best offer',
+                'offerfrom': 'From',
+                'offerterms': 'ONE WAY - ECONOMY LIGHT',
+                'booknow': 'Book Now',
+                'newstitle': 'Subscribe to our newsletter',
+                'newsdesc': 'Stay updated on the latest Roblox flight schedules and events.',
+                'newsbtn': 'Subscribe'
+            }
+        };
+
+        langBtn.addEventListener('click', () => {
+            if (currentLang === 'EN') {
+                currentLang = 'IT';
+                langBtn.innerText = 'IT';
+                applyTranslation('IT');
+            } else {
+                currentLang = 'EN';
+                langBtn.innerText = 'EN';
+                applyTranslation('EN');
+            }
+        });
+
+        function applyTranslation(lang) {
+            const t = translations[lang];
+            document.getElementById('announcement-text').innerText = t.announcement;
+            document.getElementById('nav-explore').innerText = t.explore;
+            document.getElementById('nav-book').innerText = t.book;
+            document.getElementById('nav-onboard').innerText = t.onboard;
+            document.getElementById('nav-experience').innerText = t.experience;
+            document.getElementById('nav-club').innerText = t.club;
+            document.getElementById('tab-oneway').innerText = t.oneway;
+            document.getElementById('label-from').innerText = t.from;
+            document.getElementById('label-to').innerText = t.to;
+            document.getElementById('label-dates').innerText = t.dates;
+            document.getElementById('label-pax').innerText = t.pax;
+            document.getElementById('input-pax-val').value = t.pax_val;
+            document.getElementById('btn-search').innerText = t.search;
+            document.getElementById('link-bookings').innerText = t.mybookings;
+            document.getElementById('link-status').innerText = t.flightstatus;
+            document.getElementById('offer-title').innerText = t.offertitle;
+            document.getElementById('offer-from').innerText = t.offerfrom;
+            document.getElementById('offer-terms').innerText = t.offerterms;
+            document.getElementById('btn-book').innerText = t.booknow;
+            document.getElementById('news-title').innerText = t.newstitle;
+            document.getElementById('news-desc').innerText = t.newsdesc;
+            document.getElementById('news-btn').innerText = t.newsbtn;
+        }
+    </script>
 </body>
 </html>
