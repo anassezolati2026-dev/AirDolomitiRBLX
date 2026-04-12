@@ -33,7 +33,7 @@
         }
         .btn-enter.active { background: var(--primary); cursor: pointer; }
 
-        /* Header e Lingua */
+        /* Header */
         header {
             height: 80px; background: white; display: flex; 
             align-items: center; justify-content: space-between;
@@ -71,11 +71,26 @@
         .input-group label { display: block; font-size: 11px; font-weight: bold; color: var(--primary); margin-bottom: 5px; text-transform: uppercase; }
         .input-group input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px; }
 
-        /* Offer */
-        .offers { padding: 80px 5%; background: #f9f9f9; }
-        .offer-card { display: flex; background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 1100px; margin: 0 auto; }
-        .offer-img { width: 55%; background: url('Screenshot 2026-04-12 084849.png') center/cover no-repeat; min-height: 400px; }
-        .offer-text { padding: 60px; width: 45%; }
+        /* Footer Stile Lufthansa */
+        .main-footer {
+            padding: 60px 5%;
+            background: white;
+            border-top: 1px solid #eee;
+            text-align: center;
+        }
+        .footer-logos {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .lufthansa-member-text {
+            font-size: 12px;
+            color: #666;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
 
         .blur { filter: blur(20px); pointer-events: none; }
     </style>
@@ -88,7 +103,7 @@
             <h2 id="w-title" style="margin: 20px 0; font-weight: 300; color: var(--primary);">Benvenuto a bordo</h2>
             <div style="text-align: left; background: #f9f9f9; padding: 20px; border-radius: 8px; border: 1px solid #eee;">
                 <input type="checkbox" id="check"> 
-                <label for="check" id="w-privacy" style="font-size: 12px; cursor: pointer;">Accetto i termini e il regolamento virtuale.</label>
+                <label for="check" id="w-privacy" style="font-size: 12px; cursor: pointer; margin-left: 8px;">Accetto i termini e il regolamento virtuale.</label>
             </div>
             <button id="entryBtn" class="btn-enter" disabled>ACCEDI AL SITO</button>
         </div>
@@ -125,19 +140,18 @@
                     <button id="search-btn" style="background: var(--primary); color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">CERCA VOLO</button>
                 </div>
             </section>
-
-            <section class="offers">
-                <div class="offer-card">
-                    <div class="offer-img"></div>
-                    <div class="offer-text">
-                        <h3 id="off-title" style="font-size: 32px; margin-bottom: 15px;">Munich ➔ Milan Linate</h3>
-                        <p id="off-desc" style="color: #666; margin-bottom: 30px;">Vola con noi su Roblox e scopri il comfort virtuale.</p>
-                        <div style="font-size: 48px; font-weight: bold; color: var(--primary);">0 R$</div>
-                        <button id="book-btn" style="margin-top:20px; padding: 18px; background: var(--primary); color: white; border: none; border-radius: 5px; width: 100%; font-weight: bold; cursor: pointer;">PRENOTA ORA</button>
-                    </div>
-                </div>
-            </section>
         </main>
+
+        <footer class="main-footer">
+            <div class="footer-logos">
+                <img src="Air_Dolomiti_logo.svg.png" height="35" alt="Air Dolomiti">
+                <div class="lufthansa-member-text" id="f-member">Membro del Gruppo Lufthansa</div>
+                <img src="logos.png" height="25" style="opacity: 0.7;" alt="Lufthansa Group Logos">
+            </div>
+            <p style="font-size: 10px; color: #aaa; margin-top: 20px;">
+                © 2026 Air Dolomiti Virtual - Roblox Simulation Project. All rights reserved.
+            </p>
+        </footer>
     </div>
 
     <script>
@@ -149,9 +163,7 @@
                 'nav-1': 'Esplora', 'nav-2': 'Prenota', 'nav-3': 'A Bordo',
                 'l-from': 'Da', 'l-to': 'A', 'l-date': 'Data',
                 'search-btn': 'CERCA VOLO',
-                'off-title': 'Munich ➔ Milan Linate',
-                'off-desc': 'Vola con noi su Roblox e scopri il comfort virtuale.',
-                'book-btn': 'PRENOTA ORA'
+                'f-member': 'Membro del Gruppo Lufthansa'
             },
             'EN': {
                 'w-title': 'Welcome on board',
@@ -160,9 +172,7 @@
                 'nav-1': 'Explore', 'nav-2': 'Book', 'nav-3': 'On Board',
                 'l-from': 'From', 'l-to': 'To', 'l-date': 'Date',
                 'search-btn': 'SEARCH FLIGHT',
-                'off-title': 'Munich ➔ Milan Linate',
-                'off-desc': 'Fly with us on Roblox and discover virtual comfort.',
-                'book-btn': 'BOOK NOW'
+                'f-member': 'Member of the Lufthansa Group'
             }
         };
 
