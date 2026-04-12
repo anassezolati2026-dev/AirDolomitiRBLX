@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
-        /* --- STILI MODULO BENVENUTO --- */
+        /* --- MODULO BENVENUTO --- */
         #welcomeOverlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -64,22 +64,14 @@
             transition: 0.3s;
         }
 
-        .btn-enter.active {
-            background: #00727A;
-            cursor: pointer;
-        }
+        .btn-enter.active { background: #00727A; cursor: pointer; }
+        .blur-content { filter: blur(10px); pointer-events: none; transition: filter 0.8s ease; }
 
-        .blur-content {
-            filter: blur(10px);
-            pointer-events: none;
-            transition: filter 0.8s ease;
-        }
-
-        /* --- STILI HEADER LOGHI NUOVI --- */
+        /* --- HEADER E UTILITY --- */
         .header-utilities {
             display: flex;
             align-items: center;
-            gap: 18px;
+            gap: 20px;
         }
 
         .util-logo {
@@ -89,14 +81,12 @@
             transition: transform 0.2s;
         }
 
-        .util-logo:hover { transform: scale(1.1); }
-
-        /* --- STILI NUOVO MENU LINGUA CON BANDIERE --- */
+        /* --- FIX MENU LINGUA --- */
         .lang-selector {
             position: relative;
-            cursor: pointer;
             display: flex;
             align-items: center;
+            padding: 10px 0; /* Area di contatto per il mouse */
         }
 
         .current-lang-flag {
@@ -104,21 +94,22 @@
             width: auto;
             border: 1px solid #eee;
             border-radius: 2px;
+            cursor: pointer;
         }
 
         .lang-dropdown {
             display: none;
             position: absolute;
             top: 100%;
-            right: 0;
+            right: -15px; /* Spostato a destra per centrarlo */
             background-color: white;
             border: 1px solid #eee;
             border-radius: 4px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             z-index: 1000;
-            min-width: 140px;
-            padding: 10px 0;
-            margin-top: 10px;
+            min-width: 150px;
+            padding: 5px 0;
+            margin-top: -5px; /* Elimina il vuoto tra flag e menu */
         }
 
         .lang-selector:hover .lang-dropdown {
@@ -128,28 +119,23 @@
         .lang-option {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 10px 20px;
+            gap: 12px;
+            padding: 10px 15px;
             color: #333;
             text-decoration: none;
             transition: background 0.2s;
+            font-family: 'Open Sans', sans-serif;
         }
 
-        .lang-option:hover {
-            background-color: #f9f9f9;
-        }
+        .lang-option:hover { background-color: #f5f5f5; }
 
         .lang-option img {
             height: 16px;
             width: auto;
-            border: 1px solid #eee;
             border-radius: 2px;
         }
 
-        .lang-option span {
-            font-weight: 600;
-            font-size: 14px;
-        }
+        .lang-option span { font-size: 14px; font-weight: 600; }
     </style>
 </head>
 <body>
@@ -198,9 +184,8 @@
                     <img src="account.png" alt="Account" class="util-logo">
                     <img src="logos.png" alt="Logos" class="util-logo">
                     
-                    <div class="lang-selector" id="lang-selector">
-                        <img src="Flag_of_the_United_Kingdom_(3-5).svg" alt="English" class="current-lang-flag" id="current-flag">
-                        
+                    <div class="lang-selector">
+                        <img src="Flag_of_Italy.svg.png" alt="Lingua" class="current-lang-flag" id="current-flag">
                         <div class="lang-dropdown">
                             <a href="#" class="lang-option" data-lang="IT">
                                 <img src="Flag_of_Italy.svg.png" alt="Italiano">
@@ -232,48 +217,32 @@
                             <input type="text" list="airports-from" placeholder="Departure Airport" id="input-from">
                             <datalist id="airports-from"><option value="Munich (MUC)"></datalist>
                         </div>
-
                         <div class="input-wrapper">
                             <label id="label-to">To</label>
                             <input type="text" list="airports-to" placeholder="Arrival Airport" id="input-to">
                             <datalist id="airports-to"><option value="Milan Linate (LIN)"></datalist>
                         </div>
-
                         <div class="input-wrapper date">
                             <label id="label-dates">Dates</label>
                             <input type="text" placeholder="Add dates" id="input-dates">
                         </div>
-                        
                         <div class="input-wrapper pax">
                             <label id="label-pax">Passengers</label>
                             <input type="text" value="1 Adult, Economy" id="input-pax-val">
                         </div>
-                        
                         <button class="main-search-btn" id="btn-search">Search Flight ➔</button>
                     </div>
                 </div>
             </section>
 
-            <section class="quick-links-bar">
-                <div class="container links-flex">
-                    <button class="q-link">Check-in</button>
-                    <button class="q-link" id="link-bookings">My Bookings</button>
-                    <button class="q-link" id="link-status">Flight Status</button>
-                    <button class="q-link">Miles & More</button>
-                </div>
-            </section>
-
             <section class="offers-section" style="padding: 60px 0; background-color: #f9f9f9;">
                 <div class="container">
-                    <h2 class="section-title" id="offer-title" style="text-align: center; font-weight: 300; font-size: 36px; color: #333; margin-bottom: 50px;">Discover our best offer</h2>
-                    <div class="offer-master-container" style="display: flex; align-items: center; justify-content: center; gap: 60px; max-width: 1000px; margin: 0 auto;">
-                        <div class="offer-image-box" style="flex: 1;">
-                            <img src="Screenshot 2026-04-12 084849.png" alt="Milano Linate" style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                        </div>
-                        <div class="offer-text-box" style="flex: 1; text-align: left;">
-                            <h4 style="font-size: 20px; font-weight: 700; color: #333;">Munich - Milan Linate</h4>
+                    <h2 class="section-title" id="offer-title" style="text-align: center; font-weight: 300; font-size: 36px; margin-bottom: 50px;">Discover our best offer</h2>
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 60px; max-width: 1000px; margin: 0 auto;">
+                        <img src="Screenshot 2026-04-12 084849.png" style="width: 50%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                        <div style="text-align: left;">
+                            <h4 style="font-size: 20px; font-weight: 700;">Munich - Milan Linate</h4>
                             <p style="font-size: 42px; font-weight: 700; color: #00727A;"><span id="offer-from">From</span> 0 R$</p>
-                            <p id="offer-terms" style="font-size: 14px; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 30px;">ONE WAY - ECONOMY LIGHT</p>
                             <button id="btn-book" style="background-color: #00727A; color: white; border: none; padding: 15px 40px; border-radius: 4px; cursor: pointer; font-weight: bold;">Book Now</button>
                         </div>
                     </div>
@@ -283,12 +252,8 @@
 
         <footer class="grand-footer" style="padding: 40px 0; background: #fff; border-top: 1px solid #eee;">
             <div class="container">
-                <div class="footer-bottom" style="display: flex; justify-content: space-between; align-items: center;">
-                    <div class="f-logo-wrap">
-                        <img src="Air_Dolomiti_logo.svg.png" alt="Footer Logo" style="height: 30px; margin-bottom: 10px;">
-                        <p id="f-copyright" style="font-size: 11px; color: #999;">Membro del Gruppo Lufthansa - Partner virtuale di Roblox</p>
-                    </div>
-                </div>
+                <img src="Air_Dolomiti_logo.svg.png" style="height: 30px; margin-bottom: 10px;">
+                <p id="f-copyright" style="font-size: 11px; color: #999;">Membro del Gruppo Lufthansa - Partner virtuale di Roblox</p>
             </div>
         </footer>
     </div>
@@ -304,9 +269,7 @@
                 'announcement': '⚠️ AGGIORNAMENTO DI SISTEMA: CONTROLLA LO STATO DEL VOLO PER LE ULTIME NOVITÀ SU ROBLOX',
                 'explore': 'Esplora', 'book': 'Prenota e Gestisci', 'onboard': 'A Bordo', 'experience': 'Esperienza', 'club': 'Dolomiti Club',
                 'oneway': 'Solo andata', 'from': 'Da', 'to': 'A', 'dates': 'Date', 'pax': 'Passeggeri', 'pax_val': '1 Adulto, Economy',
-                'search': 'Cerca Volo ➔', 'mybookings': 'Le mie prenotazioni', 'flightstatus': 'Stato del Volo',
-                'offertitle': 'Scopri la nostra migliore offerta', 'offerfrom': 'Da', 'offerterms': 'SOLO ANDATA - ECONOMY LIGHT',
-                'booknow': 'Prenota Ora'
+                'search': 'Cerca Volo ➔', 'offertitle': 'Scopri la nostra migliore offerta', 'offerfrom': 'Da', 'booknow': 'Prenota Ora'
             },
             'EN': {
                 'w_title': 'Welcome on board',
@@ -317,9 +280,7 @@
                 'announcement': '⚠️ SYSTEM UPDATE: CHECK FLIGHT STATUS FOR THE LATEST UPDATES ON ROBLOX OPERATIONS',
                 'explore': 'Explore', 'book': 'Book & Manage', 'onboard': 'On Board', 'experience': 'Experience', 'club': 'Dolomiti Club',
                 'oneway': 'One way', 'from': 'From', 'to': 'To', 'dates': 'Dates', 'pax': 'Passengers', 'pax_val': '1 Adult, Economy',
-                'search': 'Search Flight ➔', 'mybookings': 'My Bookings', 'flightstatus': 'Flight Status',
-                'offertitle': 'Discover our best offer', 'offerfrom': 'From', 'offerterms': 'ONE WAY - ECONOMY LIGHT',
-                'booknow': 'Book Now'
+                'search': 'Search Flight ➔', 'offertitle': 'Discover our best offer', 'offerfrom': 'From', 'booknow': 'Book Now'
             }
         };
 
@@ -333,7 +294,6 @@
         const privacyCheck = document.getElementById('privacyCheck');
         const enterSiteBtn = document.getElementById('enterSiteBtn');
         const currentFlag = document.getElementById('current-flag');
-        const langOptions = document.querySelectorAll('.lang-option');
 
         let currentLang = navigator.language.startsWith('it') ? 'IT' : 'EN';
 
@@ -357,28 +317,18 @@
             document.getElementById('label-pax').innerText = t.pax;
             document.getElementById('input-pax-val').value = t.pax_val;
             document.getElementById('btn-search').innerText = t.search;
-            document.getElementById('link-bookings').innerText = t.mybookings;
-            document.getElementById('link-status').innerText = t.flightstatus;
             document.getElementById('offer-title').innerText = t.offertitle;
             document.getElementById('offer-from').innerText = t.offerfrom;
-            document.getElementById('offer-terms').innerText = t.offerterms;
+            document.getElementById('btn-book').innerText = t.booknow;
             document.getElementById('f-copyright').innerText = t.w_copy;
-            
-            // Aggiorna la bandiera principale
             currentFlag.src = flagSources[lang];
-            currentFlag.alt = (lang === 'IT') ? 'Italiano' : 'English';
         }
 
         applyTranslation(currentLang);
 
         privacyCheck.addEventListener('change', function() {
-            if (this.checked) {
-                enterSiteBtn.disabled = false;
-                enterSiteBtn.classList.add('active');
-            } else {
-                enterSiteBtn.disabled = true;
-                enterSiteBtn.classList.remove('active');
-            }
+            enterSiteBtn.disabled = !this.checked;
+            enterSiteBtn.classList.toggle('active', this.checked);
         });
 
         enterSiteBtn.addEventListener('click', function() {
@@ -387,15 +337,11 @@
             setTimeout(() => { welcomeOverlay.style.visibility = 'hidden'; }, 800);
         });
 
-        // Gestione dei clic sulle opzioni della lingua
-        langOptions.forEach(option => {
+        document.querySelectorAll('.lang-option').forEach(option => {
             option.addEventListener('click', (e) => {
-                e.preventDefault(); // Impedisce al link di ricaricare la pagina
-                const selectedLang = option.getAttribute('data-lang');
-                if (selectedLang !== currentLang) {
-                    currentLang = selectedLang;
-                    applyTranslation(currentLang);
-                }
+                e.preventDefault();
+                currentLang = option.getAttribute('data-lang');
+                applyTranslation(currentLang);
             });
         });
     </script>
