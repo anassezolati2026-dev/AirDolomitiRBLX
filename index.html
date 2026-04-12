@@ -29,11 +29,11 @@
         .btn-enter {
             background: #ccc; color: white; border: none; padding: 15px 40px;
             border-radius: 5px; cursor: not-allowed; font-weight: bold; margin-top: 20px;
-            transition: 0.3s; width: 100%;
+            transition: 0.3s; width: 100%; text-transform: uppercase;
         }
         .btn-enter.active { background: var(--primary); cursor: pointer; }
 
-        /* Header */
+        /* Header e Lingua */
         header {
             height: 80px; background: white; display: flex; 
             align-items: center; justify-content: space-between;
@@ -43,22 +43,25 @@
         .nav-links { display: flex; list-style: none; gap: 20px; }
         .nav-links a { text-decoration: none; color: var(--text); font-weight: 600; font-size: 13px; text-transform: uppercase; }
 
-        /* Hero Section */
-        .hero {
-            height: 70vh; position: relative; display: flex;
-            align-items: center; justify-content: center;
+        .lang-selector { position: relative; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+        .lang-dropdown {
+            display: none; position: absolute; top: 100%; right: 0;
+            background: white; border: 1px solid #eee; border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); width: 120px; z-index: 200;
         }
+        .lang-selector:hover .lang-dropdown { display: block; }
+        .lang-opt { padding: 10px; display: flex; align-items: center; gap: 10px; font-size: 12px; transition: 0.2s; }
+        .lang-opt:hover { background: var(--gray); }
+
+        /* Hero e Booking */
+        .hero { height: 70vh; position: relative; display: flex; align-items: center; justify-content: center; }
         .hero-bg {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: url('Screenshot 2026-04-09 210801.png') center/cover no-repeat;
             z-index: -1;
         }
-        .hero-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.3); z-index: -1;
-        }
+        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: -1; }
 
-        /* Booking Engine */
         .booking-box {
             background: white; padding: 30px; border-radius: 10px;
             width: 90%; max-width: 1100px; box-shadow: 0 20px 40px rgba(0,0,0,0.2);
@@ -68,39 +71,24 @@
         .input-group label { display: block; font-size: 11px; font-weight: bold; color: var(--primary); margin-bottom: 5px; text-transform: uppercase; }
         .input-group input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px; }
 
-        /* Section Offer */
-        .offers { padding: 100px 5%; background: #f9f9f9; }
-        .offer-card {
-            display: flex; background: white; border-radius: 15px; overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 1100px; margin: 0 auto;
-        }
-        .offer-img { 
-            width: 55%; 
-            background: url('Screenshot 2026-04-12 084849.png') center/cover no-repeat;
-            min-height: 400px;
-        }
+        /* Offer */
+        .offers { padding: 80px 5%; background: #f9f9f9; }
+        .offer-card { display: flex; background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 1100px; margin: 0 auto; }
+        .offer-img { width: 55%; background: url('Screenshot 2026-04-12 084849.png') center/cover no-repeat; min-height: 400px; }
         .offer-text { padding: 60px; width: 45%; }
 
-        .blur { filter: blur(20px); pointer-events: none; transition: 0.8s; }
-
-        @media (max-width: 768px) {
-            .offer-card { flex-direction: column; }
-            .offer-img, .offer-text { width: 100%; }
-            .nav-links { display: none; }
-        }
+        .blur { filter: blur(20px); pointer-events: none; }
     </style>
 </head>
 <body>
 
     <div id="welcomeOverlay">
         <div class="welcome-card">
-            <img src="Air_Dolomiti_logo.svg.png" class="welcome-logo" alt="Air Dolomiti">
-            <h2 style="margin: 20px 0; font-weight: 300; color: var(--primary);">Benvenuto a bordo</h2>
+            <img src="Air_Dolomiti_logo.svg.png" class="welcome-logo">
+            <h2 id="w-title" style="margin: 20px 0; font-weight: 300; color: var(--primary);">Benvenuto a bordo</h2>
             <div style="text-align: left; background: #f9f9f9; padding: 20px; border-radius: 8px; border: 1px solid #eee;">
                 <input type="checkbox" id="check"> 
-                <label for="check" style="font-size: 12px; color: #333; cursor: pointer; margin-left: 8px;">
-                    Accetto i termini e il regolamento virtuale.
-                </label>
+                <label for="check" id="w-privacy" style="font-size: 12px; cursor: pointer;">Accetto i termini e il regolamento virtuale.</label>
             </div>
             <button id="entryBtn" class="btn-enter" disabled>ACCEDI AL SITO</button>
         </div>
@@ -111,15 +99,18 @@
             <img src="Air_Dolomiti_logo.svg.png" height="40">
             <nav>
                 <ul class="nav-links">
-                    <li><a href="#">Esplora</a></li>
-                    <li><a href="#">Prenota</a></li>
-                    <li><a href="#">A Bordo</a></li>
-                    <li><a href="#">Dolomiti Club</a></li>
+                    <li><a href="#" id="nav-1">Esplora</a></li>
+                    <li><a href="#" id="nav-2">Prenota</a></li>
+                    <li><a href="#" id="nav-3">A Bordo</a></li>
                 </ul>
             </nav>
-            <div style="display: flex; align-items: center; gap: 15px;">
-                <img src="logos.png" height="20">
-                <img src="Flag_of_Italy.svg.png" height="18" style="border: 1px solid #eee;">
+            <div class="lang-selector">
+                <img src="Flag_of_Italy.svg.png" id="current-flag" height="18">
+                <span id="current-lang-text">IT</span>
+                <div class="lang-dropdown">
+                    <div class="lang-opt" onclick="setLang('IT')"><img src="Flag_of_Italy.svg.png" height="12"> Italiano</div>
+                    <div class="lang-opt" onclick="setLang('EN')"><img src="Flag_of_the_United_Kingdom_(3-5).svg" height="12"> English</div>
+                </div>
             </div>
         </header>
 
@@ -127,51 +118,75 @@
             <section class="hero">
                 <div class="hero-bg"></div>
                 <div class="hero-overlay"></div>
-                
                 <div class="booking-box">
-                    <div class="input-group"><label>Da</label><input type="text" value="Munich (MUC)"></div>
-                    <div class="input-group"><label>A</label><input type="text" value="Milan Linate (LIN)"></div>
-                    <div class="input-group"><label>Data</label><input type="text" value="12/04/2026"></div>
-                    <div class="input-group"><label>Passeggeri</label><input type="text" value="1 Adulto, Economy"></div>
-                    <button style="background: var(--primary); color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">CERCA VOLO</button>
+                    <div class="input-group"><label id="l-from">Da</label><input type="text" value="Munich (MUC)"></div>
+                    <div class="input-group"><label id="l-to">A</label><input type="text" value="Milan Linate (LIN)"></div>
+                    <div class="input-group"><label id="l-date">Data</label><input type="text" value="12/04/2026"></div>
+                    <button id="search-btn" style="background: var(--primary); color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">CERCA VOLO</button>
                 </div>
             </section>
 
             <section class="offers">
-                <h2 style="text-align: center; margin-bottom: 50px; font-weight: 300; font-size: 36px;">Offerta speciale</h2>
                 <div class="offer-card">
                     <div class="offer-img"></div>
                     <div class="offer-text">
-                        <p style="text-transform: uppercase; color: var(--primary); font-weight: bold; font-size: 12px;">Prezzo Esclusivo</p>
-                        <h3 style="font-size: 32px; margin: 15px 0;">Munich ➔ Milan Linate</h3>
-                        <p style="color: #666; margin-bottom: 30px;">Vola con noi su Roblox e scopri il massimo del comfort virtuale.</p>
-                        <div style="font-size: 48px; font-weight: bold; color: var(--primary); margin-bottom: 30px;">0 R$</div>
-                        <button style="padding: 18px 45px; background: var(--primary); color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%;">PRENOTA ORA</button>
+                        <h3 id="off-title" style="font-size: 32px; margin-bottom: 15px;">Munich ➔ Milan Linate</h3>
+                        <p id="off-desc" style="color: #666; margin-bottom: 30px;">Vola con noi su Roblox e scopri il comfort virtuale.</p>
+                        <div style="font-size: 48px; font-weight: bold; color: var(--primary);">0 R$</div>
+                        <button id="book-btn" style="margin-top:20px; padding: 18px; background: var(--primary); color: white; border: none; border-radius: 5px; width: 100%; font-weight: bold; cursor: pointer;">PRENOTA ORA</button>
                     </div>
                 </div>
             </section>
         </main>
-
-        <footer style="padding: 40px 5%; text-align: center; border-top: 1px solid #eee;">
-            <p style="font-size: 11px; color: #999;">Membro del Gruppo Lufthansa - Partner virtuale di Roblox</p>
-        </footer>
     </div>
 
     <script>
+        const translations = {
+            'IT': {
+                'w-title': 'Benvenuto a bordo',
+                'w-privacy': 'Accetto i termini e il regolamento virtuale.',
+                'entryBtn': 'ACCEDI AL SITO',
+                'nav-1': 'Esplora', 'nav-2': 'Prenota', 'nav-3': 'A Bordo',
+                'l-from': 'Da', 'l-to': 'A', 'l-date': 'Data',
+                'search-btn': 'CERCA VOLO',
+                'off-title': 'Munich ➔ Milan Linate',
+                'off-desc': 'Vola con noi su Roblox e scopri il comfort virtuale.',
+                'book-btn': 'PRENOTA ORA'
+            },
+            'EN': {
+                'w-title': 'Welcome on board',
+                'w-privacy': 'I accept the terms and virtual regulations.',
+                'entryBtn': 'ENTER SITE',
+                'nav-1': 'Explore', 'nav-2': 'Book', 'nav-3': 'On Board',
+                'l-from': 'From', 'l-to': 'To', 'l-date': 'Date',
+                'search-btn': 'SEARCH FLIGHT',
+                'off-title': 'Munich ➔ Milan Linate',
+                'off-desc': 'Fly with us on Roblox and discover virtual comfort.',
+                'book-btn': 'BOOK NOW'
+            }
+        };
+
+        function setLang(lang) {
+            const t = translations[lang];
+            for (let id in t) {
+                const el = document.getElementById(id);
+                if (el) el.innerText = t[id];
+            }
+            document.getElementById('current-lang-text').innerText = lang;
+            document.getElementById('current-flag').src = (lang === 'IT') ? 'Flag_of_Italy.svg.png' : 'Flag_of_the_United_Kingdom_(3-5).svg';
+        }
+
         const check = document.getElementById('check');
         const btn = document.getElementById('entryBtn');
-        const overlay = document.getElementById('welcomeOverlay');
-        const content = document.getElementById('mainContent');
-
         check.addEventListener('change', () => {
             btn.disabled = !check.checked;
             btn.classList.toggle('active', check.checked);
         });
 
         btn.addEventListener('click', () => {
-            overlay.style.opacity = '0';
-            content.classList.remove('blur');
-            setTimeout(() => { overlay.style.display = 'none'; }, 800);
+            document.getElementById('welcomeOverlay').style.opacity = '0';
+            document.getElementById('mainContent').classList.remove('blur');
+            setTimeout(() => { document.getElementById('welcomeOverlay').style.display = 'none'; }, 800);
         });
     </script>
 </body>
