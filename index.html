@@ -9,114 +9,189 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script type="text/javascript">
-       (function(){
-          // Inserisci qui la tua Public Key che trovi nell'account EmailJS
-          emailjs.init("LA_TUA_PUBLIC_KEY");
-       })();
-    </script>
-
     <style>
-        /* Stili per il Modal e il menu */
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 10000; justify-content: center; align-items: center; }
-        .modal-content { background: white; padding: 40px; border-radius: 12px; width: 90%; max-width: 400px; text-align: center; position: relative; }
-        .util-icon { cursor: pointer; margin: 0 10px; font-size: 20px; }
-        .lang-box { cursor: pointer; font-weight: bold; border: 1px solid #ccc; padding: 2px 8px; border-radius: 4px; }
+        /* --- STILI PER IL MODULO DI BENVENUTO --- */
+        #welcomeOverlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: white;
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s ease, visibility 0.8s;
+        }
+
+        .welcome-card {
+            max-width: 500px;
+            padding: 40px;
+            text-align: center;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .welcome-logo { width: 220px; margin-bottom: 30px; }
+        
+        .welcome-title { color: #00727A; font-weight: 300; font-size: 28px; margin-bottom: 20px; }
+
+        .welcome-text { color: #555; line-height: 1.6; margin-bottom: 30px; font-size: 15px; }
+
+        .privacy-box {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: left;
+            margin-bottom: 30px;
+            border: 1px solid #eee;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            cursor: pointer;
+            font-size: 13px;
+            color: #333;
+        }
+
+        .btn-enter {
+            background: #ccc;
+            color: white;
+            border: none;
+            padding: 16px 50px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: not-allowed;
+            transition: 0.3s;
+        }
+
+        .btn-enter.active {
+            background: #00727A;
+            cursor: pointer;
+        }
+
+        .btn-enter.active:hover { background: #005a61; }
+
+        /* --- STILI MEGA MENU --- */
+        .mega-menu {
+            display: none;
+            position: fixed;
+            top: 125px; left: 0; width: 100%;
+            background: white;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 50px 0;
+            border-top: 1px solid #eee;
+        }
+        .mega-menu.show { display: block; }
     </style>
 </head>
 <body>
 
-    <header class="main-header">
-        <div class="container header-flex" style="display: flex; justify-content: space-between; align-items: center; padding: 20px;">
-            <div class="logo-area">
-                <img src="Air_Dolomiti_logo.svg.png" alt="Logo" style="height: 40px;">
+    <div id="welcomeOverlay">
+        <div class="welcome-card">
+            <img src="Air_Dolomiti_logo.svg.png" alt="Air Dolomiti" class="welcome-logo">
+            
+            <h2 class="welcome-title" id="w-title">Benvenuto a bordo</h2>
+            <p class="welcome-text" id="w-text">
+                Per accedere al portale ufficiale di Air Dolomiti Virtual su Roblox, conferma di aver preso visione del regolamento e dei termini di utilizzo.
+            </p>
+            
+            <div class="privacy-box">
+                <label class="checkbox-container">
+                    <input type="checkbox" id="privacyCheck">
+                    <span id="w-privacy">Accetto i termini della Privacy, il regolamento interno e l'uso dei cookie tecnici per la navigazione.</span>
+                </label>
             </div>
-            <div class="header-utilities" style="display: flex; align-items: center;">
-                <span class="util-icon">🔍</span>
-                <span class="util-icon" id="userIcon">👤</span>
-                <div class="lang-box" id="lang-switch">EN</div>
+            
+            <button id="enterSiteBtn" class="btn-enter" disabled>Accedi al sito</button>
+            
+            <p style="margin-top: 30px; font-size: 10px; color: #bbb; text-transform: uppercase;">Member of Lufthansa Group</p>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <div class="container header-flex" style="display: flex; justify-content: space-between; align-items: center; padding: 15px 0;">
+            <div class="logo-area">
+                <img src="Air_Dolomiti_logo.svg.png" alt="Logo" style="height: 45px;">
+            </div>
+            <nav class="main-nav">
+                <ul style="display: flex; list-style: none; gap: 25px; font-weight: 600;">
+                    <li><a href="#" id="exploreBtn" style="color: #00727A; text-decoration: none;">Explore</a></li>
+                    <li><a href="#" style="text-decoration: none; color: #444;">Book & Manage</a></li>
+                    <li><a href="#" style="text-decoration: none; color: #444;">On Board</a></li>
+                    <li><a href="#" style="text-decoration: none; color: #444;">Experience</a></li>
+                </ul>
+            </nav>
+            <div class="header-utilities" style="display: flex; gap: 15px; align-items: center;">
+                <span style="cursor: pointer;">🔍</span>
+                <div id="lang-switch" style="cursor: pointer; font-weight: bold; border: 1px solid #ccc; padding: 2px 8px; border-radius: 4px;">EN</div>
             </div>
         </div>
     </header>
 
     <main>
-        <section class="offers-section" style="padding: 60px 0; background-color: #f9f9f9;">
-            <div class="container" style="max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 50px;">
-                <div style="flex: 1;">
-                    <img src="Screenshot 2026-04-12 084849.png" alt="Milano Linate" style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                </div>
-                <div style="flex: 1;">
-                    <h2 id="offer-title" style="font-size: 32px; margin-bottom: 20px;">Discover our best offer</h2>
-                    <h4 style="font-size: 20px; color: #333;">Munich - Milan Linate</h4>
-                    <p style="font-size: 42px; font-weight: 700; color: #00727A; margin: 15px 0;"><span id="offer-from">From</span> 120 R$</p>
-                    <p style="color: #888; letter-spacing: 1px; margin-bottom: 30px;">ONE WAY - ECONOMY LIGHT</p>
-                    <button style="background-color: #00727A; color: white; border: none; padding: 15px 40px; border-radius: 4px; font-weight: bold; cursor: pointer;">Book Now</button>
+        <section class="hero-section" style="height: 500px; background-image: url('Screenshot 2026-04-09 210801.png'); background-size: cover; background-position: center; position: relative;">
+            <div style="position: absolute; bottom: 50px; left: 50px; color: white; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">
+                <h1 style="font-size: 48px; font-weight: 300;">Ready for take-off?</h1>
+                <p>Join the most authentic Italian virtual experience on Roblox.</p>
+            </div>
+        </section>
+
+        <section style="padding: 80px 0; background: #f4f4f4;">
+            <div class="container" style="display: flex; align-items: center; gap: 60px; max-width: 1100px; margin: 0 auto;">
+                <img src="Screenshot 2026-04-12 084849.png" style="width: 50%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                <div>
+                    <h2 style="font-size: 32px; color: #333; margin-bottom: 20px;">Munich - Milan Linate</h2>
+                    <p style="font-size: 48px; font-weight: 700; color: #00727A; margin-bottom: 10px;">120 R$</p>
+                    <p style="color: #888; text-transform: uppercase; font-size: 13px; margin-bottom: 30px;">ONE WAY - ECONOMY LIGHT</p>
+                    <button style="background: #00727A; color: white; border: none; padding: 15px 40px; font-weight: bold; border-radius: 4px; cursor: pointer;">Book Now</button>
                 </div>
             </div>
         </section>
     </main>
 
-    <div id="loginModal" class="modal-overlay">
-        <div class="modal-content">
-            <span id="closeModal" style="position: absolute; top: 15px; right: 20px; font-size: 24px; cursor: pointer;">&times;</span>
-            <img src="Air_Dolomiti_logo.svg.png" alt="Logo" style="width: 150px; margin-bottom: 20px;">
-            <h3 id="login-title">Accedi al tuo profilo</h3>
-            <p id="login-subtitle" style="font-size: 14px; color: #666; margin-bottom: 20px;">Inserisci la tua email per ricevere il benvenuto a bordo.</p>
-            <input type="email" id="userEmail" placeholder="esempio@email.com" style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 4px;">
-            <button id="login-submit-btn" style="width: 100%; background: #00727A; color: white; border: none; padding: 12px; border-radius: 4px; font-weight: bold; cursor: pointer;">Accedi</button>
-        </div>
-    </div>
-
     <script>
-        // Configurazione EmailJS e Login
-        const userIcon = document.getElementById('userIcon');
-        const modal = document.getElementById('loginModal');
-        const closeModal = document.getElementById('closeModal');
-        const loginBtn = document.getElementById('login-submit-btn');
-        const emailInput = document.getElementById('userEmail');
+        // --- LOGICA BENVENUTO E PRIVACY ---
+        const welcomeOverlay = document.getElementById('welcomeOverlay');
+        const privacyCheck = document.getElementById('privacyCheck');
+        const enterSiteBtn = document.getElementById('enterSiteBtn');
 
-        userIcon.onclick = () => modal.style.display = 'flex';
-        closeModal.onclick = () => modal.style.display = 'none';
-        window.onclick = (e) => { if (e.target == modal) modal.style.display = 'none'; };
+        // Controlla se l'utente ha già accettato in questa sessione
+        if(sessionStorage.getItem('privacyAccepted')) {
+            welcomeOverlay.style.display = 'none';
+        }
 
-        loginBtn.addEventListener('click', function() {
-            const email = emailInput.value;
-            if (email.includes('@')) {
-                loginBtn.innerText = "Invio in corso...";
-                loginBtn.disabled = true;
-
-                // Parametri per EmailJS (devono corrispondere ai tag nel tuo template EmailJS)
-                const templateParams = {
-                    user_email: email,
-                    message: "Benvenuto in Air Dolomiti Virtual Airline! Siamo felici di averti a bordo per le nostre operazioni su Roblox."
-                };
-
-                // Invia l'email tramite il tuo Service ID e Template ID
-                emailjs.send('IL_TUO_SERVICE_ID', 'IL_TUO_TEMPLATE_ID', templateParams)
-                    .then(function() {
-                        alert("Benvenuto! Controlla la tua email.");
-                        modal.style.display = 'none';
-                        userIcon.innerHTML = "✅";
-                        loginBtn.disabled = false;
-                        loginBtn.innerText = "Accedi";
-                    }, function(error) {
-                        alert("Errore nell'invio. Verifica la configurazione di EmailJS.");
-                        loginBtn.disabled = false;
-                        loginBtn.innerText = "Accedi";
-                    });
+        privacyCheck.addEventListener('change', function() {
+            if (this.checked) {
+                enterSiteBtn.disabled = false;
+                enterSiteBtn.classList.add('active');
             } else {
-                alert("Inserisci un indirizzo email valido.");
+                enterSiteBtn.disabled = true;
+                enterSiteBtn.classList.remove('active');
             }
         });
 
-        // Cambio Lingua Semplice
+        enterSiteBtn.addEventListener('click', function() {
+            sessionStorage.setItem('privacyAccepted', 'true');
+            welcomeOverlay.style.opacity = '0';
+            setTimeout(() => {
+                welcomeOverlay.style.visibility = 'hidden';
+            }, 800);
+        });
+
+        // --- CAMBIO LINGUA ---
         const langBtn = document.getElementById('lang-switch');
         langBtn.onclick = () => {
             const isEn = langBtn.innerText === 'EN';
             langBtn.innerText = isEn ? 'IT' : 'EN';
-            document.getElementById('offer-title').innerText = isEn ? 'Scopri la nostra offerta' : 'Discover our best offer';
-            document.getElementById('login-title').innerText = isEn ? 'Accedi al profilo' : 'Access your profile';
+            
+            // Traduzioni veloci
+            document.getElementById('w-title').innerText = isEn ? 'Benvenuto a bordo' : 'Welcome on board';
+            document.getElementById('w-text').innerText = isEn ? 'Per accedere al portale ufficiale di Air Dolomiti Virtual su Roblox, conferma di aver preso visione del regolamento.' : 'To access the official Air Dolomiti Virtual portal on Roblox, please confirm you have read the regulations.';
+            document.getElementById('enterSiteBtn').innerText = isEn ? 'Accedi al sito' : 'Enter site';
         };
     </script>
 </body>
